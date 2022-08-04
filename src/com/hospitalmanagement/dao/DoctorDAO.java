@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,6 +15,11 @@ import com.hospitalmanagement.model.Doctor;
 
 public class DoctorDAO implements DAO<Doctor, Long>{
 	private final Connection conn;
+
+	private static final String UPDATE_QUERY = "UPDATE doctor SET name=?,gender=?,phone_number=?,address=?,date_of_birth=TO_DATE(?, 'yyyy/mm/dd'),department_id=? WHERE id=?";
+	private static final String INSERT_QUERY = "INSERT INTO doctor (id, name, gender, phone_number, address, date_of_birth, department_id) VALUES (?, ?, ?, ?, ?, TO_DATE(?, 'yyyy/mm/dd'), ?);";
+	private static final String DELETE_QUERY = "DELETE FROM doctor WHERE id=?";
+	private static SimpleDateFormat dateFormater = new SimpleDateFormat("yyyy/mm/dd"); 
 	
 	public DoctorDAO(Connection conn)
 	{
@@ -29,7 +35,7 @@ public class DoctorDAO implements DAO<Doctor, Long>{
 		d.setPhoneNumber(rs.getString(4));
 		d.setAddress(rs.getString(5));
 		d.setDateOfBirth(rs.getDate(6));
-		
+		d.setDepartmentId(rs.getInt(7));
 		return d;
 	}
 
@@ -49,6 +55,7 @@ public class DoctorDAO implements DAO<Doctor, Long>{
 	@Override
 	public Doctor findById(Long id) throws SQLException {
 		PreparedStatement st = conn.prepareStatement("SELECT id, name, gender, phone_number, address, date_of_birth, department_id FROM doctor WHERE id=?");
+		st.setLong(1, id);
 		ResultSet rs = st.executeQuery();
 		if (rs.next())
 			return this.mappingDoctor(rs);
@@ -58,20 +65,57 @@ public class DoctorDAO implements DAO<Doctor, Long>{
 	@Override
 	public Doctor update(Doctor model) throws SQLException {
 		// TODO Auto-generated method stub
+		PreparedStatement st = conn.prepareStatement(UPDATE_QUERY);
+		st.setString(1, model.getName());
+		st.setString(2, model.getGender().toString());
+		st.setString(3, model.getPhoneNumber());
+		st.setString(4, model.getAddress());
+		st.setString(5, dateFormater.format(model.getDateOfBirth()));
+		st.setInt(6, model.getDepartmentId());
+		st.setLong(7, model.getId());
+		if (st.executeUpdate() > 0)
+		{
+			return model;
+		}
 		return null;
 	}
 
 	@Override
-	public Doctor save(Doctor model) throws SQLException {
-		// TODO Auto-generated method stub
+	public Doctor insert(Doctor model) throws SQLException {
+		PreparedStatement st = conn.prepareStatement(INSERT_QUERY);
+		st.setString(1, model.getName());
+		st.setString(2, model.getGender().toString());
+		st.setString(3, model.getPhoneNumber());
+		st.setString(4, model.getAddress());
+		st.setString(5, dateFormater.format(model.getDateOfBirth()));
+		st.setInt(6, model.getDepartmentId());
+		if (st.executeUpdate() > 0)
+		{
+			return model;
+		}
 		return null;
+	}
+	
+	
+	@Override
+	public Doctor save(Doctor model) throws SQLException {
+		if (model.getId() != null)
+		{
+			return this.insert(model);
+		} else
+		{			
+			return this.update(model);
+		}
 	}
 
 	@Override
 	public int delete(Doctor model) throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
+		PreparedStatement st = conn.prepareStatement(DELETE_QUERY);
+		st.setLong(1, model.getId());
+		
+		return st.executeUpdate();
 	}
+
 	
 	
 }

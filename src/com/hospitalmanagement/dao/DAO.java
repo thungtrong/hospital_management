@@ -10,6 +10,8 @@ public interface DAO<T, ID> {
 	
 	T update(T model) throws SQLException;
 	
+	T insert(T model) throws SQLException;
+	
 	T save(T model) throws SQLException;
 	
 	int delete(T model) throws SQLException;

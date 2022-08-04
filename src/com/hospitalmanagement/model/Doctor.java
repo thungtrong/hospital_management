@@ -5,11 +5,11 @@ import java.util.Date;
 public class Doctor {
 	private Long id;
 	private String name; 
-	private String phoneNumber;
 	private Character gender;
+	private String phoneNumber;
 	private String address;
 	private Date dateOfBirth;
-	
+	private Integer departmentId;
 //	private Department department;
 	public Doctor() {
 		// TODO Auto-generated constructor stub
@@ -58,6 +58,13 @@ public class Doctor {
 	}
 	public void setDateOfBirth(Date dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
+	}
+	
+	public Integer getDepartmentId() {
+		return departmentId;
+	}
+	public void setDepartmentId(Integer departmentId) {
+		this.departmentId = departmentId;
 	}
 	@Override
 	public String toString() {
