@@ -8,19 +8,10 @@ import com.hospitalmanagement.util.DBConnection;
 
 public class Main {
 	public static void main(String[] args) {
-		try {
-			Connection conn = DBConnection.getConnection();
-			DoctorDAO doctorDao = new DoctorDAO(conn);
-			List<Doctor> d = doctorDao.findAll();
-			System.out.println(d);
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-        
+
+		DoctorDAO doctorDao = new DoctorDAO();
+		List<Doctor> doctor = doctorDao.findAll();
+		System.out.println(doctor);
+
 	}
 }

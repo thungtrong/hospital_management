@@ -12,110 +12,149 @@ import java.util.List;
 import javax.naming.spi.DirStateFactory.Result;
 
 import com.hospitalmanagement.model.Doctor;
+import com.hospitalmanagement.util.DBConnection;
 
-public class DoctorDAO implements DAO<Doctor, Long>{
-	private final Connection conn;
+public class DoctorDAO implements DAO<Doctor, Long>, DoctorQueries {
+	private Connection connection;
 
-	private static final String UPDATE_QUERY = "UPDATE doctor SET name=?,gender=?,phone_number=?,address=?,date_of_birth=TO_DATE(?, 'yyyy/mm/dd'),department_id=? WHERE id=?";
-	private static final String INSERT_QUERY = "INSERT INTO doctor (id, name, gender, phone_number, address, date_of_birth, department_id) VALUES (?, ?, ?, ?, ?, TO_DATE(?, 'yyyy/mm/dd'), ?);";
-	private static final String DELETE_QUERY = "DELETE FROM doctor WHERE id=?";
-	private static SimpleDateFormat dateFormater = new SimpleDateFormat("yyyy/mm/dd"); 
-	
-	public DoctorDAO(Connection conn)
-	{
-		this.conn = conn;
+	private static SimpleDateFormat dateFormater = new SimpleDateFormat("yyyy/mm/dd");
+
+	public DoctorDAO() {
+		try {
+			connection = DBConnection.getConnection();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
-	
-	private Doctor mappingDoctor(ResultSet rs) throws SQLException
-	{
-		Doctor d = new Doctor();
-		d.setId(rs.getLong(1));
-		d.setName(rs.getString(2));
-		d.setGender(rs.getString(3).charAt(0));
-		d.setPhoneNumber(rs.getString(4));
-		d.setAddress(rs.getString(5));
-		d.setDateOfBirth(rs.getDate(6));
-		d.setDepartmentId(rs.getInt(7));
-		return d;
+
+	// alt + shift + r
+	private Doctor mappingDoctor(ResultSet resultSet) {
+		Doctor doctor = new Doctor();
+		try {
+			doctor.setId(resultSet.getLong(1));
+			doctor.setName(resultSet.getString(2));
+			doctor.setGender(resultSet.getString(3).charAt(0));
+			doctor.setPhoneNumber(resultSet.getString(4));
+			doctor.setAddress(resultSet.getString(5));
+			doctor.setDateOfBirth(resultSet.getDate(6));
+			doctor.setDepartmentId(resultSet.getInt(7));
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return doctor;
 	}
 
 	@Override
-	public List<Doctor> findAll() throws SQLException {
+	public List<Doctor> findAll() {
 		// TODO Auto-generated method stub
-		Statement st = conn.createStatement();
-		ResultSet rs = st.executeQuery("SELECT id, name, gender, phone_number, address, date_of_birth, department_id FROM doctor");
 		List<Doctor> doctors = new ArrayList<>();
-		while (rs.next())
-		{
-			doctors.add(this.mappingDoctor(rs));
+		Statement statement;
+		try {
+			statement = connection.createStatement();
+			ResultSet resultSet = statement.executeQuery(SELECT_ALL);
+
+			while (resultSet.next()) {
+				doctors.add(this.mappingDoctor(resultSet));
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		return doctors;
 	}
 
 	@Override
-	public Doctor findById(Long id) throws SQLException {
-		PreparedStatement st = conn.prepareStatement("SELECT id, name, gender, phone_number, address, date_of_birth, department_id FROM doctor WHERE id=?");
-		st.setLong(1, id);
-		ResultSet rs = st.executeQuery();
-		if (rs.next())
-			return this.mappingDoctor(rs);
+	public Doctor findById(Long id) {
+		PreparedStatement statement;
+		try {
+			statement = connection.prepareStatement(SELECT_BY_ID);
+			statement.setLong(1, id);
+			ResultSet resultSet = statement.executeQuery();
+			if (resultSet.next())
+				return this.mappingDoctor(resultSet);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		return null;
 	}
 
 	@Override
-	public Doctor update(Doctor model) throws SQLException {
+	public Doctor update(Doctor model) {
 		// TODO Auto-generated method stub
-		PreparedStatement st = conn.prepareStatement(UPDATE_QUERY);
-		st.setString(1, model.getName());
-		st.setString(2, model.getGender().toString());
-		st.setString(3, model.getPhoneNumber());
-		st.setString(4, model.getAddress());
-		st.setString(5, dateFormater.format(model.getDateOfBirth()));
-		st.setInt(6, model.getDepartmentId());
-		st.setLong(7, model.getId());
-		if (st.executeUpdate() > 0)
-		{
-			return model;
+		PreparedStatement statement;
+		try {
+			statement = connection.prepareStatement(UPDATE_QUERY);
+			statement.setString(1, model.getName());
+			statement.setString(2, model.getGender().toString());
+			statement.setString(3, model.getPhoneNumber());
+			statement.setString(4, model.getAddress());
+			statement.setString(5, dateFormater.format(model.getDateOfBirth()));
+			statement.setInt(6, model.getDepartmentId());
+			statement.setLong(7, model.getId());
+			if (statement.executeUpdate() > 0) {
+				return model;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+		
 		return null;
 	}
 
 	@Override
-	public Doctor insert(Doctor model) throws SQLException {
-		PreparedStatement st = conn.prepareStatement(INSERT_QUERY);
-		st.setString(1, model.getName());
-		st.setString(2, model.getGender().toString());
-		st.setString(3, model.getPhoneNumber());
-		st.setString(4, model.getAddress());
-		st.setString(5, dateFormater.format(model.getDateOfBirth()));
-		st.setInt(6, model.getDepartmentId());
-		if (st.executeUpdate() > 0)
-		{
-			return model;
+	public Doctor insert(Doctor model) {
+		PreparedStatement statement;
+		try {
+			statement = connection.prepareStatement(INSERT_QUERY);
+			statement.setString(1, model.getName());
+			statement.setString(2, model.getGender().toString());
+			statement.setString(3, model.getPhoneNumber());
+			statement.setString(4, model.getAddress());
+			statement.setString(5, dateFormater.format(model.getDateOfBirth()));
+			statement.setInt(6, model.getDepartmentId());
+			if (statement.executeUpdate() > 0) {
+				return model;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+		
 		return null;
 	}
-	
-	
+
 	@Override
-	public Doctor save(Doctor model) throws SQLException {
-		if (model.getId() != null)
-		{
+	public Doctor save(Doctor model) {
+		if (model.getId() == null) {
 			return this.insert(model);
-		} else
-		{			
+		} else {
 			return this.update(model);
 		}
 	}
 
 	@Override
-	public int delete(Doctor model) throws SQLException {
-		PreparedStatement st = conn.prepareStatement(DELETE_QUERY);
-		st.setLong(1, model.getId());
-		
-		return st.executeUpdate();
+	public int delete(Doctor model) {
+		PreparedStatement statement;
+		try {
+			statement = connection.prepareStatement(DELETE_QUERY);
+			statement.setLong(1, model.getId());
+
+			return statement.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return 0;
 	}
 
-	
-	
 }
