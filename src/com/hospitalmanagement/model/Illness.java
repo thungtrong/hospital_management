@@ -37,10 +37,6 @@ public class Illness {
 		return "Illness [id=" + id + ", name=" + name + ", description=" + description + "]";
 	}
 	
-	public void copyTo(Illness illness)
-	{
-		illness.name = this.name;
-		illness.description = this.description;
-	}
+
 	
 }

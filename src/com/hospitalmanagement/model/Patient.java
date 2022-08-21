@@ -84,14 +84,7 @@ public class Patient {
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
-	public void copyTo(Patient patient)
-	{
-		patient.name = this.name;
-		patient.dateOfBirth = this.dateOfBirth;
-		patient.gender = this.gender;
-		patient.address = this.address;
-		patient.phoneNumber = this.phoneNumber;
-	}
+
 
 	@Override
 	public String toString() {

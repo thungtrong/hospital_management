@@ -51,12 +51,7 @@ public class Medicine {
 	public String toString() {
 		return "Medicine [id=" + id + ", name=" + name + ", unit=" + unit + ", instruction=" + instruction + "]";
 	}
-	public void copyTo(Medicine other) {
-		other.name = this.name;
-		other.unit = this.unit;
-		other.instruction = this.instruction;
-		
-	}
+
 	
 	
 }

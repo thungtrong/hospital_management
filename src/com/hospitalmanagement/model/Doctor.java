@@ -2,15 +2,37 @@ package com.hospitalmanagement.model;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.GenericGenerator;
+
+
+@Entity
+@Table(name="doctor")
 public class Doctor {
+	@Id
+	@SequenceGenerator(name = "sequence_doctor_pk", allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="sequence_doctor_pk")
 	private Long id;
 	private String name; 
 	private Character gender;
 	private String phoneNumber;
 	private String address;
 	private Date dateOfBirth;
-	private Integer departmentId;
-//	private Department department;
+	
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "department_id", referencedColumnName = "id")
+	private Department department;
+	
 	public Doctor() {
 		// TODO Auto-generated constructor stub
 	}
@@ -60,18 +82,25 @@ public class Doctor {
 		this.dateOfBirth = dateOfBirth;
 	}
 	
-	public Integer getDepartmentId() {
-		return departmentId;
+//	public Integer getDepartmentId() {
+//		return departmentId;
+//	}
+//	public void setDepartmentId(Integer departmentId) {
+//		this.departmentId = departmentId;
+//	}
+	
+	public Department getDepartment() {
+		return department;
 	}
-	public void setDepartmentId(Integer departmentId) {
-		this.departmentId = departmentId;
+	public void setDepartment(Department department) {
+		this.department = department;
 	}
+	
 	@Override
 	public String toString() {
 		return "Doctor [id=" + id + ", name=" + name + ", phoneNumber=" + phoneNumber + ", gender=" + gender
-				+ ", address=" + address + ", dateOfBirth=" + dateOfBirth + "]";
+				+ ", address=" + address + ", dateOfBirth=" + dateOfBirth + ", department="+ department.getName()+"]";
 	}
-
 	
 	
 }
