@@ -3,36 +3,42 @@ package com.hospitalmanagement.dao;
 import java.util.ArrayList;
 import java.util.List;
 
-
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
-import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 import com.hospitalmanagement.model.Department;
 import com.hospitalmanagement.util.HibernateUtil;
+import com.hospitalmanagement.util.HibernateUtil2;
 
 public class DepartmentDAO implements DAO<Department, Integer>{
 	private SessionFactory sessionFactory;
-	
+	{
+		sessionFactory = HibernateUtil2.getSessionFactory();
+	}
 	public DepartmentDAO() {
-		sessionFactory = HibernateUtil.getSessionFactory();
 	}
 
+	
 	@Override
 	public List<Department> findAll() {
+		Session session = null;
 		try {
-			Session session = this.sessionFactory.openSession();
+			session = this.sessionFactory.openSession();
 			Criteria criteria = session.createCriteria(Department.class);
 			List<Department> list = criteria.list();
 			
-			session.close();
 			return list;
 		} catch (HibernateException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			if (session != null)
+			{
+				session.close();
+			}
 		}
 		return new ArrayList<>();
 	}
@@ -40,53 +46,65 @@ public class DepartmentDAO implements DAO<Department, Integer>{
 	@Override
 	public Department findById(Integer id) {
 		Department department;
+		Session session = null;
 		try {
-			Session session = this.sessionFactory.openSession();
+			session = this.sessionFactory.openSession();
 			department = (Department) session.get(Department.class, id);
 			
-			session.close();
 			return department;
 		} catch (HibernateException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			if (session != null)
+			{
+				session.close();
+			}
 		}
 		return null;
 	}
 
 	@Override
-	public Department update(Department department) {
+	public int update(Department department) {
 		Department model;
+		Session session = null;
+		int result = 0;
+		
 		try {
-			Session session = this.sessionFactory.openSession();
+			session = this.sessionFactory.openSession();
 			Transaction transaction = session.beginTransaction();
 			
 			model = (Department) session.get(Department.class, department.getId());
 			if (model == null)
 			{
 				session.close();
-				return null;
+				return 0;
 			}
-			department.copyTo(model);
 			
+			session.merge(department);
 			transaction.commit();
-			session.close();
-			return model;
+			result = 1;
 		} catch (HibernateException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			if (session != null)
+			{
+				session.close();
+			}
 		}
-		return null;
+		return result;
 	}
 
 	@Override
-	public Department insert(Department department) {
+	public Integer insert(Department department) {
 		Session session = null;
+		Integer id = -1;
 		try {
 			session = this.sessionFactory.openSession();
 			Transaction transaction = session.beginTransaction();
-			session.save(department);
+			id = (Integer) session.save(department);
 			transaction.commit();
-			session.close();
 		} catch (HibernateException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -97,22 +115,15 @@ public class DepartmentDAO implements DAO<Department, Integer>{
 			}
 		}
 		
-		return department;
+		return id;
 	}
 
-	@Override
-	public Department save(Department department) {
-		if (department.getId() == null)
-		{
-			return this.insert(department);
-		} else 
-			return this.update(department);
-	}
 
 	@Override
 	public int delete(Department department) {
+		Session session = null;
 		try {
-			Session session = this.sessionFactory.openSession();
+			session = this.sessionFactory.openSession();
 			Transaction transaction = session.beginTransaction();
 			
 			Department model = (Department) session.get(Department.class, department.getId());
@@ -124,10 +135,14 @@ public class DepartmentDAO implements DAO<Department, Integer>{
 			session.delete(model);
 			
 			transaction.commit();
-			session.close();
 		} catch (HibernateException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			if (session != null)
+			{
+				session.close();
+			}
 		}
 		return 1;
 	}
