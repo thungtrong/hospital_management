@@ -7,21 +7,21 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 @Entity
-@Table(name="hopital")
+@Table(name="Patient")
 public class Patient {
 	@Id
-	@Column
-	Long id;
-	@Column
-	String name;
-	@Column
-	Date dob;
-	@Column
-	String gender;
-	@Column
-	String address;
-	@Column
-	String phoneNumber;
+	@Column(name="ID")
+	private Long id;
+	@Column(name="NAME")
+	private String name;
+	@Column(name = "DATE_OF_BIRTH")
+	private Date dob;
+	@Column(name = "GENDER")
+	private String gender;
+	@Column(name = "ADDRESS")
+	private String address;
+	@Column(name = "PHONE_NUMBER")
+	private String phoneNumber;
 	public String getName() {
 		return name;
 	}

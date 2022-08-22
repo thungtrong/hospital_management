@@ -1,22 +1,44 @@
 package com.hospitalmanagement.model;
 
+import javax.persistence.*;
 import java.util.Date;
 
-
+@SuppressWarnings("JpaAttributeTypeInspection")
+@Entity
+@Table(name = "Doctor")
 
 public class Doctor {
+	@Id
+	@Column(name = "ID")
 	private Long id;
-	private String name; 
+	@Column(name = "NAME")
+	private String name;
+	@Column(name = "GENDER")
 	private Character gender;
+	@Column(name = "PHONE_NUMBER")
 	private String phoneNumber;
+	@Column(name = "ADDRESS")
 	private String address;
+	@Column(name = "DATE_OF_BIRTH")
 	private Date dateOfBirth;
+	@Column(name = "DEPARTMENT_ID")
 	private Integer departmentId;
-//	private Department department;
+	@OneToOne
+	@JoinColumn(name = "department_id")
+	private Department department;
+
+	public Department getDepartment() {
+		return department;
+	}
+
+	public void setDepartment(Department department) {
+		this.department = department;
+	}
+
 	public Doctor() {
 		// TODO Auto-generated constructor stub
 	}
-	public Doctor(Long id, String name, String phoneNumber, Character gender, String address, Date dateOfBirth) {
+	public Doctor(Long id, String name, String phoneNumber, Character gender, String address, Date dateOfBirth, Department department) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -24,6 +46,7 @@ public class Doctor {
 		this.gender = gender;
 		this.address = address;
 		this.dateOfBirth = dateOfBirth;
+		this.department = department;
 	}
 	public Long getId() {
 		return id;

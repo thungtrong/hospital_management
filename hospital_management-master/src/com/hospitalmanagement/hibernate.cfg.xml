@@ -6,6 +6,12 @@
     <property name="hibernate.connection.driver_class">oracle.jdbc.OracleDriver</property>
     <property name="hibernate.hbm2ddl.auto">update</property>
     <mapping class="com.hospitalmanagement.model.Doctor"/>
-    <mapping class="Patient"/>
+    <mapping class="com.hospitalmanagement.model.Patient"/>
+    <mapping class="com.hospitalmanagement.model.Admission"/>
+    <mapping class="com.hospitalmanagement.model.Test"/>
+    <mapping class="com.hospitalmanagement.model.Medicine"/>
+    <mapping class="com.hospitalmanagement.model.Illness"/>
+    <mapping class="com.hospitalmanagement.model.Department"/>
+    <mapping class="com.hospitalmanagement.model.HealthRecord"/>
   </session-factory>
 </hibernate-configuration>

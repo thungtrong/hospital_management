@@ -113,7 +113,4 @@ public class DoctorDAO implements DAO<Doctor, Long>, DoctorQuery{
 		
 		return st.executeUpdate();
 	}
-
-	
-	
 }
