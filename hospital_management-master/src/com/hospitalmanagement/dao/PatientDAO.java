@@ -14,36 +14,59 @@ import com.hospitalmanagement.util.HibernateUtil;
 
 public class PatientDAO {
 		SessionFactory sf;
+		Session ss;
+		Transaction ts;
 		Criteria criteria= null;
 	    @SuppressWarnings("unchecked")
 		public List<Patient> list(){
-	    	 sf = HibernateUtil.getSessionFactory();
-	    	Session ss= sf.openSession();
-	    	 criteria = ss.createCriteria(Patient.class);
-	    	criteria.addOrder(Order.asc("id"));
-	    	return criteria.list();
+	    	try {
+				sf = HibernateUtil.getSessionFactory();
+	    		ss = sf.openSession();
+	    		ts = ss.beginTransaction();
+	    		criteria = ss.createCriteria(Patient.class);
+	    		criteria.addOrder(Order.asc("id"));
+	    		List<Patient> list = criteria.list();
+	    		ts.commit();
+	    		return list;
+	    	} catch (Exception e) {
+	    		e.printStackTrace();
+	    		return null;
+	    	}
 		}
 		public Patient find(int id) {
-			 sf = HibernateUtil.getSessionFactory();
-			Session ss = sf.openSession();
-			Patient patient = (Patient) ss.get(Patient.class, id);
-			return patient;
+			try {
+				sf = HibernateUtil.getSessionFactory();
+	    		ss = sf.openSession();
+	    		ts = ss.beginTransaction();
+	    		Patient patient = (Patient) ss.get(Patient.class, id);
+	    		ts.commit();
+	    		return patient;
+			} catch (Exception e) {
+				e.printStackTrace();
+				return null;
+			}
 		}
 		public void updatePatientById(Patient patient) {
-			sf = HibernateUtil.getSessionFactory();
-			Session ss = sf.openSession();
-			Transaction ts = ss.beginTransaction();
-			ss.update(patient);
-			ts.commit();
-			ss.close();
+			try {
+				sf = HibernateUtil.getSessionFactory();
+		    	ss = sf.openSession();
+		    	ts = ss.beginTransaction();
+		    	ss.update(patient);
+		    	ts.commit();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 		public void delete(Patient patient) {
-			sf = HibernateUtil.getSessionFactory();
-			Session ss = sf.openSession();
-			Transaction tn = ss.beginTransaction();
-			ss.delete(patient);
-			tn.commit();
-			ss.close();
+			try {
+				sf = HibernateUtil.getSessionFactory();
+		    	ss = sf.openSession();
+		    	ts = ss.beginTransaction();
+		    	ss.delete(patient);
+		    	ts.commit();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 	}
 

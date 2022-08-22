@@ -1,116 +1,112 @@
 package com.hospitalmanagement.dao;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.List;
-
-
 import com.hospitalmanagement.model.Doctor;
-import com.hospitalmanagement.query.DoctorQuery;
+import com.hospitalmanagement.util.HibernateUtil;
+import org.hibernate.Criteria;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Restrictions;
 
-public class DoctorDAO implements DAO<Doctor, Long>, DoctorQuery{
-	private final Connection conn;
+public class DoctorDAO{
+	SessionFactory sf;
+	Session ss;
+	Transaction ts;
+	Criteria criteria= null;
 
-	
-	private static SimpleDateFormat dateFormater = new SimpleDateFormat("yyyy/mm/dd"); 
-	
-	public DoctorDAO(Connection conn)
-	{
-		this.conn = conn;
-	}
-	
-	private Doctor mappingDoctor(ResultSet rs) throws SQLException
-	{
-		Doctor d = new Doctor();
-		d.setId(rs.getLong(1));
-		d.setName(rs.getString(2));
-		d.setGender(rs.getString(3).charAt(0));
-		d.setPhoneNumber(rs.getString(4));
-		d.setAddress(rs.getString(5));
-		d.setDateOfBirth(rs.getDate(6));
-		d.setDepartmentId(rs.getInt(7));
-		return d;
-	}
 
-	@Override
-	public List<Doctor> findAll() throws SQLException {
-		// TODO Auto-generated method stub
-		Statement st = conn.createStatement();
-		ResultSet rs = st.executeQuery("SELECT id, name, gender, phone_number, address, date_of_birth, department_id FROM doctor");
-		List<Doctor> doctors = new ArrayList<>();
-		while (rs.next())
-		{
-			doctors.add(this.mappingDoctor(rs));
+	public List<Doctor> list(){
+		try {
+			sf = HibernateUtil.getSessionFactory();
+			ss = sf.openSession();
+			ts = ss.beginTransaction();
+			criteria = ss.createCriteria(Doctor.class);
+			criteria.addOrder(Order.asc("id"));
+			List<Doctor> list = criteria.list();
+			ts.commit();
+			return list;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
 		}
-		return doctors;
 	}
-
-	@Override
-	public Doctor findById(Long id) throws SQLException {
-		PreparedStatement st = conn.prepareStatement("SELECT id, name, gender, phone_number, address, date_of_birth, department_id FROM doctor WHERE id=?");
-		st.setLong(1, id);
-		ResultSet rs = st.executeQuery();
-		if (rs.next())
-			return this.mappingDoctor(rs);
-		return null;
-	}
-
-	@Override
-	public Doctor update(Doctor model) throws SQLException {
-		// TODO Auto-generated method stub
-		PreparedStatement st = conn.prepareStatement(UPDATE_QUERY);
-		st.setString(1, model.getName());
-		st.setString(2, model.getGender().toString());
-		st.setString(3, model.getPhoneNumber());
-		st.setString(4, model.getAddress());
-		st.setString(5, dateFormater.format(model.getDateOfBirth()));
-		st.setInt(6, model.getDepartmentId());
-		st.setLong(7, model.getId());
-		if (st.executeUpdate() > 0)
-		{
-			return model;
+	public Doctor find(int id) {
+		try {
+			sf = HibernateUtil.getSessionFactory();
+			ss = sf.openSession();
+			ts = ss.beginTransaction();
+			Doctor doctor = (Doctor) ss.get(Doctor.class, id);
+			ts.commit();
+			return doctor;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
 		}
-		return null;
 	}
-
-	@Override
-	public Doctor insert(Doctor model) throws SQLException {
-		PreparedStatement st = conn.prepareStatement(INSERT_QUERY);
-		st.setString(1, model.getName());
-		st.setString(2, model.getGender().toString());
-		st.setString(3, model.getPhoneNumber());
-		st.setString(4, model.getAddress());
-		st.setString(5, dateFormater.format(model.getDateOfBirth()));
-		st.setInt(6, model.getDepartmentId());
-		if (st.executeUpdate() > 0)
-		{
-			return model;
-		}
-		return null;
-	}
-	
-	
-	@Override
-	public Doctor save(Doctor model) throws SQLException {
-		if (model.getId() != null)
-		{
-			return this.insert(model);
-		} else
-		{			
-			return this.update(model);
+	public void updateDoctorById(Doctor doctor) {
+		try {
+			sf = HibernateUtil.getSessionFactory();
+			ss = sf.openSession();
+			ts = ss.beginTransaction();
+			ss.update(doctor);
+			ts.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 
-	@Override
-	public int delete(Doctor model) throws SQLException {
-		PreparedStatement st = conn.prepareStatement(DELETE_QUERY);
-		st.setLong(1, model.getId());
-		
-		return st.executeUpdate();
+	public void delete(Doctor doctor) {
+		try {
+			sf = HibernateUtil.getSessionFactory();
+			ss = sf.openSession();
+			ts = ss.beginTransaction();
+			ss.delete(doctor);
+			ts.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	public void save(Doctor doctor) {
+		try {
+			sf = HibernateUtil.getSessionFactory();
+			ss = sf.openSession();
+			ts = ss.beginTransaction();
+			ss.save(doctor);
+			ts.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	public List<Doctor> findByName(String name) {
+		try {
+			sf = HibernateUtil.getSessionFactory();
+			ss = sf.openSession();
+			ts = ss.beginTransaction();
+			criteria = ss.createCriteria(Doctor.class);
+			criteria.add(Restrictions.like("name", name));
+			List<Doctor> list = criteria.list();
+			ts.commit();
+			return list;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	public List<Doctor> findBySpecialization(String specialization) {
+		try {
+			sf = HibernateUtil.getSessionFactory();
+			ss = sf.openSession();
+			ts = ss.beginTransaction();
+			criteria = ss.createCriteria(Doctor.class);
+			criteria.add(Restrictions.like("specialization", specialization));
+			List<Doctor> list = criteria.list();
+			ts.commit();
+			return list;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 }
