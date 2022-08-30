@@ -1,17 +1,13 @@
 package com.hospitalmanagement.model;
 
-import java.util.List;
-
 // mapping use xml
 public class Department {
 	private Integer id;
 	private String name;
 	private String description;
 	
-	private List<Doctor> doctors;
 	
 	public Department() {
-		// TODO Auto-generated constructor stub
 	}
 	
 	public Department(Integer id)
@@ -55,13 +51,6 @@ public class Department {
 		return "Department [id=" + id + ", name=" + name + ", description=" + description + "]";
 	}
 
-	public List<Doctor> getDoctors() {
-		return doctors;
-	}
-
-	public void setDoctors(List<Doctor> doctors) {
-		this.doctors = doctors;
-	}
 	
 	
 	

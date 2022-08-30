@@ -14,7 +14,6 @@ public class Medicine {
 	private String instruction;
 	public Medicine() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	public Medicine(Integer id, String name, String unit, String instruction) {
 		super();

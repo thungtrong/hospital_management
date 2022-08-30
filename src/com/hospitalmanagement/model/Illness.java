@@ -1,12 +1,12 @@
 package com.hospitalmanagement.model;
 
+// mapping using xml
 public class Illness {
 	private Integer id;
 	private String name;
 	private String description;
 	public Illness() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	public Illness(Integer id, String name, String description) {
 		super();
