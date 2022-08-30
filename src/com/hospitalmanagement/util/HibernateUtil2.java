@@ -8,10 +8,16 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.cfg.Environment;
 
+import com.hospitalmanagement.model.AdmissionForm;
 import com.hospitalmanagement.model.Doctor;
+import com.hospitalmanagement.model.HealthRecord;
 import com.hospitalmanagement.model.Medicine;
 import com.hospitalmanagement.model.Patient;
+import com.hospitalmanagement.model.Prescription;
+import com.hospitalmanagement.model.PrescriptionDetail;
 import com.hospitalmanagement.model.Test;
+import com.hospitalmanagement.model.TestForm;
+import com.hospitalmanagement.model.TestFormDetail;
 
 public class HibernateUtil2 {
 	private static SessionFactory sessionFactory;
@@ -24,7 +30,7 @@ public class HibernateUtil2 {
 		properties.setProperty(Environment.PASS, resourceBundle.getString("db.password"));
 		properties.setProperty(Environment.DIALECT, "org.hibernate.dialect.Oracle8iDialect");
 		properties.setProperty(Environment.DRIVER, "oracle.jdbc.driver.OracleDriver");
-		properties.setProperty(Environment.HBM2DDL_AUTO, "update");
+		properties.setProperty(Environment.HBM2DDL_AUTO, "create");
 		properties.setProperty(Environment.SHOW_SQL, "true");
 		
 		try {
@@ -32,10 +38,17 @@ public class HibernateUtil2 {
 			configuration.setProperties(properties);
 			// Add class		
 			configuration.addPackage("com.hospitalmanagement.model");
-			configuration.addAnnotatedClass(Patient.class);
-			configuration.addAnnotatedClass(Test.class);
-			configuration.addAnnotatedClass(Medicine.class);
+			configuration.addAnnotatedClass(AdmissionForm.class);
 			configuration.addAnnotatedClass(Doctor.class);
+			configuration.addAnnotatedClass(HealthRecord.class);
+			configuration.addAnnotatedClass(Medicine.class);
+			configuration.addAnnotatedClass(Patient.class);
+			configuration.addAnnotatedClass(Prescription.class);
+			configuration.addAnnotatedClass(PrescriptionDetail.class);
+			configuration.addAnnotatedClass(Test.class);
+			configuration.addAnnotatedClass(TestForm.class);
+			configuration.addAnnotatedClass(TestFormDetail.class);
+			
 			// Add resource
 			configuration.addResource("mapping/Department.hbm.xml");
 			configuration.addResource("mapping/Illness.hbm.xml");
