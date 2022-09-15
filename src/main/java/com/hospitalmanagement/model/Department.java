@@ -1,20 +1,29 @@
 package com.hospitalmanagement.model;
 
-// mapping use xml
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="department")
 public class Department {
+	@Id
+	@SequenceGenerator(name = "department_pk", allocationSize = 1, initialValue = 1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "department_pk")
 	private Integer id;
 	private String name;
 	private String description;
-	
-	
+
 	public Department() {
 	}
-	
-	public Department(Integer id)
-	{
+
+	public Department(Integer id) {
 		this.id = id;
 	}
-	
+
 	public Department(Integer id, String name, String description) {
 		super();
 		this.id = id;
@@ -45,13 +54,10 @@ public class Department {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "Department [id=" + id + ", name=" + name + ", description=" + description + "]";
 	}
 
-	
-	
-	
 }

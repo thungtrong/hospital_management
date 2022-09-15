@@ -21,7 +21,7 @@ import javax.persistence.Table;
 @NamedQueries({
 	@NamedQuery(
 			name="findDoctorsByDepartment",
-			query = "from Doctor where department.id=?"
+			query = "from Doctor where department.id=:id"
 			)
 })
 @Inheritance

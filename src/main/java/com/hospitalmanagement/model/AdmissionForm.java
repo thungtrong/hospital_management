@@ -16,30 +16,30 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@Table(name="admission_form")
+@Table(name = "admission_form")
 public class AdmissionForm {
 	@Id
-	@SequenceGenerator(name="admission_form_pk")
+	@SequenceGenerator(name = "admission_form_pk")
 	@GeneratedValue(generator = "admission_form_pk", strategy = GenerationType.SEQUENCE)
 	private Long id;
-	
+
 	@Temporal(TemporalType.DATE)
-	@Column(name="date_in")
+	@Column(name = "date_in")
 	private Date dateIn;
-	
+
 	@Temporal(TemporalType.DATE)
-	@Column(name="date_out")
+	@Column(name = "date_out")
 	private Date dateOut;
-	
+
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name="patient_id", referencedColumnName = "id")
-	private Patient patient; 
-	
+	@JoinColumn(name = "patient_id", referencedColumnName = "id")
+	private Patient patient;
+
 	public AdmissionForm() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
+
 	public AdmissionForm(Long id, Date dateIn, Date dateOut) {
 		super();
 		this.id = id;
@@ -50,18 +50,23 @@ public class AdmissionForm {
 	public Long getId() {
 		return id;
 	}
+
 	public void setId(Long id) {
 		this.id = id;
 	}
+
 	public Date getDateIn() {
 		return dateIn;
 	}
+
 	public void setDateIn(Date dateIn) {
 		this.dateIn = dateIn;
 	}
+
 	public Date getDateOut() {
 		return dateOut;
 	}
+
 	public void setDateOut(Date dateOut) {
 		this.dateOut = dateOut;
 	}
@@ -70,6 +75,5 @@ public class AdmissionForm {
 	public String toString() {
 		return "AdmissionForm [id=" + id + ", dateIn=" + dateIn + ", dateOut=" + dateOut + "]";
 	}
-	
-	
+
 }
