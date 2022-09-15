@@ -13,7 +13,7 @@ import com.hospitalmanagement.model.Department;
 import com.hospitalmanagement.util.HibernateUtil;
 import com.hospitalmanagement.util.HibernateUtil2;
 
-public class DepartmentDAO implements DAO<Department, Integer>{
+public class DepartmentDAO implements CrudDAO<Department, Integer>{
 	private SessionFactory sessionFactory;
 	{
 		sessionFactory = HibernateUtil2.getSessionFactory();

@@ -13,7 +13,7 @@ import com.hospitalmanagement.model.Test;
 import com.hospitalmanagement.util.HibernateUtil;
 import com.hospitalmanagement.util.HibernateUtil2;
 
-public class TestDAO implements DAO<Test, Integer>{
+public class TestDAO implements CrudDAO<Test, Integer>{
 	private SessionFactory sessionFactory;
 	{
 		sessionFactory = HibernateUtil2.getSessionFactory();

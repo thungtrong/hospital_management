@@ -2,7 +2,7 @@ package com.hospitalmanagement.dao;
 
 import java.util.List;
 
-public interface DAO<T, ID> {
+public interface CrudDAO<T, ID> {
 	/**
 	 * This method is used to list all instance which were in table
 	 * @return List<T> model
@@ -11,7 +11,7 @@ public interface DAO<T, ID> {
 	/**
 	 * This method is used to find instance having id in table  
 	 * @param id
-	 * @return T. If table don't have any matched instance, return null. 
+	 * @return List<T>. 
 	 */
 	T findById(ID id);
 	/**
