@@ -9,26 +9,26 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
-import com.hospitalmanagement.model.Doctor;
+import com.hospitalmanagement.model.Medicine;
 import com.hospitalmanagement.util.HibernateUtil;
 import com.hospitalmanagement.util.HibernateUtil2;
 
-public class DoctorDAO implements CrudDAO<Doctor, Integer>{
+public class MedicineDAO implements CrudDAO<Medicine, Integer>{
 	private SessionFactory sessionFactory;
 	{
 		sessionFactory = HibernateUtil2.getSessionFactory();
 	}
-	public DoctorDAO() {
+	public MedicineDAO() {
 	}
 
 	
 	@Override
-	public List<Doctor> findAll() {
+	public List<Medicine> findAll() {
 		Session session = null;
 		try {
 			session = this.sessionFactory.openSession();
-			Criteria criteria = session.createCriteria(Doctor.class);
-			List<Doctor> list = criteria.list();
+			Criteria criteria = session.createCriteria(Medicine.class);
+			List<Medicine> list = criteria.list();
 			
 			return list;
 		} catch (HibernateException e) {
@@ -44,14 +44,14 @@ public class DoctorDAO implements CrudDAO<Doctor, Integer>{
 	}
 
 	@Override
-	public Doctor findById(Integer id) {
-		Doctor doctor;
+	public Medicine findById(Integer id) {
+		Medicine medicine;
 		Session session = null;
 		try {
 			session = this.sessionFactory.openSession();
-			doctor = (Doctor) session.get(Doctor.class, id);
+			medicine = (Medicine) session.get(Medicine.class, id);
 			
-			return doctor;
+			return medicine;
 		} catch (HibernateException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -65,8 +65,8 @@ public class DoctorDAO implements CrudDAO<Doctor, Integer>{
 	}
 
 	@Override
-	public int update(Doctor doctor) {
-		Doctor model;
+	public int update(Medicine medicine) {
+		Medicine model;
 		Session session = null;
 		int result = 0;
 		
@@ -74,13 +74,13 @@ public class DoctorDAO implements CrudDAO<Doctor, Integer>{
 			session = this.sessionFactory.openSession();
 			Transaction transaction = session.beginTransaction();
 			
-			model = (Doctor) session.get(Doctor.class, doctor.getId());
+			model = (Medicine) session.get(Medicine.class, medicine.getId());
 			if (model == null)
 			{
 				result = 0;
 			} else
 			{
-				session.merge(doctor);
+				session.merge(medicine);
 				transaction.commit();
 				result = 1;
 			}
@@ -98,13 +98,13 @@ public class DoctorDAO implements CrudDAO<Doctor, Integer>{
 	}
 
 	@Override
-	public Integer insert(Doctor doctor) {
+	public Integer insert(Medicine medicine) {
 		Session session = null;
 		Integer id = 0;
 		try {
 			session = this.sessionFactory.openSession();
 			Transaction transaction = session.beginTransaction();
-			id = (Integer) session.save(doctor);
+			id = (Integer) session.save(medicine);
 			transaction.commit();
 		} catch (HibernateException e) {
 			// TODO Auto-generated catch block
@@ -121,14 +121,14 @@ public class DoctorDAO implements CrudDAO<Doctor, Integer>{
 
 
 	@Override
-	public int delete(Doctor doctor) {
+	public int delete(Medicine medicine) {
 		Session session = null;
 		int result = 0;
 		try {
 			session = this.sessionFactory.openSession();
 			Transaction transaction = session.beginTransaction();
 			
-			Doctor model = (Doctor) session.get(Doctor.class, doctor.getId());
+			Medicine model = (Medicine) session.get(Medicine.class, medicine.getId());
 			if (model == null)
 			{
 				result = 0;
