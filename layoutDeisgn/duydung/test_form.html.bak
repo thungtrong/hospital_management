@@ -53,14 +53,10 @@
                                 <input type="text" id="address" class="text-input" placeholder="">
                             </div>
                             
-							
-							
                           </form>
                     </div>
                 </div>
-                
-            </div>
-          	 <div class="test-info">
+                <div class="test-info">
                     <div class="test-head">
                         <span class="title-info">Test Form Information</span>
                         <button class="btn-info">Add Test</button>
@@ -71,6 +67,8 @@
                     </div>
                     
                 </div>
+            </div>
+           
         </div>
     </div>
 </body>

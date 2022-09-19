@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,21 +15,21 @@
     href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
   />
     <title>Test Form</title>
-    <link rel="stylesheet" href="./css/reset.css" />
+    <link rel="stylesheet" href="./css/_shared.css" />
     <link rel="stylesheet" href="./css/test_form.css" />
 </head>
 <body>
     <div class="container">
-        <div class="test-form">
+        <div class="form-container-outside">
             <div class="title-form">Add Test Form</div>
             <div class="detail-form">
-                <div class="patient-info">
-                    <div class="head-patient">
-                        <div class="title-patient">Patient Information</div>
-                        <button class="btn-patient">CHANGE</button>
+                <div class="form-container-inside">
+                    <div class="head-box">
+                        <div class="sub-title">Patient Information</div>
+                        <button class="btn btn-patient">CHANGE</button>
                     </div>
                     <div class="detail-patient">
-                        <form action="#" class="patient-form" autocomplete="off">
+                        <form action="#" id="patient-form" autocomplete="off">
                            <div class="col">
                             <div class="item">
                                 <label for="name" class="text-label">Patient name</label>
@@ -53,24 +55,23 @@
                                 <input type="text" id="address" class="text-input" placeholder="">
                             </div>
                             
-							
-							
+                            
+                            <div class="test-info">
+			                    <div class="head-box">
+			                        <span class="sub-title">Test Form Information</span>
+			                        <button class="btn btn-info">Add Test</button>
+			                    </div>
+			                    <div class="test-detail">
+			                        <div class="text-show"></div>
+			                        
+			                    </div>
+			                </div>
                           </form>
                     </div>
                 </div>
                 
             </div>
-          	 <div class="test-info">
-                    <div class="test-head">
-                        <span class="title-info">Test Form Information</span>
-                        <button class="btn-info">Add Test</button>
-                    </div>
-                    <div class="test-detail">
-                        <div class="text-show"></div>
-                        
-                    </div>
-                    
-                </div>
+           
         </div>
     </div>
 </body>
