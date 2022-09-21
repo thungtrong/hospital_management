@@ -50,5 +50,10 @@ public interface CrudService<T, ID> {
 	 */
 	public boolean deleteById(ID id);
 	
+	/**
+	 * Check entry which has id equal to @{code id} is exists or not.
+	 * @param id
+	 * @return {@literal true} if entry exists, otherwise {@literal false}
+	 */
 	public boolean existsById(ID id);
 }
