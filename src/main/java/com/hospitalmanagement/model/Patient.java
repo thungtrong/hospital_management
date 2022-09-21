@@ -27,7 +27,7 @@ public class Patient extends Person{
 	}
 
 	
-	public Patient(Long id, String name, Character gender, String phoneNumber, String address, java.util.Date dateOfBirth) {
+	public Patient(Long id, String name, Boolean gender, String phoneNumber, String address, java.util.Date dateOfBirth) {
 		super(name, gender, phoneNumber, address, dateOfBirth);
 		this.id = id;
 	}

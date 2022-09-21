@@ -10,7 +10,7 @@ import javax.persistence.TemporalType;
 @MappedSuperclass
 public class Person {
 	protected String name; 
-	protected Character gender;
+	protected Boolean gender;
 	@Column(name = "phone_number")
 	protected String phoneNumber;
 	protected String address;
@@ -20,7 +20,7 @@ public class Person {
 	public Person() {
 	}
 	
-	public Person(String name, Character gender, String phoneNumber, String address, Date dateOfBirth) {
+	public Person(String name, Boolean gender, String phoneNumber, String address, Date dateOfBirth) {
 		super();
 		this.name = name;
 		this.gender = gender;
@@ -36,10 +36,10 @@ public class Person {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public Character getGender() {
+	public Boolean getGender() {
 		return gender;
 	}
-	public void setGender(Character gender) {
+	public void setGender(Boolean gender) {
 		this.gender = gender;
 	}
 	public String getPhoneNumber() {

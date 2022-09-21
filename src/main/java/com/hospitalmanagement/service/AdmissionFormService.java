@@ -48,7 +48,7 @@ public class AdmissionFormService implements PagingAndSortingService<AdmissionFo
 	@Override
 	public boolean deleteById(Long id) {
 		if (!admissionFormRepository.existsById(id))
-			throw new RecordNotFoundException();
+			throw new RecordNotFoundException("Admission form not found");
 		
 		admissionFormRepository.deleteById(id);
 

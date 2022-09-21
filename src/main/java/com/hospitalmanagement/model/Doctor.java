@@ -38,7 +38,7 @@ public class Doctor extends Person{
 	public Doctor() {
 	}
 	
-	public Doctor(Long id, String name, Character gender, String phoneNumber, String address, Date dateOfBirth) {
+	public Doctor(Long id, String name, Boolean gender, String phoneNumber, String address, Date dateOfBirth) {
 		super(name, gender, phoneNumber, address, dateOfBirth);
 		this.id = id;
 	}

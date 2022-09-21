@@ -28,12 +28,12 @@ import com.hospitalmanagement.service.AdmissionFormService;
 public class AdmissionFormController {
 	
 	@Autowired
-	private AdmissionFormService service;
+	private AdmissionFormService admissionFormService;
 	
 	@GetMapping("/all")
 	public ResponseEntity<List<AdmissionForm>> list()
 	{
-		return new ResponseEntity<>(service.findAll(), HttpStatus.OK);
+		return new ResponseEntity<>(admissionFormService.findAll(), HttpStatus.OK);
 	}
 	
 	@GetMapping("/page")
@@ -42,32 +42,32 @@ public class AdmissionFormController {
 			@RequestParam(defaultValue = "id") String orderBy, @RequestParam(defaultValue = "true") Boolean asc)
 	{
 		Sort sort = asc ? Sort.by(Order.asc(orderBy)) : Sort.by(Order.desc(orderBy));
-		Page<AdmissionForm> result = service.findAll(page, size, sort);
+		Page<AdmissionForm> result = admissionFormService.findAll(page, size, sort);
 		return new ResponseEntity<>(result, HttpStatus.OK);
 	}
 	
 	@GetMapping("findById/{id}")
 	public ResponseEntity<AdmissionForm> findById(@PathVariable Long id)
 	{
-		return new ResponseEntity<>(service.findById(id), HttpStatus.OK);
+		return new ResponseEntity<>(admissionFormService.findById(id), HttpStatus.OK);
 	}
 	
 	@PostMapping("/create")
 	public ResponseEntity<AdmissionForm> create(@RequestBody AdmissionForm admissionForm)
 	{
-		return new ResponseEntity<>(service.insert(admissionForm), HttpStatus.CREATED);
+		return new ResponseEntity<>(admissionFormService.insert(admissionForm), HttpStatus.CREATED);
 	}
 	
 	@PutMapping("/update")
 	public ResponseEntity<AdmissionForm> update(@RequestBody AdmissionForm admissionForm)
 	{
-		return new ResponseEntity<>(service.update(admissionForm), HttpStatus.ACCEPTED);
+		return new ResponseEntity<>(admissionFormService.update(admissionForm), HttpStatus.ACCEPTED);
 	}
 	
 	@DeleteMapping("/delete/{id}")
 	public ResponseEntity<Boolean> delete(@PathVariable Long id)
 	{
-		return new ResponseEntity<>(service.deleteById(id), HttpStatus.OK);
+		return new ResponseEntity<>(admissionFormService.deleteById(id), HttpStatus.OK);
 	}
 	
 }
