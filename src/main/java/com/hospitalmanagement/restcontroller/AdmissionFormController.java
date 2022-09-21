@@ -24,8 +24,8 @@ import com.hospitalmanagement.model.AdmissionForm;
 import com.hospitalmanagement.service.AdmissionFormService;
 
 @RestController
-@RequestMapping(ApiController.BASE_URL + "/admissionForm")
-public class AdmissionFormController implements ApiController {
+@RequestMapping(ConstValue.BASE_URL + "/admissionForm")
+public class AdmissionFormController {
 	
 	@Autowired
 	private AdmissionFormService service;
@@ -38,13 +38,11 @@ public class AdmissionFormController implements ApiController {
 	
 	@GetMapping("/page")
 	public ResponseEntity<Page<AdmissionForm>> page(
-			@RequestParam Optional<Integer> page, @RequestParam Optional<Integer> size, 
-			@RequestParam Optional<String> orderBy, @RequestParam Optional<Boolean> asc)
+			@RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "10") Integer size, 
+			@RequestParam(defaultValue = "id") String orderBy, @RequestParam(defaultValue = "true") Boolean asc)
 	{
-		String property = orderBy.orElse("id");
-		Sort sort;
-		sort = asc.orElse(false) ? Sort.by(Order.asc(property)) : Sort.by(Order.desc(property));
-		Page<AdmissionForm> result = service.findAll(page.orElse(0), size.orElse(10), sort);
+		Sort sort = asc ? Sort.by(Order.asc(orderBy)) : Sort.by(Order.desc(orderBy));
+		Page<AdmissionForm> result = service.findAll(page, size, sort);
 		return new ResponseEntity<>(result, HttpStatus.OK);
 	}
 	
@@ -63,8 +61,6 @@ public class AdmissionFormController implements ApiController {
 	@PutMapping("/update")
 	public ResponseEntity<AdmissionForm> update(@RequestBody AdmissionForm admissionForm)
 	{
-		
-		
 		return new ResponseEntity<>(service.update(admissionForm), HttpStatus.ACCEPTED);
 	}
 	

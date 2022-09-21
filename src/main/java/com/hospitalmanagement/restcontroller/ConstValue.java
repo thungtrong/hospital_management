@@ -1,5 +1,6 @@
 package com.hospitalmanagement.restcontroller;
 
-public interface ApiController {
+public interface ConstValue {
 	static final String BASE_URL="/api";
+	
 }
