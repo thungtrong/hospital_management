@@ -24,8 +24,8 @@ import com.hospitalmanagement.model.AdmissionForm;
 import com.hospitalmanagement.service.AdmissionFormService;
 
 @RestController
-@RequestMapping(ConstValue.BASE_URL + "/admissionForm")
-public class AdmissionFormController {
+@RequestMapping(ConstValue.BASE_API_URL + "/admissionForm")
+public class AdmissionFormRestController {
 	
 	@Autowired
 	private AdmissionFormService admissionFormService;

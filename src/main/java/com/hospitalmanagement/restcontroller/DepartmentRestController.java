@@ -18,46 +18,46 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.hospitalmanagement.model.Doctor;
-import com.hospitalmanagement.service.DoctorService;
+import com.hospitalmanagement.model.Department;
+import com.hospitalmanagement.service.DepartmentService;
 
 @RestController
-@RequestMapping(ConstValue.BASE_URL + "/doctor")
-public class DoctorController {
+@RequestMapping(ConstValue.BASE_API_URL + "/department")
+public class DepartmentRestController {
 	@Autowired
-	private DoctorService doctorService;
+	private DepartmentService departmentService;
 
 	@GetMapping("/all")
-	public ResponseEntity<List<Doctor>> list() {
-		return new ResponseEntity<>(doctorService.findAll(), HttpStatus.OK);
+	public ResponseEntity<List<Department>> list() {
+		return new ResponseEntity<>(departmentService.findAll(), HttpStatus.OK);
 	}
 
 	@GetMapping("/page")
-	public ResponseEntity<Page<Doctor>> page(@RequestParam(defaultValue = "0") Integer page,
+	public ResponseEntity<Page<Department>> page(@RequestParam(defaultValue = "0") Integer page,
 			@RequestParam(defaultValue = "10") Integer size, @RequestParam(defaultValue = "id") String orderBy,
 			@RequestParam(defaultValue = "true") Boolean asc) {
 		Sort sort = asc ? Sort.by(Order.asc(orderBy)) : Sort.by(Order.desc(orderBy));
-		Page<Doctor> result = doctorService.findAll(page, size, sort);
+		Page<Department> result = departmentService.findAll(page, size, sort);
 		return new ResponseEntity<>(result, HttpStatus.OK);
 	}
 
 	@GetMapping("findById/{id}")
-	public ResponseEntity<Doctor> findById(@PathVariable Long id) {
-		return new ResponseEntity<>(doctorService.findById(id), HttpStatus.OK);
+	public ResponseEntity<Department> findById(@PathVariable Integer id) {
+		return new ResponseEntity<>(departmentService.findById(id), HttpStatus.OK);
 	}
 
 	@PostMapping("/create")
-	public ResponseEntity<Doctor> create(@RequestBody Doctor doctor) {
-		return new ResponseEntity<>(doctorService.insert(doctor), HttpStatus.CREATED);
+	public ResponseEntity<Department> create(@RequestBody Department department) {
+		return new ResponseEntity<>(departmentService.insert(department), HttpStatus.CREATED);
 	}
 
 	@PutMapping("/update")
-	public ResponseEntity<Doctor> update(@RequestBody Doctor doctor) {
-		return new ResponseEntity<>(doctorService.update(doctor), HttpStatus.ACCEPTED);
+	public ResponseEntity<Department> update(@RequestBody Department department) {
+		return new ResponseEntity<>(departmentService.update(department), HttpStatus.ACCEPTED);
 	}
 
 	@DeleteMapping("/delete/{id}")
-	public ResponseEntity<Boolean> delete(@PathVariable Long id) {
-		return new ResponseEntity<>(doctorService.deleteById(id), HttpStatus.OK);
+	public ResponseEntity<Boolean> delete(@PathVariable Integer id) {
+		return new ResponseEntity<>(departmentService.deleteById(id), HttpStatus.OK);
 	}
 }

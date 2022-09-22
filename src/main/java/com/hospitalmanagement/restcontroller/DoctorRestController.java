@@ -18,46 +18,46 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.hospitalmanagement.model.Patient;
-import com.hospitalmanagement.service.PatientService;
+import com.hospitalmanagement.model.Doctor;
+import com.hospitalmanagement.service.DoctorService;
 
 @RestController
-@RequestMapping(ConstValue.BASE_URL + "/patient")
-public class PatientController {
+@RequestMapping(ConstValue.BASE_API_URL + "/doctor")
+public class DoctorRestController {
 	@Autowired
-	private PatientService patientService;
+	private DoctorService doctorService;
 
 	@GetMapping("/all")
-	public ResponseEntity<List<Patient>> list() {
-		return new ResponseEntity<>(patientService.findAll(), HttpStatus.OK);
+	public ResponseEntity<List<Doctor>> list() {
+		return new ResponseEntity<>(doctorService.findAll(), HttpStatus.OK);
 	}
 
 	@GetMapping("/page")
-	public ResponseEntity<Page<Patient>> page(@RequestParam(defaultValue = "0") Integer page,
+	public ResponseEntity<Page<Doctor>> page(@RequestParam(defaultValue = "0") Integer page,
 			@RequestParam(defaultValue = "10") Integer size, @RequestParam(defaultValue = "id") String orderBy,
 			@RequestParam(defaultValue = "true") Boolean asc) {
 		Sort sort = asc ? Sort.by(Order.asc(orderBy)) : Sort.by(Order.desc(orderBy));
-		Page<Patient> result = patientService.findAll(page, size, sort);
+		Page<Doctor> result = doctorService.findAll(page, size, sort);
 		return new ResponseEntity<>(result, HttpStatus.OK);
 	}
 
 	@GetMapping("findById/{id}")
-	public ResponseEntity<Patient> findById(@PathVariable Long id) {
-		return new ResponseEntity<>(patientService.findById(id), HttpStatus.OK);
+	public ResponseEntity<Doctor> findById(@PathVariable Long id) {
+		return new ResponseEntity<>(doctorService.findById(id), HttpStatus.OK);
 	}
 
 	@PostMapping("/create")
-	public ResponseEntity<Patient> create(@RequestBody Patient patient) {
-		return new ResponseEntity<>(patientService.insert(patient), HttpStatus.CREATED);
+	public ResponseEntity<Doctor> create(@RequestBody Doctor doctor) {
+		return new ResponseEntity<>(doctorService.insert(doctor), HttpStatus.CREATED);
 	}
 
 	@PutMapping("/update")
-	public ResponseEntity<Patient> update(@RequestBody Patient patient) {
-		return new ResponseEntity<>(patientService.update(patient), HttpStatus.ACCEPTED);
+	public ResponseEntity<Doctor> update(@RequestBody Doctor doctor) {
+		return new ResponseEntity<>(doctorService.update(doctor), HttpStatus.ACCEPTED);
 	}
 
 	@DeleteMapping("/delete/{id}")
 	public ResponseEntity<Boolean> delete(@PathVariable Long id) {
-		return new ResponseEntity<>(patientService.deleteById(id), HttpStatus.OK);
+		return new ResponseEntity<>(doctorService.deleteById(id), HttpStatus.OK);
 	}
 }
