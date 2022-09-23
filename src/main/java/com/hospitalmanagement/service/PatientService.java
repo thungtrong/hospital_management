@@ -69,6 +69,4 @@ public class PatientService implements PagingAndSortingService<Patient, Long> {
 		return patientRepository.existsById(id);
 	}
 
-	
-
 }

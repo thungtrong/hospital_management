@@ -10,7 +10,9 @@ import org.springframework.data.domain.Sort;
 import com.hospitalmanagement.exception.RecordNotFoundException;
 import com.hospitalmanagement.model.Department;
 import com.hospitalmanagement.repository.DepartmentRepository;
+import org.springframework.stereotype.Service;
 
+@Service
 public class DepartmentService implements PagingAndSortingService<Department, Integer> {
 
 	@Autowired

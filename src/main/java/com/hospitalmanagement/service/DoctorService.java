@@ -10,7 +10,9 @@ import org.springframework.data.domain.Sort;
 import com.hospitalmanagement.exception.RecordNotFoundException;
 import com.hospitalmanagement.model.Doctor;
 import com.hospitalmanagement.repository.DoctorRepository;
+import org.springframework.stereotype.Service;
 
+@Service
 public class DoctorService implements PagingAndSortingService<Doctor, Long> {
 
 	@Autowired
