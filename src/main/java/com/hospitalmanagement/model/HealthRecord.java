@@ -30,7 +30,6 @@ public class HealthRecord {
 	@Temporal(TemporalType.DATE)
 	@Column(name="re_date")
 	private Date reDate;
-	
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(
 		name="health_record_detail",
@@ -39,6 +38,7 @@ public class HealthRecord {
 	)
 	private List<Illness> illnessList;
 
+	
 	public HealthRecord() {
 		super();
 		// TODO Auto-generated constructor stub

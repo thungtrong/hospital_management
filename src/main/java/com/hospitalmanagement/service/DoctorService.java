@@ -6,11 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.stereotype.Service;
 
 import com.hospitalmanagement.exception.RecordNotFoundException;
 import com.hospitalmanagement.model.Doctor;
 import com.hospitalmanagement.repository.DoctorRepository;
 
+@Service
 public class DoctorService implements PagingAndSortingService<Doctor, Long> {
 
 	@Autowired
