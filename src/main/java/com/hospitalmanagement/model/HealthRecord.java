@@ -31,8 +31,8 @@ public class HealthRecord {
 	private Doctor doctor;
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="patient_id", referencedColumnName = "id")
-	
 	private Patient patient;
+	
 	public HealthRecord() {
 		super();
 		// TODO Auto-generated constructor stub
