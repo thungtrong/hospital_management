@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <jsp:include page="../_shared.jsp"></jsp:include>
+    <jsp:include page="_shared.jsp"></jsp:include>
     
     <title>Test Form</title>
     
@@ -56,7 +56,7 @@
 			                        <button class="btn btn-info">Add Test</button>
 			                    </div>
 			                    <div class="test-detail">
-			                        <div class="text-show"></div>
+			                        <div class="text-show">Nothings to show</div>
 			                        
 			                    </div>
 			                </div>
