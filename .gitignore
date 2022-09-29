@@ -33,3 +33,6 @@ replay_pid*
 .metadata
 oracle.properties
 /target/
+
+# InteliJ
+.idea
