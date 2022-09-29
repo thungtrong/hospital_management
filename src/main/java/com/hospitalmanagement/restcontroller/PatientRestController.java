@@ -7,6 +7,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Order;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,12 +28,12 @@ public class PatientRestController {
 	@Autowired
 	private PatientService patientService;
 
-	@GetMapping("/all")
+	@GetMapping(value="/all", produces = {MediaType.APPLICATION_JSON_VALUE})
 	public ResponseEntity<List<Patient>> list() {
 		return new ResponseEntity<>(patientService.findAll(), HttpStatus.OK);
 	}
 
-	@GetMapping("/page")
+	@GetMapping(value="/page")
 	public ResponseEntity<Page<Patient>> page(@RequestParam(defaultValue = "0") Integer page,
 			@RequestParam(defaultValue = "10") Integer size, @RequestParam(defaultValue = "id") String orderBy,
 			@RequestParam(defaultValue = "true") Boolean asc) {

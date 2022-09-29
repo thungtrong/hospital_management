@@ -3,19 +3,7 @@ package com.hospitalmanagement.model;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 
 @Entity
 @Table(name="health_record")
@@ -38,18 +26,25 @@ public class HealthRecord {
 	)
 	private List<Illness> illnessList;
 
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name="doctor_id", referencedColumnName = "id")
+	private Doctor doctor;
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name="patient_id", referencedColumnName = "id")
 	
+	private Patient patient;
 	public HealthRecord() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public HealthRecord(Long id, Date creationDate, Date reDate, List<Illness> illnessList) {
-		super();
+	public HealthRecord(Long id, Date creationDate, Date reDate, List<Illness> illnessList, Doctor doctor, Patient patient) {
 		this.id = id;
 		this.creationDate = creationDate;
 		this.reDate = reDate;
 		this.illnessList = illnessList;
+		this.doctor = doctor;
+		this.patient = patient;
 	}
 
 	public Long getId() {
@@ -84,11 +79,31 @@ public class HealthRecord {
 		this.illnessList = illnessList;
 	}
 
+	public Doctor getDoctor() {
+		return doctor;
+	}
+
+	public void setDoctor(Doctor doctor) {
+		this.doctor = doctor;
+	}
+
+	public Patient getPatient() {
+		return patient;
+	}
+
+	public void setPatient(Patient patient) {
+		this.patient = patient;
+	}
+
 	@Override
 	public String toString() {
-		return "HealthRecord [id=" + id + ", creationDate=" + creationDate + ", reDate=" + reDate + ", illnessList="
-				+ illnessList + "]";
+		return "HealthRecord{" +
+				"id=" + id +
+				", creationDate=" + creationDate +
+				", reDate=" + reDate +
+				", illnessList=" + illnessList +
+				", doctor=" + doctor +
+				", patient=" + patient +
+				'}';
 	}
-	
-	
 }

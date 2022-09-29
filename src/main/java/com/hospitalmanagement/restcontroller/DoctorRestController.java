@@ -18,7 +18,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.hospitalmanagement.model.Account;
 import com.hospitalmanagement.model.Doctor;
+import com.hospitalmanagement.service.AccountService;
 import com.hospitalmanagement.service.DoctorService;
 
 @RestController
@@ -33,9 +35,9 @@ public class DoctorRestController {
 	}
 
 	@GetMapping("/page")
-	public ResponseEntity<Page<Doctor>> page(@RequestParam(defaultValue = "0") Integer page,
-			@RequestParam(defaultValue = "10") Integer size, @RequestParam(defaultValue = "id") String orderBy,
-			@RequestParam(defaultValue = "true") Boolean asc) {
+	public ResponseEntity<Page<Doctor>> page(
+			@RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "10") Integer size, 
+			@RequestParam(defaultValue = "id") String orderBy, @RequestParam(defaultValue = "true") Boolean asc) {
 		Sort sort = asc ? Sort.by(Order.asc(orderBy)) : Sort.by(Order.desc(orderBy));
 		Page<Doctor> result = doctorService.findAll(page, size, sort);
 		return new ResponseEntity<>(result, HttpStatus.OK);
@@ -60,4 +62,5 @@ public class DoctorRestController {
 	public ResponseEntity<Boolean> delete(@PathVariable Long id) {
 		return new ResponseEntity<>(doctorService.deleteById(id), HttpStatus.OK);
 	}
+
 }
