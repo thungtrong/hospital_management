@@ -35,4 +35,4 @@ oracle.properties
 /target/
 
 # InteliJ
-.idea
+.idea/
