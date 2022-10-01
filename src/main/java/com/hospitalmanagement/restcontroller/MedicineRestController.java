@@ -1,6 +1,5 @@
 package com.hospitalmanagement.restcontroller;
 
-import com.hospitalmanagement.model.Illness;
 import com.hospitalmanagement.model.Medicine;
 import com.hospitalmanagement.service.MedicineService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(ConstValue.BASE_API_URL + "/medicine")
-public class MedicineController {
+public class MedicineRestController {
     @Autowired
     private MedicineService medicineService;
     @GetMapping("/all")

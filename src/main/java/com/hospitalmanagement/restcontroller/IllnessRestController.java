@@ -2,7 +2,6 @@ package com.hospitalmanagement.restcontroller;
 
 import com.hospitalmanagement.model.Illness;
 import com.hospitalmanagement.service.IllnessService;
-import org.hibernate.criterion.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;
@@ -14,7 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(ConstValue.BASE_API_URL + "/illness")
-public class IllnessController {
+public class IllnessRestController {
     @Autowired
     private IllnessService illnessService;
     @GetMapping("/all")
