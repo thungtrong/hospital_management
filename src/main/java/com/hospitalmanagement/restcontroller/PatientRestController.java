@@ -1,6 +1,10 @@
 package com.hospitalmanagement.restcontroller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -9,6 +13,8 @@ import org.springframework.data.domain.Sort.Order;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.hospitalmanagement.exception.ModelNotVaildException;
 import com.hospitalmanagement.model.Patient;
 import com.hospitalmanagement.service.PatientService;
 
@@ -48,7 +55,17 @@ public class PatientRestController {
 	}
 
 	@PostMapping("/create")
-	public ResponseEntity<Patient> create(@RequestBody Patient patient) {
+	public ResponseEntity<Patient> create(@Valid @RequestBody Patient patient, BindingResult br) throws ModelNotVaildException {
+		if (br.hasErrors()) {
+			List<FieldError> errors = br.getFieldErrors();
+			Map<String, String> fieldErrorsMap = new HashMap<>();
+			for (FieldError fieldErrors:errors)
+			{				
+				fieldErrorsMap.put(fieldErrors.getField(), fieldErrors.getDefaultMessage());
+			}
+			
+			throw new ModelNotVaildException(fieldErrorsMap);
+		}
 		return new ResponseEntity<>(patientService.insert(patient), HttpStatus.CREATED);
 	}
 

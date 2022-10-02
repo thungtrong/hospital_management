@@ -41,7 +41,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	@Qualifier(value = "accountService")
 	private UserDetailsService userDetailService;
-	
+
 	@Bean
 	public BCryptPasswordEncoder passwordEncoder()
 	{

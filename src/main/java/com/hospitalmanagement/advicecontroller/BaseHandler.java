@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
+import com.hospitalmanagement.exception.ModelNotVaildException;
 import com.hospitalmanagement.exception.RecordNotFoundException;
 
 @ControllerAdvice
@@ -25,5 +26,11 @@ public class BaseHandler {
 	{
 		String message = e.getMessage();
 		return new ResponseEntity<>(message, HttpStatus.NO_CONTENT);
+	}
+	
+	@ExceptionHandler(value= {ModelNotVaildException.class})
+	public ResponseEntity<Object> modelNotValid(ModelNotVaildException e)
+	{
+		return new ResponseEntity<>(e.getFieldErrors(), HttpStatus.BAD_REQUEST);
 	}
 }

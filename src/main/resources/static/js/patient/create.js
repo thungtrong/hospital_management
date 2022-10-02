@@ -3,6 +3,8 @@
  */
 const BASE_PATIENT_API = BASE_API_URL + '/patient';
 var patientForm = document.forms.patient;
+var modelBody = document.getElementById("modal-body");
+var labelErrors = document.querySelectorAll("label.error-msg");
 
 document.getElementById("submit").addEventListener("click", function (e) {
     let patient = mapForm2Object();
@@ -17,19 +19,60 @@ document.getElementById("submit").addEventListener("click", function (e) {
 		    },
 		    body: JSON.stringify(patient)
 		})
-		.then((response) => response.json())
-		.then((data) => {console.log(data)});
+		.then((response) => {
+			if (response.status === CREATED)
+			{
+				modelBody.innerHTML = `Insert new Patient successfully!`;
+				$('#alertModel').modal('show');
+			} 
+			if (response.status === BAD_REQUEST)
+			{
+				return response.json();
+			}
+		})
+		.catch((error) => {
+			modelBody.innerHTML = `Insert new Patient failure!<br>Internal Error`;
+			$('#alertModel').modal('show');
+	
+		})
+		.then(data => {
+			data && showErrorMsg(data);
+		});
     }
 });
-
+const errorMessages = {
+	address: 'Please fill your address',
+	phoneNumber: 'Please fill your phone number',
+	name: 'Please fill your full name',
+	dateOfBirth: 'Please fill your birth day'
+}
 function validatePatientForm(patient) {
-    console.log("Validate", patient);
-    return true;
+	let errors = new Object();
+	let isValid = true;
+	for (let key in patient)
+	{
+		if (key != 'dateOfBirth' && patient[key].length == 0)
+		{
+			errors[key] = errorMessages[key];
+			isValid = false;
+		} 
+		else if (key == 'dateOfBirth' && isNaN(patient[key].getTime()) ) {
+			errors[key] = errorMessages[key];
+			isValid = false;
+		}
+	}
+	showErrorMsg(errors);
+    return isValid;
 }
 
-fucntion back()
+function goToPatientList()
 {
-	console.log("Back");
+	window.location.href=`${ORIGIN}/patient`;
+}
+
+function goBack()
+{
+	history.back();
 }
 
 function mapForm2Object()
@@ -43,4 +86,13 @@ function mapForm2Object()
     return patient;
 }
 
+function showErrorMsg(errors)
+{
+	let msg, field;
+	for (let label of labelErrors) {
+		field = label.getAttribute("for");
+		msg = errors[field] || "";
+		label.innerText=msg;
+	}
+}
 

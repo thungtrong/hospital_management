@@ -117,7 +117,6 @@ label{
     border: 0;
     font-family: "Poppins", sans-serif;
     font-size: 14px;
-    margin-bottom: 15px;
     border: 1px solid #eee;
 
 }
@@ -127,21 +126,23 @@ label{
 }
 
 .btn {
-    width:16rem;
-    height:6rem;
     max-width: 16rem;
     max-height: 6rem;
-    border-radius: 2.5rem;
+    border-radius: 2rem;
     color: #ffff;
     outline: none;
     font-family: 'Poppins', sans-serif;
     cursor: pointer;
     border: 0 ;
-    background-color: #00aefd;
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 15px;
+}
+
+.btn-custom1
+{
+	background-color: #00aefd;
 }
 
 .btn.btn-light
@@ -157,3 +158,12 @@ label{
 	border-color: #e2e6ea;
 }
 
+.group-action {
+	min-width: 100px;
+	display: flex;
+}
+
+label.error-msg {
+    width: 100%;
+    text-align: center;
+}

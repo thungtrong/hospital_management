@@ -31,19 +31,19 @@ public class PatientController {
 		return "patient/create-patient";
 	}
 	
-	@GetMapping({"/list"})
+	@GetMapping({"/list", "/", ""})
 	public ModelAndView list(
-			@RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "10") Integer size, 
+			@RequestParam(defaultValue = "1") Integer page, @RequestParam(defaultValue = "10") Integer size, 
 			@RequestParam(defaultValue = "id") String orderBy, @RequestParam(defaultValue = "true") Boolean asc)
 	{
 		ModelAndView modelAndView = new ModelAndView("patient/list-patient");
 		
 		Sort sort = asc ? Sort.by(Order.asc(orderBy)) : Sort.by(Order.desc(orderBy));
-		Page<Patient> pagePatient = patientService.findAll(page, size, sort);
+		Page<Patient> pagePatient = patientService.findAll(page-1, size, sort);
 		
 		modelAndView.addObject("patientList", pagePatient.getContent());
 		modelAndView.addObject("patientListSize", pagePatient.getSize());
-		modelAndView.addObject("currentPage", pagePatient.getNumber());
+		modelAndView.addObject("currentPage", pagePatient.getNumber()+1);
 		modelAndView.addObject("totalPage", pagePatient.getTotalPages());
 		
 		return modelAndView;

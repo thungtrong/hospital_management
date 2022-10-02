@@ -6,14 +6,28 @@ import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @MappedSuperclass
 public class Person {
-	protected String name; 
+	@NotEmpty(message = "Please fill your full name")
+	@Column(name="name")
+	protected String name;
+	
+	@NotNull(message = "Please choose your gender")
+	@Column(name="gender")
 	protected Boolean gender;
+	
+	@NotEmpty(message = "Please fill your phone number")
 	@Column(name = "phone_number")
 	protected String phoneNumber;
+	
+	@NotEmpty(message = "Please fill your address")
+	@Column(name = "address")
 	protected String address;
+	
+	@NotNull(message = "Please fill your birth day")
 	@Temporal(TemporalType.DATE)
 	@Column(name="date_of_birth")
 	protected Date dateOfBirth;
