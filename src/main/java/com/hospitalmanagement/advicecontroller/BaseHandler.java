@@ -15,6 +15,7 @@ import com.hospitalmanagement.exception.RecordNotFoundException;
 
 @ControllerAdvice
 public class BaseHandler {
+	// Exception of service
 	@ExceptionHandler(value = {IllegalArgumentException.class})
 	public ResponseEntity<Object> invalidArgument()
 	{
@@ -28,6 +29,7 @@ public class BaseHandler {
 		return new ResponseEntity<>(message, HttpStatus.NO_CONTENT);
 	}
 	
+	// Exception of Controller 
 	@ExceptionHandler(value= {ModelNotVaildException.class})
 	public ResponseEntity<Object> modelNotValid(ModelNotVaildException e)
 	{

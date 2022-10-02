@@ -46,13 +46,15 @@
 									<td>${ patient.phoneNumber }</td>
 									<td><fmt:formatDate value="${ patient.dateOfBirth }"
 											type="date" /></td>
-									<td class="group-action"><a href="/patient/view/${ id }"
+									<td class="group-action">
+									<!-- <a href="/patient/view/${ patient.id }"
 										type="button" class="btn btn-secondary"> <i
 											class="fa fa-eye" aria-hidden="true"></i>
-									</a> <a href="/patient/update/${ id }" type="button"
+									</a> -->
+									 <a href="/patient/update/${ patient.id }" type="button"
 										class="btn btn-primary"> <i class="fa fa-pencil-square-o"
 											aria-hidden="true"></i>
-									</a> <a href="/patient" type="button" class="btn btn-danger"> <i
+									</a> <a onclick="deletePatient(${patient.id})" type="button" class="btn btn-danger"> <i
 											class="fa fa-trash-o" aria-hidden="true"></i>
 									</a></td>
 								</tr>

@@ -8,28 +8,30 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 @MappedSuperclass
 public class Person {
 	@NotEmpty(message = "Please fill your full name")
-	@Column(name="name")
+	@Column(name="name", nullable = false, length = 100)
 	protected String name;
 	
 	@NotNull(message = "Please choose your gender")
-	@Column(name="gender")
+	@Column(name="gender", nullable = false)
 	protected Boolean gender;
 	
 	@NotEmpty(message = "Please fill your phone number")
-	@Column(name = "phone_number")
+	@Pattern(regexp = "^[0-9]{10,}$", message = "Your phone number is not valid")
+	@Column(name = "phone_number", nullable = false, length = 15)
 	protected String phoneNumber;
 	
 	@NotEmpty(message = "Please fill your address")
-	@Column(name = "address")
+	@Column(name = "address", nullable = false)
 	protected String address;
 	
 	@NotNull(message = "Please fill your birth day")
 	@Temporal(TemporalType.DATE)
-	@Column(name="date_of_birth")
+	@Column(name="date_of_birth", nullable = false)
 	protected Date dateOfBirth;
 	public Person() {
 	}

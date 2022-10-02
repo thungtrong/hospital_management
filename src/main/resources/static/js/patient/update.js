@@ -1,6 +1,7 @@
 /**
  *
  */
+
 var patientForm = document.forms.patient;
 var modelBody = document.getElementById("modal-body");
 var labelErrors = document.querySelectorAll("label.error-msg");
@@ -10,18 +11,18 @@ document.getElementById("submit").addEventListener("click", function (e) {
     let isValid = validatePatientForm(patient);
     if (isValid)
     {
-    	fetch(BASE_PATIENT_API + "/create", 
+    	fetch(BASE_PATIENT_API + "/update", 
     	{
-			method: 'POST',
+			method: 'PUT',
 			headers: {
 		      'Content-Type': 'application/json'
 		    },
 		    body: JSON.stringify(patient)
 		})
 		.then((response) => {
-			if (response.status === CREATED)
+			if (response.status === ACCEPTED)
 			{
-				modelBody.innerHTML = `Insert new Patient successfully!`;
+				modelBody.innerHTML = `Update Patient successfully!`;
 				$('#alertModel').modal('show');
 			} 
 			if (response.status === BAD_REQUEST)
@@ -30,7 +31,7 @@ document.getElementById("submit").addEventListener("click", function (e) {
 			}
 		})
 		.catch((error) => {
-			modelBody.innerHTML = `Insert new Patient failure!<br>Internal Error`;
+			modelBody.innerHTML = `Update Patient failure!<br>Internal Error`;
 			$('#alertModel').modal('show');
 	
 		})
@@ -54,12 +55,13 @@ function validatePatientForm(patient) {
 		{
 			errors[key] = errorEmptyMessages[key];
 			isValid = false;
-		} 
+		}
 		else if (key == 'dateOfBirth' && isNaN(patient[key].getTime()) ) {
 			errors[key] = errorEmptyMessages[key];
 			isValid = false;
 		}
 	}
+	patient.id = patientForm.id.value;
 	showErrorMsg(errors);
     return isValid;
 }

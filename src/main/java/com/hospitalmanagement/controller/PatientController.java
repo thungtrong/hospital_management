@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -25,16 +26,12 @@ public class PatientController {
 	@Autowired
 	private PatientService patientService;
 	
-	@GetMapping({"/create"})
-	public String create()
-	{
-		return "patient/create-patient";
-	}
-	
 	@GetMapping({"/list", "/", ""})
 	public ModelAndView list(
 			@RequestParam(defaultValue = "1") Integer page, @RequestParam(defaultValue = "10") Integer size, 
-			@RequestParam(defaultValue = "id") String orderBy, @RequestParam(defaultValue = "true") Boolean asc)
+			@RequestParam(defaultValue = "id") String orderBy, @RequestParam(defaultValue = "true") Boolean asc
+//			@RequestParam(defaultValue = "") String qName, @RequestParam(defaultValue = "") String qPhoneNumber
+			)
 	{
 		ModelAndView modelAndView = new ModelAndView("patient/list-patient");
 		
@@ -48,5 +45,21 @@ public class PatientController {
 		
 		return modelAndView;
 	}
+	
+	@GetMapping({"/create"})
+	public String create()
+	{
+		return "patient/create-patient";
+	}
+	
+	@GetMapping({"/update/{id}"})
+	public ModelAndView update(@PathVariable Long id)
+	{
+		ModelAndView modelAndView = new ModelAndView("patient/update-patient");
+		Patient patient = patientService.findById(id);
+		modelAndView.addObject("patient", patient);
+		return modelAndView;
+	}
+	
 	
 }
