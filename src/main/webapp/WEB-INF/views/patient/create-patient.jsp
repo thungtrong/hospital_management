@@ -72,7 +72,7 @@
 		  <div class="modal-dialog" role="document">
 		    <div class="modal-content">
 		      <div class="modal-header">
-		        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+		        <h5 class="modal-title" id="exampleModalLabel">Create Patient</h5>
 		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 		          <span aria-hidden="true">&times;</span>
 		        </button>
@@ -81,7 +81,7 @@
 		        ...
 		      </div>
 		      <div class="modal-footer">
-		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Continues</button>
+		        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="btn-continue">Continue</button>
 		        <button type="button" class="btn btn-primary" onclick="goToPatientList();">Back to list</button>
 		      </div>
 		    </div>
@@ -90,7 +90,8 @@
 				
 		
         <!-- Javascript -->
-        <script type="text/javascript" src="/js/patient/create.js"></script>
+        <script type="text/javascript" src="/js/patient/validate-patient.js"></script>
+        <script type="text/javascript" src="/js/patient/create-patient.js"></script>
     </body>
 
     </html>

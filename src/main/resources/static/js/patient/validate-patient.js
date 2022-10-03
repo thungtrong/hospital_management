@@ -1,50 +1,18 @@
 /**
- *
+ * 
  */
 var patientForm = document.forms.patient;
-var modelBody = document.getElementById("modal-body");
 var labelErrors = document.querySelectorAll("label.error-msg");
 
-document.getElementById("submit").addEventListener("click", function (e) {
-    let patient = mapForm2Object();
-    let isValid = validatePatientForm(patient);
-    if (isValid)
-    {
-    	fetch(BASE_PATIENT_API + "/create", 
-    	{
-			method: 'POST',
-			headers: {
-		      'Content-Type': 'application/json'
-		    },
-		    body: JSON.stringify(patient)
-		})
-		.then((response) => {
-			if (response.status === CREATED)
-			{
-				modelBody.innerHTML = `Insert new Patient successfully!`;
-				$('#alertModel').modal('show');
-			} 
-			if (response.status === BAD_REQUEST)
-			{
-				return response.json();
-			}
-		})
-		.catch((error) => {
-			modelBody.innerHTML = `Insert new Patient failure!<br>Internal Error`;
-			$('#alertModel').modal('show');
-	
-		})
-		.then(data => {
-			data && showErrorMsg(data);
-		});
-    }
-});
-const errorEmptyMessages = {
+const ERROR_EMPTY_MESSAGES = {
 	address: 'Please fill your address',
 	phoneNumber: 'Please fill your phone number',
 	name: 'Please fill your full name',
 	dateOfBirth: 'Please fill your birth day'
 }
+const INVALID_PHONE_NUMBER_MSG = "Your phone number is not valid"; 
+const PHONE_REGEX = /^[0-9]{10,15}$/g
+
 function validatePatientForm(patient) {
 	let errors = new Object();
 	let isValid = true;
@@ -52,14 +20,22 @@ function validatePatientForm(patient) {
 	{
 		if (key != 'dateOfBirth' && patient[key].length == 0)
 		{
-			errors[key] = errorEmptyMessages[key];
+			errors[key] = ERROR_EMPTY_MESSAGES[key];
 			isValid = false;
-		} 
+		}
 		else if (key == 'dateOfBirth' && isNaN(patient[key].getTime()) ) {
-			errors[key] = errorEmptyMessages[key];
+			errors[key] = ERROR_EMPTY_MESSAGES[key];
 			isValid = false;
 		}
 	}
+	
+	if (patient.phoneNumber.match() == null)
+	{
+		errors['phoneNumber'] = INVALID_PHONE_NUMBER_MSG;
+	}
+	
+	if (patientForm.id)
+		patient.id = patientForm.id.value;
 	showErrorMsg(errors);
     return isValid;
 }
@@ -94,4 +70,3 @@ function showErrorMsg(errors)
 		label.innerText=msg;
 	}
 }
-
