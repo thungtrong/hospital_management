@@ -48,11 +48,13 @@
                                         <label for="phoneNumber" class="error-msg text-danger" id="phoneNumber-error"></label>
                                     </div>
                                 </div>
-                                <div class="item">
-                                    <label for="address" class="text-label">Address</label>
-                                    <input type="text" name="address" id="address" class="input text-input"
-                                        placeholder="">
-									<label for="address" class="error-msg text-danger" id="address-error"></label>
+                                <div class="col">
+	                                <div class="item">
+	                                    <label for="address" class="text-label">Address</label>
+	                                    <input type="text" name="address" id="address" class="input text-input"
+	                                        placeholder="">
+										<label for="address" class="error-msg text-danger" id="address-error"></label>
+	                                </div>
                                 </div>
                                 <div class="item d-flex justify-content-end">
                                     <button type="button" id="submit" class="btn btn-primary">Save</button>

@@ -68,5 +68,10 @@ public class PatientService implements PagingAndSortingService<Patient, Long> {
 	public boolean existsById(Long id) {
 		return patientRepository.existsById(id);
 	}
-
+	
+	public List<Patient> findByNameAndPhone(String name, String phoneNumber)
+	{
+		return patientRepository.findAllByNameContainingIgnoreCaseAndPhoneNumberContaining(name, phoneNumber);
+	}
+	
 }

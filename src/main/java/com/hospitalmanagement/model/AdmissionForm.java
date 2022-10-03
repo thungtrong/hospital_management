@@ -14,6 +14,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "admission_form")
@@ -23,6 +24,7 @@ public class AdmissionForm {
 	@GeneratedValue(generator = "admission_form_pk", strategy = GenerationType.SEQUENCE)
 	private Long id;
 
+	@NotNull(message = "Please fill patient's date in")
 	@Temporal(TemporalType.DATE)
 	@Column(name = "date_in")
 	private Date dateIn;
@@ -71,9 +73,18 @@ public class AdmissionForm {
 		this.dateOut = dateOut;
 	}
 
+	public Patient getPatient() {
+		return patient;
+	}
+
+	public void setPatient(Patient patient) {
+		this.patient = patient;
+	}
+
 	@Override
 	public String toString() {
-		return "AdmissionForm [id=" + id + ", dateIn=" + dateIn + ", dateOut=" + dateOut + "]";
+		return "AdmissionForm [id=" + id + ", dateIn=" + dateIn + ", dateOut=" + dateOut + ", patient="
+				+ patient.getId() + "]";
 	}
 
 }

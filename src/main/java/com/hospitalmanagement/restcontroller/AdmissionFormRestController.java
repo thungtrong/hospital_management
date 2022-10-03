@@ -3,12 +3,15 @@ package com.hospitalmanagement.restcontroller;
 import java.util.List;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Order;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,12 +22,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.hospitalmanagement.exception.ModelNotVaildException;
 import com.hospitalmanagement.exception.RecordNotFoundException;
 import com.hospitalmanagement.model.AdmissionForm;
 import com.hospitalmanagement.service.AdmissionFormService;
 
 @RestController
-@RequestMapping(ConstValue.BASE_API_URL + "/admissionForm")
+@RequestMapping(ConstValue.BASE_API_URL + "/admission")
 public class AdmissionFormRestController {
 	
 	@Autowired
@@ -53,14 +57,19 @@ public class AdmissionFormRestController {
 	}
 	
 	@PostMapping("/create")
-	public ResponseEntity<AdmissionForm> create(@RequestBody AdmissionForm admissionForm)
+	public ResponseEntity<AdmissionForm> create(@Valid @RequestBody AdmissionForm admissionForm, BindingResult bindingResult) throws ModelNotVaildException
 	{
+		if (bindingResult.hasErrors())
+		{
+			throw ModelNotVaildException.fromBindingResult(bindingResult);
+		}
 		return new ResponseEntity<>(admissionFormService.insert(admissionForm), HttpStatus.CREATED);
 	}
 	
 	@PutMapping("/update")
 	public ResponseEntity<AdmissionForm> update(@RequestBody AdmissionForm admissionForm)
 	{
+		
 		return new ResponseEntity<>(admissionFormService.update(admissionForm), HttpStatus.ACCEPTED);
 	}
 	

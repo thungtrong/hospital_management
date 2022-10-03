@@ -89,10 +89,7 @@ body{
 
 .item{
     width: 100%;
-}
-.item:last-child{
-    width: 100%;
-    margin-left:1rem;
+    margin: 0px 5px;'
 }
 
 .col {
@@ -166,4 +163,9 @@ label{
 label.error-msg {
     width: 100%;
     text-align: center;
+}
+
+.sub-title
+{
+    font-size: 23px;
 }

@@ -18,6 +18,7 @@ public class AdmissionFormService implements PagingAndSortingService<AdmissionFo
 
 	@Autowired
 	private AdmissionFormRepository admissionFormRepository;
+	
 
 	@Override
 	public AdmissionForm insert(AdmissionForm admissionForm) {
@@ -69,7 +70,7 @@ public class AdmissionFormService implements PagingAndSortingService<AdmissionFo
 	public boolean existsById(Long id) {
 		return admissionFormRepository.existsById(id);
 	}
-
+	
 	
 
 }

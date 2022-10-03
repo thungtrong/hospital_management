@@ -7,5 +7,5 @@ import com.hospitalmanagement.model.AdmissionForm;
 
 @Repository
 public interface AdmissionFormRepository extends JpaRepository<AdmissionForm, Long> {
-
+	
 }

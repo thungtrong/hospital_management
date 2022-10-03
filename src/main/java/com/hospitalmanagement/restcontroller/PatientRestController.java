@@ -34,7 +34,7 @@ import com.hospitalmanagement.service.PatientService;
 public class PatientRestController {
 	@Autowired
 	private PatientService patientService;
-
+	
 	@GetMapping(value="/all", produces = {MediaType.APPLICATION_JSON_VALUE})
 	public ResponseEntity<List<Patient>> list() {
 		return new ResponseEntity<>(patientService.findAll(), HttpStatus.OK);
@@ -53,18 +53,11 @@ public class PatientRestController {
 	public ResponseEntity<Patient> findById(@PathVariable Long id) {
 		return new ResponseEntity<>(patientService.findById(id), HttpStatus.OK);
 	}
-
+	
 	@PostMapping("/create")
-	public ResponseEntity<Patient> create(@Valid @RequestBody Patient patient, BindingResult br) throws ModelNotVaildException {
-		if (br.hasErrors()) {
-			List<FieldError> errors = br.getFieldErrors();
-			Map<String, String> fieldErrorsMap = new HashMap<>();
-			for (FieldError fieldErrors:errors)
-			{				
-				fieldErrorsMap.put(fieldErrors.getField(), fieldErrors.getDefaultMessage());
-			}
-			
-			throw new ModelNotVaildException(fieldErrorsMap);
+	public ResponseEntity<Patient> create(@Valid @RequestBody Patient patient, BindingResult bindingResult) throws ModelNotVaildException {
+		if (bindingResult.hasErrors()) {
+			throw ModelNotVaildException.fromBindingResult(bindingResult);
 		}
 		return new ResponseEntity<>(patientService.insert(patient), HttpStatus.CREATED);
 	}
@@ -88,4 +81,12 @@ public class PatientRestController {
 	public ResponseEntity<Boolean> delete(@PathVariable Long id) {
 		return new ResponseEntity<>(patientService.deleteById(id), HttpStatus.OK);
 	}
+	
+	@GetMapping("/findByNameAndPhone")
+	public ResponseEntity<List<Patient>> findByNameAndPhone(@RequestParam String name, @RequestParam String phoneNumber)
+	{
+		List<Patient> patients = patientService.findByNameAndPhone(name, phoneNumber);
+		return new ResponseEntity<>(patients, HttpStatus.OK);
+	}
+	
 }

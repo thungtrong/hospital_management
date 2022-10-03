@@ -1,5 +1,6 @@
 package com.hospitalmanagement.model;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -12,9 +13,9 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="patient")
+@Table(name = "patient")
 @Inheritance
-public class Patient extends Person{
+public class Patient extends Person {
 	@Id
 	@SequenceGenerator(allocationSize = 1, name = "sequence_patient_pk")
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequence_patient_pk")
@@ -22,16 +23,15 @@ public class Patient extends Person{
 
 	@OneToMany(mappedBy = "patient")
 	private List<AdmissionForm> admissionForms;
-	
+
 	public Patient() {
 	}
 
-	
-	public Patient(Long id, String name, Boolean gender, String phoneNumber, String address, java.util.Date dateOfBirth) {
+	public Patient(Long id, String name, Boolean gender, String phoneNumber, String address,
+			java.util.Date dateOfBirth) {
 		super(name, gender, phoneNumber, address, dateOfBirth);
 		this.id = id;
 	}
-
 
 	public Long getId() {
 		return id;
@@ -46,5 +46,5 @@ public class Patient extends Person{
 		return "Patient [id=" + id + ", name=" + name + ", dateOfBirth=" + dateOfBirth + ", gender=" + gender
 				+ ", address=" + address + ", phoneNumber=" + phoneNumber + "]";
 	}
-	
+
 }
