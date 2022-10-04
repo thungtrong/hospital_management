@@ -8,60 +8,54 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Patient List</title>
+<title>Test List</title>
 <jsp:include page="../_shared.jsp"></jsp:include>
 
 </head>
 <body>
 	<jsp:include page="../_navbar.jsp"></jsp:include>
-	<input type="hidden" id="patient-id" />
+	<input type="hidden" id="test-id" />
 	<div class="container">
 
 		<div class="table-container-outside">
-			<div class="title-table">List Patient</div>
+			<div class="title-table">List Test</div>
 			<div class="d-flex justify-content-end">
-				<a href="/patient/create" class="btn btn-success" id="create-button">
+				<a href="/test/create" class="btn btn-success" id="create-button">
 					Create <i class="fa fa-plus" aria-hidden="true"></i>
 				</a>
 			</div>
 			<div class="detail-table">
 				<div class="table-container-inside table-responsive">
-					<c:if test="${patientListSize == 0 }">
+					<c:if test="${ testListSize == 0 }">
 						<h2>No things to show</h2>
 					</c:if>
-					<c:if test="${ patientListSize != 0 }">
+					<c:if test="${ testListSize != 0 }">
 						<table class="table table-striped" id="patient-table">
 							<thead>
 								<tr>
 									<th scope="col">#</th>
-									<th scope="col">Full Name</th>
-									<th scope="col">Address</th>
-									<th scope="col">Phone Number</th>
-									<th scope="col">Date of birth</th>
+									<th scope="col">Test Name</th>
+									<th scope="col">Normal Result</th>
+									<th scope="col">Description</th>
 									<th></th>
 								</tr>
 							</thead>
 
-							<tbody id="patient-list">
-								<c:forEach var="patient" items="${ patientList }">
+							<tbody id="test-list">
+								<c:forEach var="test" items="${ testList }">
 									<tr>
-										<th scope="row">${ patient.id }</th>
-										<td>${ patient.name }</td>
-										<td>${ patient.address }</td>
-										<td>${ patient.phoneNumber }</td>
-										<td><fmt:formatDate value="${ patient.dateOfBirth }"
-												type="date" /></td>
+										<th scope="row">${ test.id }</th>
+										<td>${ test.testName }</td>
+										<td>${ test.normalResult }</td>
+										<td>${ test.description }</td>
 										<td class="group-action">
-											<!-- <a href="/patient/view/${ patient.id }"
-										type="button" class="btn btn-secondary"> <i
-											class="fa fa-eye" aria-hidden="true"></i>
-									</a> --> <a href="/patient/update/${ patient.id }"
-											type="button" class="btn btn-primary"> <i
-												class="fa fa-pencil-square-o" aria-hidden="true"></i>
-										</a> <a onclick="deletePatientModal(this)" type="button"
-											class="btn btn-danger"> <i class="fa fa-trash-o"
-												aria-hidden="true"></i>
-										</a>
+											<!-- <a href="/test/view/${ test.id }" type="button" class="btn btn-secondary"> <i class="fa fa-eye" aria-hidden="true"></i></a> --> 
+											<a href="/test/update/${ test.id }" type="button" class="btn btn-primary"> 
+												<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+											</a> 
+											<a onclick="deleteTestModal(this)" type="button" class="btn btn-danger">
+												<i class="fa fa-trash-o" aria-hidden="true"></i>
+											</a>
 										</td>
 									</tr>
 
@@ -84,7 +78,7 @@
 					<!-- Previous button -->
 					<c:if test="${ currentPage > 1 }">
 						<li class="page-item"><a class="page-link"
-							href="/patient?page=${ currentPage - 1 }" aria-label="Previous">
+							href="/test?page=${ currentPage - 1 }" aria-label="Previous">
 								<span aria-hidden="true">&laquo;</span> <span class="sr-only">Previous</span>
 						</a></li>
 					</c:if>
@@ -97,14 +91,14 @@
 					</c:if>
 					<c:forEach var="pageNumber" begin="${ currentPage }" end="${ end }">
 						<li class="page-item"><a class="page-link"
-							href="/patient?page=${pageNumber}">${ pageNumber }</a></li>
+							href="/test?page=${pageNumber}">${ pageNumber }</a></li>
 					</c:forEach>
 
 
 					<!-- Next Button -->
 					<c:if test="${ currentPage < totalPage }">
 						<li class="page-item"><a class="page-link"
-							href="/patient?page=${ currentPage + 1 }" aria-label="Next">
+							href="/test?page=${ currentPage + 1 }" aria-label="Next">
 								<span aria-hidden="true">&raquo;</span> <span class="sr-only">Next</span>
 						</a></li>
 					</c:if>
@@ -121,7 +115,7 @@
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">Delete Patient</h5>
+					<h5 class="modal-title" id="exampleModalLabel">Delete Test</h5>
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
@@ -140,7 +134,7 @@
 
 
 	<!-- Javascript -->
-	<script type="text/javascript" src="/js/patient/list-patient.js"></script>
+	<script type="text/javascript" src="/js/test/list-test.js"></script>
 
 </body>
 </html>
