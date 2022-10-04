@@ -5,36 +5,37 @@
     <head>
         <meta charset="ISO-8859-1">
         <jsp:include page="../_shared.jsp"></jsp:include>
-        <title>Create Test</title>
+        <title>Update Test</title>
     </head>
 
     <body>
     	<jsp:include page="../_navbar.jsp"></jsp:include>
         <div class="container">
             <div class="form-container-outside">
-                <div class="title-form">Create Test </div>
+                <div class="title-form">Update Test </div>
                 <div class="detail-form">
                     <div class="form-container-inside">
                         <div class="detail-test">
                             <form id="test-form" name="test" autocomplete="off">
+                            	<input type="hidden" id="testId" value="${ test.id }">
                                 <div class="col">
                                     <div class="item">
                                         <label for="testName" class="text-label">Test name</label>
                                         <input type="text" name="testName" id="testName" class="input text-input"
-                                            placeholder="Eg: White blood cells">
+                                            placeholder="Eg: White blood cells" value="${ test.testName }">
                                          <label for="testName" class="error-msg text-danger" id="testName-error"></label>
                                     </div>
                                     <div class="item">
                                         <label for="normalResult" class="text-label">Normal Result</label>
                                         <input type="text" name="normalResult" id="normalResult" class="input text-input"
-                                            placeholder="Eg: 4,500 to 11,000 WBCs per microliter">
+                                            placeholder="Eg: 4,500 to 11,000 WBCs per microliter"  value="${ test.normalResult }">
                                         <label for="normalResult" class="error-msg text-danger" id="normalResult-error"></label>
                                     </div>
                                 </div>
                                 <div class="col">
 	                                <div class="item">
 	                                    <label for="description" class="text-label">Description</label>
-	                                    <textarea rows="5" type="text" name="description" id="description" class="input text-input" placeholder="Add the description"></textarea>
+	                                    <textarea value="${ test.description }" rows="5" type="text" name="description" id="description" class="input text-input" placeholder="Add the description" value="">${ test.description }</textarea>
 										<label for="description" class="error-msg text-danger" id="description-error"></label>
 	                                </div>
                                 </div>
@@ -56,7 +57,7 @@
 		  <div class="modal-dialog" role="document">
 		    <div class="modal-content">
 		      <div class="modal-header">
-		        <h5 class="modal-title" id="exampleModalLabel">Create Test</h5>
+		        <h5 class="modal-title" id="exampleModalLabel">Update Test</h5>
 		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 		          <span aria-hidden="true">&times;</span>
 		        </button>
@@ -75,7 +76,7 @@
 		
         <!-- Javascript -->
         <script type="text/javascript" src="/js/test/validate-test.js"></script>
-        <script type="text/javascript" src="/js/test/create-test.js"></script>
+        <script type="text/javascript" src="/js/test/update-test.js"></script>
     </body>
 
     </html>

@@ -2,7 +2,6 @@
  *
  */
 
-
 var modelBody = document.getElementById("modal-body");
 
 document.getElementById("submit").addEventListener("click", function (e) {

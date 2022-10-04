@@ -63,16 +63,9 @@ public class PatientRestController {
 	}
 
 	@PutMapping("/update")
-	public ResponseEntity<Patient> update(@Valid @RequestBody Patient patient, BindingResult br) throws ModelNotVaildException {
-		if (br.hasErrors()) {
-			List<FieldError> errors = br.getFieldErrors();
-			Map<String, String> fieldErrorsMap = new HashMap<>();
-			for (FieldError fieldErrors:errors)
-			{				
-				fieldErrorsMap.put(fieldErrors.getField(), fieldErrors.getDefaultMessage());
-			}
-			
-			throw new ModelNotVaildException(fieldErrorsMap);
+	public ResponseEntity<Patient> update(@Valid @RequestBody Patient patient, BindingResult bindingResult) throws ModelNotVaildException {
+		if (bindingResult.hasErrors()) {
+			throw ModelNotVaildException.fromBindingResult(bindingResult);
 		}
 		return new ResponseEntity<>(patientService.update(patient), HttpStatus.ACCEPTED);
 	}

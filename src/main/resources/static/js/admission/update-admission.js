@@ -2,7 +2,7 @@
  * 
  */
  
- var searchModel = document.getElementById("searchModel");
+var searchModel = document.getElementById("searchModel");
 
 document.getElementById("btn-patient").addEventListener("click", function (e) {
     $("#searchModel").modal("show");

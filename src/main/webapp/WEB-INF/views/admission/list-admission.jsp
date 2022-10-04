@@ -15,6 +15,7 @@
 <body>
 	<jsp:include page="../_navbar.jsp"></jsp:include>
 	<input type="hidden" id="admission-id" />
+	
 	<div class="container">
 
 		<div class="table-container-outside">
@@ -46,7 +47,7 @@
 							<tbody id="admission-list">
 								<c:forEach var="admission" items="${ admissionList }">
 									<c:set var="patient" value="${ admission.patient }"></c:set>
-									<tr>
+				 					<tr>
 										<th scope="row">${ admission.id }</th>
 										<td>${ patient.name }</td>
 										<td>${ patient.address }</td>

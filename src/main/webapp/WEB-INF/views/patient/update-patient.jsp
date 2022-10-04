@@ -13,7 +13,7 @@
     	<jsp:include page="../_navbar.jsp"></jsp:include>
         <div class="container">
             <div class="form-container-outside">
-                <div class="title-form">Add Patient Form</div>
+                <div class="title-form">Update Patient Form</div>
                 <div class="detail-form">
                     <div class="form-container-inside">
                         <div class="detail-patient">
