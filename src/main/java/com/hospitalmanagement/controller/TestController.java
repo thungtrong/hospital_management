@@ -54,13 +54,5 @@ public class TestController {
 		modelAndView.addObject("test", test);
 		return modelAndView;
 	}
-//	
-//	@GetMapping("/view/{id}")
-//	public ModelAndView view(@PathVariable Long id)
-//	{
-//		ModelAndView modelAndView = new ModelAndView("test/view-test");
-//		Test form = testService.findById(id);
-//		modelAndView.addObject("test", form);
-//		return modelAndView;
-//	}
+
 }
