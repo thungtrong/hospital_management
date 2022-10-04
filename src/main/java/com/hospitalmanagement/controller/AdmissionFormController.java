@@ -55,4 +55,13 @@ public class AdmissionFormController {
 		modelAndView.addObject("admission", form);
 		return modelAndView;
 	}
+	
+	@GetMapping("/view/{id}")
+	public ModelAndView view(@PathVariable Long id)
+	{
+		ModelAndView modelAndView = new ModelAndView("admission/view-admission");
+		AdmissionForm form = admissionFormService.findById(id);
+		modelAndView.addObject("admission", form);
+		return modelAndView;
+	}
 }
