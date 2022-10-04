@@ -7,66 +7,61 @@
 
 <head>
 	<meta charset="ISO-8859-1">
-	<title>Admission Form List</title>
-	<jsp:include page="../_shared.jsp"></jsp:include>	
+	<title>Test Form List</title>
+	<jsp:include page="../_shared.jsp"></jsp:include>
 
 </head>
 
 <body>
 	<jsp:include page="../_navbar.jsp"></jsp:include>
-	<input type="hidden" id="admission-id" />
-	
+	<c:set var="pageName" value="test-form"></c:set>
+	<input type="hidden" id="test-form-id" />
+
 	<div class="container">
 
 		<div class="table-container-outside">
 			<div class="title-table">List Admission</div>
 			<div class="d-flex justify-content-end">
-				<a href="/admission/create" class="btn btn-success" id="create-button">
+				<a href="/${pageName}/create" class="btn btn-success" id="create-button">
 					Create <i class="fa fa-plus" aria-hidden="true"></i>
 				</a>
 			</div>
 			<div class="detail-table">
 				<div class="table-container-inside table-responsive">
-					<c:if test="${admissionListSize == 0 }">
+					<c:if test="${testFormListSize == 0 }">
 						<h2>No things to show</h2>
 					</c:if>
-					<c:if test="${ admissionListSize != 0 }">
-						<table class="table table-striped" id="admission-table">
+					<c:if test="${ testFormListSize != 0 }">
+						<table class="table table-striped" id="test-form-table">
 							<thead>
 								<tr>
 									<th scope="col">#</th>
 									<th scope="col">Full Name</th>
-									<th scope="col">Address</th>
 									<th scope="col">Phone Number</th>
-									<th scope="col">Date In</th>
-									<th scope="col">Date Out</th>
+									<th scope="col">Details</th>
 									<th></th>
 								</tr>
 							</thead>
 
-							<tbody id="admission-list">
-								<c:forEach var="admission" items="${ admissionList }">
-									<c:set var="patient" value="${ admission.patient }"></c:set>
-				 					<tr>
-										<th scope="row">${ admission.id }</th>
+							<tbody id="test-form-list">
+								<c:forEach var="testForm" items="${ testFormList }">
+									<c:set var="patient" value="${ testForm.patient }"></c:set>
+									<tr>
+										<th scope="row">${ testForm.id }</th>
 										<td>${ patient.name }</td>
-										<td>${ patient.address }</td>
 										<td>${ patient.phoneNumber }</td>
 										<td>
-											<fmt:formatDate value="${ admission.dateIn }" type="date" />
-										</td>
-										<td>
-											<fmt:formatDate value="${ admission.dateOut }" type="date" />
+											${ testForm.details }
 										</td>
 										<td class="group-action">
-											<a href="/admission/view/${ admission.id }" type="button"
+											<a href="/${pageName}/view/${ testForm.id }" type="button"
 												class="btn btn-secondary"> <i class="fa fa-eye"
 													aria-hidden="true"></i></a>
-											<a href="/admission/update/${ admission.id }" type="button"
+											<a href="/${pageName}/update/${ testForm.id }" type="button"
 												class="btn btn-primary">
 												<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
 											</a>
-											<a onclick="deletePatientModal(this)" type="button" class="btn btn-danger">
+											<a onclick="deleteTestFormModal(this)" type="button" class="btn btn-danger">
 												<i class="fa fa-trash-o" aria-hidden="true"></i>
 											</a>
 										</td>
@@ -90,7 +85,7 @@
 				<ul class="pagination justify-content-end ali">
 					<!-- Previous button -->
 					<c:if test="${ currentPage > 1 }">
-						<li class="page-item"><a class="page-link" href="/admission/list?page=${ currentPage - 1 }"
+						<li class="page-item"><a class="page-link" href="/${pageName}/list?page=${ currentPage - 1 }"
 								aria-label="Previous">
 								<span aria-hidden="true">&laquo;</span> <span class="sr-only">Previous</span>
 							</a></li>
@@ -103,14 +98,14 @@
 						<c:set var="end" value="${ totalPage }"></c:set>
 					</c:if>
 					<c:forEach var="pageNumber" begin="${ currentPage }" end="${ end }">
-						<li class="page-item"><a class="page-link" href="/admission/list?page=${pageNumber}">${
+						<li class="page-item"><a class="page-link" href="/${pageName}/list?page=${pageNumber}">${
 								pageNumber }</a></li>
 					</c:forEach>
 
 
 					<!-- Next Button -->
 					<c:if test="${ currentPage < totalPage }">
-						<li class="page-item"><a class="page-link" href="/admission/list?page=${ currentPage + 1 }"
+						<li class="page-item"><a class="page-link" href="/${pageName}/list?page=${ currentPage + 1 }"
 								aria-label="Next">
 								<span aria-hidden="true">&raquo;</span> <span class="sr-only">Next</span>
 							</a></li>
@@ -128,7 +123,7 @@
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">Delete Admission</h5>
+					<h5 class="modal-title" id="exampleModalLabel">Delete Patient</h5>
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
@@ -136,7 +131,7 @@
 				<div class="modal-body" id="modal-body"></div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-					<button type="button" class="btn btn-primary" onclick="deleteAdmission();">Delete</button>
+					<button type="button" class="btn btn-primary" onclick="deleteTestForm();">Delete</button>
 				</div>
 			</div>
 		</div>
@@ -144,7 +139,7 @@
 
 
 	<!-- Javascript -->
-	<script type="text/javascript" src="/js/admission/list-admission.js"></script>
+	<script type="text/javascript" src="/js/${pageName}/list-test-form.js"></script>
 
 </body>
 
