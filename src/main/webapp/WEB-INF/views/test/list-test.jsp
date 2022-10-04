@@ -126,7 +126,7 @@
 					<button type="button" class="btn btn-secondary"
 						data-dismiss="modal">Cancel</button>
 					<button type="button" class="btn btn-primary"
-						onclick="deletePatient();">Delete</button>
+						onclick="deleteTest();">Delete</button>
 				</div>
 			</div>
 		</div>

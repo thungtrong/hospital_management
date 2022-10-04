@@ -29,7 +29,7 @@ function deleteTestModal(target) {
     $("#alertModel").modal("show");
 }
 
-function deletePatient() {
+function deleteTest() {
     let id = hidden.value;
     fetch(`${BASE_TEST_API}/delete/${id}`, {
         method: "DELETE",

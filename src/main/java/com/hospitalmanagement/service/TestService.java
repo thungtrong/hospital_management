@@ -50,7 +50,6 @@ public class TestService implements PagingAndSortingService<Test, Integer> {
 			throw new RecordNotFoundException("Test not found");
 		
 		testRepository.deleteById(id);
-
 		return true;
 	}
 
@@ -67,5 +66,10 @@ public class TestService implements PagingAndSortingService<Test, Integer> {
 	@Override
 	public boolean existsById(Integer id) {
 		return testRepository.existsById(id);
+	}
+	
+	public List<Test> findByTestName(String testName)
+	{
+		return testRepository.findByTestNameContainingIgnoreCase(testName);
 	}
 }

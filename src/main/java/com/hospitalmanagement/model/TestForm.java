@@ -3,6 +3,7 @@ package com.hospitalmanagement.model;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -32,8 +33,8 @@ public class TestForm {
 	@JoinColumn(name = "patient_id", referencedColumnName = "id")
 	private Patient patient;
 	
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "test")
-	private List<TestFormDetail> results;
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "testForm", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+	private List<TestFormDetail> details;
 
 	public TestForm() {
 		super();
@@ -44,7 +45,7 @@ public class TestForm {
 		this.id = id;
 		this.creationDate = creationDate;
 		this.patient = patient;
-		this.results = details;
+		this.details = details;
 	}
 
 	public Long getId() {
@@ -72,12 +73,18 @@ public class TestForm {
 	}
 
 	public List<TestFormDetail> getDetails() {
-		return results;
+		return details;
 	}
 
 	public void setDetails(List<TestFormDetail> details) {
-		this.results = details;
+		this.details = details;
 	}
-	
+
+
+	@Override
+	public String toString() {
+		return "TestForm [id=" + id + ", creationDate=" + creationDate + ", patient=" + patient + ", details=" + details
+				+ "]";
+	}
 	
 }
