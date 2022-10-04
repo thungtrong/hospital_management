@@ -1,4 +1,8 @@
-var searchModel = document.getElementById("searchModel");
+/**
+ * 
+ */
+ 
+ var searchModel = document.getElementById("searchModel");
 
 document.getElementById("btn-patient").addEventListener("click", function (e) {
     $("#searchModel").modal("show");
@@ -11,14 +15,16 @@ document.getElementById("btn-continue").addEventListener("click", () => {
 document.getElementById("submit").addEventListener("click", function (e) {
     let admissionForm = document.forms.admission;
     let admission = new Object({
+    	id: admissionForm.admissionId.value,
         patient: { id: admissionForm.patientId.value },
         dateIn: new Date(admissionForm.dateIn.value),
         dateOut: new Date(admissionForm.dateOut.value),
     });
+    console.log(admission)
     let isValid = validateAdmission(admission);
     if (isValid) {
-        fetch(BASE_ADMISSION_API + "/create", {
-            method: "POST",
+        fetch(BASE_ADMISSION_API + "/update", {
+            method: "PUT",
             headers: {
                 "Content-Type": "application/json",
             },
@@ -27,7 +33,7 @@ document.getElementById("submit").addEventListener("click", function (e) {
             .then((response) => {
                 console.log(response);
                 let modalBody = document.getElementById("modal-body");
-                if (response.status === CREATED) {
+                if (response.status === ACCEPTED) {
                     modalBody.innerHTML = `Create Admission successfully!`;
                     $("#alertModal").modal("show");
                 } else {

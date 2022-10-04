@@ -29,7 +29,7 @@
                                     <div class="item">
                                         <label for="gender" class="text-label">Gender</label>
                                         <select name="gender" class="input" >
-                                            <option value="true" ${ patient.gender == false ? 'selected':'' }>Female</option>
+                                            <option value="true" ${ patient.gender == true ? 'selected':'' }>Female</option>
                                             <option value="false" ${ patient.gender == false ? 'selected':'' }>Male</option>
                                         </select>
                                         <label for="gender" class="error-msg text-danger" id="gender-error"></label>

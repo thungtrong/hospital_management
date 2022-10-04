@@ -67,9 +67,12 @@ public class AdmissionFormRestController {
 	}
 	
 	@PutMapping("/update")
-	public ResponseEntity<AdmissionForm> update(@RequestBody AdmissionForm admissionForm)
+	public ResponseEntity<AdmissionForm> update(@Valid @RequestBody AdmissionForm admissionForm, BindingResult bindingResult) throws ModelNotVaildException
 	{
-		
+		if (bindingResult.hasErrors())
+		{
+			throw ModelNotVaildException.fromBindingResult(bindingResult);
+		}
 		return new ResponseEntity<>(admissionFormService.update(admissionForm), HttpStatus.ACCEPTED);
 	}
 	
