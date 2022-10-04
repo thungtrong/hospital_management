@@ -33,7 +33,7 @@ public class TestForm {
 	@JoinColumn(name = "patient_id", referencedColumnName = "id")
 	private Patient patient;
 	
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "testForm", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "testForm", cascade = {CascadeType.ALL})
 	private List<TestFormDetail> details;
 
 	public TestForm() {

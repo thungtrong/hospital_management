@@ -1,24 +1,50 @@
+/**
+ *
+ */
+
 document.getElementById("submit").addEventListener("click", function (e) {
     let testForm = mapForm2TestFormObject();
 
-    fetch(BASE_TEST_FORM_API + "/create", {
-        method: "POST",
+    fetch(BASE_TEST_FORM_API + "/update", {
+        method: "PUT",
         headers: {
             "Content-Type": "application/json",
         },
         body: JSON.stringify(testForm),
     }).then((response) => {
         let modalBody = document.getElementById("modal-body");
-        if (response.status === CREATED) {
-            modalBody.innerHTML = `Create Test Form successfully!`;
+        if (response.status === ACCEPTED) {
+            modalBody.innerHTML = `Update Test Form successfully!`;
             $("#alertModal").modal("show");
         } else {
-            modalBody.innerHTML = `Create Test Form failure!`;
+            modalBody.innerHTML = `Update Test Form failure!`;
             $("#alertModal").modal("show");
             return response.json();
         }
     });
 });
+
+let btnList = document.getElementsByClassName("btn-remove-row");
+let tbodyTestDetail = document.getElementById("list-test-form-detail");
+let nothingElement = document.createElement("tr");
+nothingElement.innerHTML = `<td colspan='4' class='text-center'>Nothings to show</td>`;
+let removedTestFormDetails = [];
+
+function removeRow(e) {
+    e.preventDefault();
+    let selectedRow;
+    if (e.target.tagName.toLowerCase() === "i")
+        selectedRow = e.target.parentElement.parentElement.parentElement;
+    if (e.target.tagName.toLowerCase() === "button")
+        selectedRow = e.target.parentElement.parentElement;
+    tbodyTestDetail.removeChild(selectedRow);
+    if (tbodyTestDetail.childElementCount === 0)
+        tbodyTestDetail.append(nothingElement);
+}
+
+for (let i = 0; i < btnList.length; i++) {
+    btnList[i].addEventListener("click", removeRow, true);
+}
 
 // Patient part
 var searchPatientModel = document.getElementById("searchPatientModel");
@@ -164,8 +190,6 @@ document
     });
 
 // function
-let tbodyTestDetail = document.getElementById("list-test-form-detail");
-let nothingElement = tbodyTestDetail.firstElementChild;
 function removeNothingMsg() {
     if (tbodyTestDetail.firstElementChild.className === "nothing")
         tbodyTestDetail.removeChild(tbodyTestDetail.firstElementChild);
@@ -184,22 +208,7 @@ function addTestDetails(testDetail) {
     button.type = "button";
     button.innerHTML = `<i class="fa fa-times" aria-hidden="true"></i>`;
 
-    button.addEventListener(
-        "click",
-        (e) => {
-            e.preventDefault();
-            let selectedRow;
-            if (e.target.tagName.toLowerCase() === "i")
-                selectedRow =
-                    e.target.parentElement.parentElement.parentElement;
-            if (e.target.tagName.toLowerCase() === "button")
-                selectedRow = e.target.parentElement.parentElement;
-            tbodyTestDetail.removeChild(selectedRow);
-            if (tbodyTestDetail.childElementCount === 0)
-                tbodyTestDetail.append(nothingElement);
-        },
-        true
-    );
+    button.addEventListener("click", removeRow, true);
 
     let td = document.createElement("td");
     td.append(button);
@@ -212,21 +221,26 @@ function mapForm2TestFormObject() {
     let form = document.forms["test-form"];
     let patientId = form.patientId.value;
     let creationDate = new Date(form.creationDate.value);
+
     let testFormObject = new Object({
+        id: form.testFormId.value,
         patient: { id: patientId },
         creationDate: creationDate,
         details: [],
     });
+
     let testDetailTBody = document.getElementById("list-test-form-detail");
     let testDetails = document.getElementsByClassName("test-form-detail-data");
     let inputs;
     for (let i = 0; i < testDetails.length; i++) {
         inputs = testDetails[i].children;
         testFormObject.details.push({
+            id: inputs[2].value,
             test: { id: inputs[0].value },
             result: inputs[1].value,
         });
     }
+
     return testFormObject;
 }
 

@@ -70,7 +70,11 @@ public class TestFormRestController {
 	@PutMapping("/update")
 	public ResponseEntity<TestForm> update(@Valid @RequestBody TestForm test)
 	{
-	
+		List<TestFormDetail> details = test.getDetails();
+		for (TestFormDetail detail: details)
+		{
+			detail.setTestForm(test);
+		}
 		return new ResponseEntity<>(testFormService.update(test), HttpStatus.ACCEPTED);
 	}
 	
