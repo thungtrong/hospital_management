@@ -9,11 +9,15 @@ function showErrorMsg(errors) {
     }
 }
 
-function validateAdmission(admission) {
+function validateTest(test) {
     let errors = new Object();
     let r = true;
-    if (isNaN(admission.dateIn.getTime())) {
-        errors.dateIn = "Please fill patient's date in";
+    if (!test.testName.length) {
+        errors.testName = "Please fill test name";
+        r = false;
+    }
+    if (!test.normalResult.length) {
+        errors.normalResult = "Please fill normal result of the test";
         r = false;
     }
     showErrorMsg(errors);

@@ -2,18 +2,28 @@ package com.hospitalmanagement.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name="test")
 public class Test {
 	@Id
+	@SequenceGenerator(name = "test_seq_pk", initialValue = 100, allocationSize = 1)
+	@GeneratedValue(generator = "test_seq_pk", strategy = GenerationType.SEQUENCE)
 	private Integer id;
-	@Column(name="test_name")
+	@NotEmpty(message="Please fill test name")
+	@Column(name="test_name", nullable = false)
 	private String testName;
-	@Column(name="normal_result")
+	@NotEmpty(message="Please fill normal result of the test")
+	@Column(name="normal_result", nullable = false)
 	private String normalResult;
+	
 	@Column(name="description")
 	private String description;
 	
