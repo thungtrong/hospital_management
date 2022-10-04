@@ -85,14 +85,7 @@ document
                     });
                     tr.append(td);
                     patientListTable.append(tr);
-                }
-
-                `<tr>
-                    <td>Full Name</td>
-                    <td>Phone Number</td>
-                    <td>Date of birth</td>
-                    <td></td>
-                </tr>`;
+                };
             })
             .catch((error) => {
                 console.log(error);
