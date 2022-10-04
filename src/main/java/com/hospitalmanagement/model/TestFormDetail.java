@@ -10,6 +10,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="test_detail")
 public class TestFormDetail {
@@ -22,12 +24,13 @@ public class TestFormDetail {
 	@JoinColumn(name = "test_id", referencedColumnName = "id")
 	private Test test;
 	
+	private String result;
+	
 	@ManyToOne
+	@JsonIgnore
 	@JoinColumn(name="test_form_id", referencedColumnName = "id")
 	private TestForm testForm;
 	
-	private String result;
-
 	public TestFormDetail() {
 		super();
 	}

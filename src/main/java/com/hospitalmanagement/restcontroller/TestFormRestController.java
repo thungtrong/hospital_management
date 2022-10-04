@@ -1,7 +1,6 @@
 package com.hospitalmanagement.restcontroller;
 
 import java.util.List;
-import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -23,69 +22,62 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hospitalmanagement.exception.ModelNotVaildException;
-import com.hospitalmanagement.exception.RecordNotFoundException;
-import com.hospitalmanagement.model.Test;
-import com.hospitalmanagement.service.TestService;
+import com.hospitalmanagement.model.TestForm;
+import com.hospitalmanagement.model.TestFormDetail;
+import com.hospitalmanagement.service.TestFormService;
 
 @RestController
-@RequestMapping(ConstValue.BASE_API_URL + "/test")
-public class TestRestController {
+@RequestMapping(ConstValue.BASE_API_URL + "/test-form")
+public class TestFormRestController {
 	
 	@Autowired
-	private TestService testService;
+	private TestFormService testFormService;
 	
 	@GetMapping("/all")
-	public ResponseEntity<List<Test>> list()
+	public ResponseEntity<List<TestForm>> list()
 	{
-		return new ResponseEntity<>(testService.findAll(), HttpStatus.OK);
+		return new ResponseEntity<>(testFormService.findAll(), HttpStatus.OK);
 	}
 	
 	@GetMapping("/page")
-	public ResponseEntity<Page<Test>> page(
+	public ResponseEntity<Page<TestForm>> page(
 			@RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "10") Integer size, 
 			@RequestParam(defaultValue = "id") String orderBy, @RequestParam(defaultValue = "true") Boolean asc)
 	{
 		Sort sort = asc ? Sort.by(Order.asc(orderBy)) : Sort.by(Order.desc(orderBy));
-		Page<Test> result = testService.findAll(page, size, sort);
+		Page<TestForm> result = testFormService.findAll(page, size, sort);
 		return new ResponseEntity<>(result, HttpStatus.OK);
 	}
 	
 	@GetMapping("findById/{id}")
-	public ResponseEntity<Test> findById(@PathVariable Integer id)
+	public ResponseEntity<TestForm> findById(@PathVariable Long id)
 	{
-		return new ResponseEntity<>(testService.findById(id), HttpStatus.OK);
+		return new ResponseEntity<>(testFormService.findById(id), HttpStatus.OK);
 	}
 	
 	@PostMapping("/create")
-	public ResponseEntity<Test> create(@Valid @RequestBody Test test, BindingResult bindingResult) throws ModelNotVaildException
+	public ResponseEntity<TestForm> create(@RequestBody TestForm test)
 	{
-		if (bindingResult.hasErrors())
+		List<TestFormDetail> details = test.getDetails();
+		for (TestFormDetail detail: details)
 		{
-			throw ModelNotVaildException.fromBindingResult(bindingResult);
+			detail.setTestForm(test);
 		}
-		return new ResponseEntity<>(testService.insert(test), HttpStatus.CREATED);
+		return new ResponseEntity<>(testFormService.insert(test), HttpStatus.CREATED);
+//		return new ResponseEntity<>(test, HttpStatus.CREATED);
 	}
 	
 	@PutMapping("/update")
-	public ResponseEntity<Test> update(@Valid @RequestBody Test test, BindingResult bindingResult) throws ModelNotVaildException
+	public ResponseEntity<TestForm> update(@Valid @RequestBody TestForm test)
 	{
-		if (bindingResult.hasErrors())
-		{
-			throw ModelNotVaildException.fromBindingResult(bindingResult);
-		}
-		return new ResponseEntity<>(testService.update(test), HttpStatus.ACCEPTED);
+	
+		return new ResponseEntity<>(testFormService.update(test), HttpStatus.ACCEPTED);
 	}
 	
 	@DeleteMapping("/delete/{id}")
-	public ResponseEntity<Boolean> delete(@PathVariable Integer id)
+	public ResponseEntity<Boolean> delete(@PathVariable Long id)
 	{
-		return new ResponseEntity<>(testService.deleteById(id), HttpStatus.OK);
-	}
-	
-	@GetMapping("findByName")
-	public List<Test> findByTestName(@RequestParam String testName)
-	{
-		return testService.findByTestName(testName);
+		return new ResponseEntity<>(testFormService.deleteById(id), HttpStatus.OK);
 	}
 	
 }
