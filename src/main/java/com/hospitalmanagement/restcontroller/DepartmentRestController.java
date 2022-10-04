@@ -2,12 +2,14 @@ package com.hospitalmanagement.restcontroller;
 
 import java.util.List;
 
+import com.hospitalmanagement.exception.ModelNotVaildException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Order;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,6 +22,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.hospitalmanagement.model.Department;
 import com.hospitalmanagement.service.DepartmentService;
+
+import javax.validation.Valid;
 
 @RestController
 @RequestMapping(ConstValue.BASE_API_URL + "/department")
@@ -47,12 +51,18 @@ public class DepartmentRestController {
 	}
 
 	@PostMapping("/create")
-	public ResponseEntity<Department> create(@RequestBody Department department) {
+	public ResponseEntity<Department> create(@Valid @RequestBody Department department, BindingResult bindingResult) throws ModelNotVaildException {
+		if (bindingResult.hasErrors()) {
+			throw ModelNotVaildException.fromBindingResult(bindingResult);
+		}
 		return new ResponseEntity<>(departmentService.insert(department), HttpStatus.CREATED);
 	}
 
 	@PutMapping("/update")
-	public ResponseEntity<Department> update(@RequestBody Department department) {
+	public ResponseEntity<Department> update(@Valid @RequestBody Department department, BindingResult bindingResult) throws ModelNotVaildException {
+		if (bindingResult.hasErrors()) {
+			throw ModelNotVaildException.fromBindingResult(bindingResult);
+		}
 		return new ResponseEntity<>(departmentService.update(department), HttpStatus.ACCEPTED);
 	}
 
