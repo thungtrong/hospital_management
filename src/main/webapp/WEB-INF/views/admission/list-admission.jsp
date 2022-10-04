@@ -47,7 +47,7 @@
 								<c:forEach var="admission" items="${ admissionList }">
 									<c:set var="patient" value="${ admission.patient }"></c:set>
 									<tr>
-										<th scope="row">${ patient.id }</th>
+										<th scope="row">${ admission.id }</th>
 										<td>${ patient.name }</td>
 										<td>${ patient.address }</td>
 										<td>${ patient.phoneNumber }</td>

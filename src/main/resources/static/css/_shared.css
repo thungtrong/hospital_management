@@ -170,3 +170,7 @@ label.error-msg {
 {
     font-size: 23px;
 }
+table.table-recheck td {
+	padding-right: 10px;
+	padding-bottom: 5px;
+}

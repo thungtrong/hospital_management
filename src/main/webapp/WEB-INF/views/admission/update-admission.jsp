@@ -167,7 +167,6 @@
 	</div>
 
 	<!-- Javascript -->
-	<script type="text/javascript" src="/js/constValue.js"></script>
 	<script type="text/javascript" src="/js/admission/update-admission.js"></script>
 	<script type="text/javascript" src="/js/admission/validate-admission.js"></script>
 </body>

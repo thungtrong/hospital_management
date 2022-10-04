@@ -12,10 +12,25 @@
  	selectedRow = target.parentElement.parentElement;
  	let cols = selectedRow.children;
  	modalBody.innerHTML = `Are you sure to delete this patient? <br><br>
-		        Full Name: ${ cols[1].innerText } <br>
-		        Address: ${ cols[2].innerText } <br>
-		        Phone: ${ cols[3].innerText } <br>
-		        Date of birth: ${ cols[4].innerText } <br>`;
+		       <table class="table-recheck">
+				<tr>
+					<td><b>Full Name</b>: </td>
+					<td>${cols[1].innerText} <br></td>
+				</tr>
+		        <tr> 
+					<td><b>Address:</b> </td>
+					<td>${cols[2].innerText} <br></td>
+				</tr>
+		        <tr> 
+					<td><b>Phone:</b> </td>
+					<td>${cols[3].innerText} <br></td>
+				</tr>
+				<tr> 
+					<td><b> Date of birth:</b> </td>
+					<td>${cols[4].innerText} <br></td>
+				</tr>
+				</table>
+		        `;
 	hidden.value = cols[0].innerText;
 	$('#alertModel').modal('show');
  }
