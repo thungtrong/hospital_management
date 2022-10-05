@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.hospitalmanagement.exception.RecordNotFoundException;
 import com.hospitalmanagement.model.TestForm;
+import com.hospitalmanagement.repository.TestFormDetailRepository;
 import com.hospitalmanagement.repository.TestFormRepository;
 
 @Service
@@ -17,7 +18,9 @@ public class TestFormService implements PagingAndSortingService<TestForm, Long> 
 
 	@Autowired
 	private TestFormRepository testFormRepository;
-
+	@Autowired
+	private TestFormDetailRepository testFormDetailRepository;
+	
 	@Override
 	public TestForm insert(TestForm patient) {
 		return testFormRepository.save(patient);
@@ -52,6 +55,7 @@ public class TestFormService implements PagingAndSortingService<TestForm, Long> 
 			throw new RecordNotFoundException("Test not found");
 		
 		testFormRepository.deleteById(id);
+		
 		return true;
 	}
 
@@ -69,5 +73,10 @@ public class TestFormService implements PagingAndSortingService<TestForm, Long> 
 	public boolean existsById(Long id) {
 		return testFormRepository.existsById(id);
 	}
-
+	
+	public boolean deleteDetailsByIds(List<Long> ids)
+	{
+		testFormDetailRepository.deleteAllDetailsById(ids);
+		return true;
+	}
 }

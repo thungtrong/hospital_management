@@ -1,6 +1,16 @@
 /**
  *
  */
+let modalBody = document.getElementById("modal-body");
+
+let removedTestFormDetails = [];
+function removeTestFormDetailsToUrlParam() {
+    let urlParam = "?";
+    for (let i = 0; i < removedTestFormDetails.length; i++) {
+        urlParam += `ids=${removedTestFormDetails[i]}&`;
+    }
+    return urlParam.slice(0, -1);
+}
 
 document.getElementById("submit").addEventListener("click", function (e) {
     let testForm = mapForm2TestFormObject();
@@ -11,24 +21,46 @@ document.getElementById("submit").addEventListener("click", function (e) {
             "Content-Type": "application/json",
         },
         body: JSON.stringify(testForm),
-    }).then((response) => {
-        let modalBody = document.getElementById("modal-body");
-        if (response.status === ACCEPTED) {
-            modalBody.innerHTML = `Update Test Form successfully!`;
-            $("#alertModal").modal("show");
-        } else {
-            modalBody.innerHTML = `Update Test Form failure!`;
-            $("#alertModal").modal("show");
-            return response.json();
-        }
-    });
+    })
+        .then((response) => {
+            return response.status === ACCEPTED;
+        })
+        .then((check) => {
+            if (check) {
+                if (removedTestFormDetails.length > 0) {
+                    fetch(
+                        BASE_TEST_FORM_API +
+                            "/deleteDetails" +
+                            removeTestFormDetailsToUrlParam(),
+                        {
+                            method: "DELETE",
+                            headers: {
+                                "Content-Type": "application/json",
+                            },
+                        }
+                    ).then((response) => {
+                        return response.status === 200;
+                    });
+                } else return true;
+            } else {
+                return false;
+            }
+        })
+        .then((isSuccess) => {
+            if (isSuccess) {
+                modalBody.innerHTML = `Update Test Form successfully!`;
+                $("#alertModal").modal("show");
+            } else {
+                modalBody.innerHTML = `Update Test Form failure!`;
+                $("#alertModal").modal("show");
+            }
+        });
 });
 
 let btnList = document.getElementsByClassName("btn-remove-row");
 let tbodyTestDetail = document.getElementById("list-test-form-detail");
 let nothingElement = document.createElement("tr");
 nothingElement.innerHTML = `<td colspan='4' class='text-center'>Nothings to show</td>`;
-let removedTestFormDetails = [];
 
 function removeRow(e) {
     e.preventDefault();
@@ -37,7 +69,17 @@ function removeRow(e) {
         selectedRow = e.target.parentElement.parentElement.parentElement;
     if (e.target.tagName.toLowerCase() === "button")
         selectedRow = e.target.parentElement.parentElement;
+
+    let inputs = selectedRow.getElementsByClassName("test-form-detail-data")[0]
+        .children;
+    let inputTestFormDetailId = inputs[2];
+
+    if (inputTestFormDetailId) {
+        removedTestFormDetails.push(inputTestFormDetailId.value);
+    }
+    // Remove row
     tbodyTestDetail.removeChild(selectedRow);
+
     if (tbodyTestDetail.childElementCount === 0)
         tbodyTestDetail.append(nothingElement);
 }
@@ -118,13 +160,13 @@ document
     });
 
 function fillPatienFormPart(patient) {
-    let admissionForm = document.forms["test-form"];
-    admissionForm.patientId.value = patient.id;
-    admissionForm.name.value = patient.name;
-    admissionForm.gender.value = patient.gender;
-    admissionForm.dateOfBirth.value = patient.dateOfBirth;
-    admissionForm.phoneNumber.value = patient.phoneNumber;
-    admissionForm.address.value = patient.address;
+    let testForm = document.forms["test-form"];
+    testForm.patientId.value = patient.id;
+    testForm.name.value = patient.name;
+    testForm.gender.value = patient.gender;
+    testForm.dateOfBirth.value = patient.dateOfBirth;
+    testForm.phoneNumber.value = patient.phoneNumber;
+    testForm.address.value = patient.address;
 }
 
 function goToTestFormList() {
@@ -194,13 +236,13 @@ function removeNothingMsg() {
     if (tbodyTestDetail.firstElementChild.className === "nothing")
         tbodyTestDetail.removeChild(tbodyTestDetail.firstElementChild);
 }
-function addTestDetails(testDetail) {
+function addTestDetails(test) {
     removeNothingMsg();
     let tr = document.createElement("tr");
-    tr.innerHTML = `<td>${testDetail.testName}</td>
-    <td>${testDetail.normalResult}</td>
+    tr.innerHTML = `<td>${test.testName}</td>
+    <td>${test.normalResult}</td>
     <td class="test-form-detail-data">
-        <input type="hidden" value="${testDetail.id}">
+        <input type="hidden" value="${test.id}">
         <input class="input" type="text" name="result" placeholder="Fill test result">
     </td>`;
 
@@ -235,7 +277,7 @@ function mapForm2TestFormObject() {
     for (let i = 0; i < testDetails.length; i++) {
         inputs = testDetails[i].children;
         testFormObject.details.push({
-            id: inputs[2].value,
+            id: inputs[2]?.value,
             test: { id: inputs[0].value },
             result: inputs[1].value,
         });
@@ -243,9 +285,3 @@ function mapForm2TestFormObject() {
 
     return testFormObject;
 }
-
-document.getElementById("btn-continue").addEventListener("click", () => {
-    document.forms["test-form"].reset();
-    tbodyTestDetail.innerHTML = "";
-    tbodyTestDetail.append(nothingElement);
-});

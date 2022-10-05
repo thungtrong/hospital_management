@@ -83,5 +83,11 @@ public class TestFormRestController {
 	{
 		return new ResponseEntity<>(testFormService.deleteById(id), HttpStatus.OK);
 	}
+	@DeleteMapping("/deleteDetails")
+	public ResponseEntity<Boolean> deleteDetails(@RequestParam List<Long> ids)
+	{
+//		return new ResponseEntity<>(ids, HttpStatus.OK);
+		return new ResponseEntity<>(testFormService.deleteDetailsByIds(ids), HttpStatus.OK);
+	}
 	
 }
