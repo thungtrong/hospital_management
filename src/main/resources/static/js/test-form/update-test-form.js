@@ -3,50 +3,28 @@
  */
 let modalBody = document.getElementById("modal-body");
 
-let removedTestFormDetails = [];
+let removedTestFormDetailIds = [];
 function removeTestFormDetailsToUrlParam() {
     let urlParam = "?";
-    for (let i = 0; i < removedTestFormDetails.length; i++) {
-        urlParam += `ids=${removedTestFormDetails[i]}&`;
+    for (let i = 0; i < removedTestFormDetailIds.length; i++) {
+        urlParam += `ids=${removedTestFormDetailIds[i]}&`;
     }
     return urlParam.slice(0, -1);
 }
 
 document.getElementById("submit").addEventListener("click", function (e) {
-    let testForm = mapForm2TestFormObject();
-
+    let testFormRequest = mapForm2TestFormObject();
+    testFormRequest.removedTestFormDetailIds = removedTestFormDetailIds;
     fetch(BASE_TEST_FORM_API + "/update", {
         method: "PUT",
         headers: {
             "Content-Type": "application/json",
         },
-        body: JSON.stringify(testForm),
+        body: JSON.stringify(testFormRequest),
     })
         .then((response) => {
-            return response.status === ACCEPTED;
-        })
-        .then((check) => {
-            if (check) {
-                if (removedTestFormDetails.length > 0) {
-                    fetch(
-                        BASE_TEST_FORM_API +
-                            "/deleteDetails" +
-                            removeTestFormDetailsToUrlParam(),
-                        {
-                            method: "DELETE",
-                            headers: {
-                                "Content-Type": "application/json",
-                            },
-                        }
-                    ).then((response) => {
-                        return response.status === 200;
-                    });
-                } else return true;
-            } else {
-                return false;
-            }
-        })
-        .then((isSuccess) => {
+            let isSuccess = response.status === ACCEPTED;
+
             if (isSuccess) {
                 modalBody.innerHTML = `Update Test Form successfully!`;
                 $("#alertModal").modal("show");
@@ -54,6 +32,11 @@ document.getElementById("submit").addEventListener("click", function (e) {
                 modalBody.innerHTML = `Update Test Form failure!`;
                 $("#alertModal").modal("show");
             }
+        })
+        .catch((error) => {
+            console.error(error);
+            modalBody.innerHTML = `Update Test Form failure!<br>Internal Error`;
+            $("#alertModal").modal("show");
         });
 });
 
@@ -75,7 +58,7 @@ function removeRow(e) {
     let inputTestFormDetailId = inputs[2];
 
     if (inputTestFormDetailId) {
-        removedTestFormDetails.push(inputTestFormDetailId.value);
+        removedTestFormDetailIds.push(inputTestFormDetailId.value);
     }
     // Remove row
     tbodyTestDetail.removeChild(selectedRow);

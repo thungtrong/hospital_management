@@ -157,7 +157,8 @@ label{
 }
 
 .group-action {
-	max-width: 55px;
+	min-width: 55px,
+	max-width: 100px;
 	display: flex;
 }
 

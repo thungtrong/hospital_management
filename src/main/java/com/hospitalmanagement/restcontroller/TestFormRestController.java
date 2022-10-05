@@ -10,7 +10,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Order;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,9 +20,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.hospitalmanagement.exception.ModelNotVaildException;
 import com.hospitalmanagement.model.TestForm;
 import com.hospitalmanagement.model.TestFormDetail;
+import com.hospitalmanagement.request.TestFormRequest;
 import com.hospitalmanagement.service.TestFormService;
 
 @RestController
@@ -64,30 +63,25 @@ public class TestFormRestController {
 			detail.setTestForm(test);
 		}
 		return new ResponseEntity<>(testFormService.insert(test), HttpStatus.CREATED);
-//		return new ResponseEntity<>(test, HttpStatus.CREATED);
 	}
 	
 	@PutMapping("/update")
-	public ResponseEntity<TestForm> update(@Valid @RequestBody TestForm test)
+	public ResponseEntity<Object> update(@Valid @RequestBody TestFormRequest testFormRequest)
 	{
-		List<TestFormDetail> details = test.getDetails();
+		TestForm testForm = TestForm.fromTestFormRequest(testFormRequest);
+		List<TestFormDetail> details = testForm.getDetails();
 		for (TestFormDetail detail: details)
 		{
-			detail.setTestForm(test);
+			detail.setTestForm(testForm);
 		}
-		return new ResponseEntity<>(testFormService.update(test), HttpStatus.ACCEPTED);
+		testFormService.deleteDetailsByIds(testFormRequest.getRemovedTestFormDetailIds());
+		return new ResponseEntity<>(testFormService.update(testForm), HttpStatus.ACCEPTED);
 	}
 	
 	@DeleteMapping("/delete/{id}")
 	public ResponseEntity<Boolean> delete(@PathVariable Long id)
 	{
 		return new ResponseEntity<>(testFormService.deleteById(id), HttpStatus.OK);
-	}
-	@DeleteMapping("/deleteDetails")
-	public ResponseEntity<Boolean> deleteDetails(@RequestParam List<Long> ids)
-	{
-//		return new ResponseEntity<>(ids, HttpStatus.OK);
-		return new ResponseEntity<>(testFormService.deleteDetailsByIds(ids), HttpStatus.OK);
 	}
 	
 }

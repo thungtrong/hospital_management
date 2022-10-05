@@ -1,6 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+	<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" %>
+		<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+			<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 
@@ -24,7 +24,7 @@
 
 					<div class="detail-test-form">
 						<form id="test-form" name="test-form" autocomplete="off">
-							<input type="hidden" name="testFormId" value="${ testForm.id }">
+							<input type="hidden" name="testFormId" value="${ testForm.id }" disabled>
 							<c:set var="patient" value="${ testForm.patient }"></c:set>
 							<div class="col">
 								<input type="hidden" name="patientId" value="${ patient.id }">
@@ -49,14 +49,14 @@
 								<div class="item">
 									<label for="dateOfBirth" class="text-label">Day of Birth</label>
 									<input type="date" name="dateOfBirth" id="birth" class="input text-input"
-										placeholder="Eg: 22/7/1990" disabled value="${ patient.dateOfBirth }">
+										placeholder="Eg: 22/7/1990" value="${ patient.dateOfBirth }" disabled>
 									<label for="dateOfBirth" class="error-msg text-danger"
 										id="dateOfBirth-error"></label>
 								</div>
 								<div class="item">
 									<label for="phoneNumber" class="text-label">Phone Number</label>
 									<input type="text" name="phoneNumber" id="phoneNumber" class="input text-input"
-										placeholder="Eg: 0918464495" disabled value="${ patient.phoneNumber }">
+										placeholder="Eg: 0918464495" value="${ patient.phoneNumber }" disabled>
 									<label for="phoneNumber" class="error-msg text-danger"
 										id="phoneNumber-error"></label>
 								</div>
@@ -65,8 +65,8 @@
 								<div class="item">
 									<label for="address" class="text-label">Address</label>
 									<input type="text" name="address" id="address" class="input text-input"
-										placeholder="Eg: Ho Chi Minh city, Viet Nam" disabled
-										value="${ patient.address }">
+										placeholder="Eg: Ho Chi Minh city, Viet Nam" value="${ patient.address }"
+										disabled>
 									<label for="address" class="error-msg text-danger" id="address-error"></label>
 								</div>
 								<div class="item">
@@ -74,7 +74,7 @@
 									<fmt:formatDate pattern="yyyy-MM-dd" value="${ testForm.creationDate }"
 										var="formatDay" />
 									<input type="date" name="creationDate" id="creationDate" class="input text-input"
-										value="${ formatDay }">
+										value="${ formatDay }" disabled>
 									<label for="creationDate" class="error-msg text-danger"
 										id="creationDate-error"></label>
 								</div>
@@ -109,11 +109,11 @@
 														<td>${detail.test.testName}</td>
 														<td>${detail.test.normalResult}</td>
 														<td class="test-form-detail-data">
-															<input type="hidden" value="${detail.test.id}">
+															<input type="hidden" value="${detail.test.id}" disabled>
 															<input class="input" type="text" name="result"
 																placeholder="Fill test result"
-																value="${ detail.result }">
-															<input type="hidden" value="${detail.id}">
+																value="${ detail.result }" disabled>
+															<input type="hidden" value="${detail.id}" disabled>
 														</td>
 														<td>
 															<button type="button" class="btn-remove-row"><i

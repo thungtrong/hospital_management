@@ -18,6 +18,10 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.springframework.beans.BeanUtils;
+
+import com.hospitalmanagement.request.TestFormRequest;
+
 @Entity
 @Table(name="test_form")
 public class TestForm {
@@ -85,6 +89,16 @@ public class TestForm {
 	public String toString() {
 		return "TestForm [id=" + id + ", creationDate=" + creationDate + ", patient=" + patient + ", details=" + details
 				+ "]";
+	}
+	
+	public static TestForm fromTestFormRequest(TestFormRequest testFormRequest)
+	{
+		TestForm testForm = new TestForm();
+		testForm.setId(testFormRequest.getId());
+		testForm.setPatient(testFormRequest.getPatient());
+		testForm.setDetails(testFormRequest.getDetails());
+		testForm.setCreationDate(testFormRequest.getCreationDate());
+		return testForm;
 	}
 	
 }
