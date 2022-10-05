@@ -131,7 +131,6 @@
     </div>
 </div>
 
-
 <!-- Javascript -->
 <script type="text/javascript" src="/js/department/list-department.js"></script>
 

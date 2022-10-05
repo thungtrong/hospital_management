@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
          pageEncoding="ISO-8859-1"%>
-<link rel="stylesheet" href="/public/css/footer.css">
+<link rel="stylesheet" href="/public/css/nav.css">
+<link rel="stylesheet" href="/css/_shared.css" />
 <footer>
     <div class="footer-top">
         <div class="container">
@@ -45,16 +46,6 @@
                     </ul>
                 </div>
 
-            </div>
-        </div>
-    </div>
-    <div class="footer-bottom">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-5">
-                    <p class="copyright text-uppercase">Copyright © 2022 All rights reserved</p>
-                    </p>
-                </div>
             </div>
         </div>
     </div>

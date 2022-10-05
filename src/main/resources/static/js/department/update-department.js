@@ -35,7 +35,7 @@ document.getElementById("submit").addEventListener("click", function (e) {
 });
 
 function goToDepartmentList() {
-    window.location.href = BASE_MEDICINE_URL;
+    window.location.href = BASE_DEPARTMENT_URL;
 }
 
 function goBack() {

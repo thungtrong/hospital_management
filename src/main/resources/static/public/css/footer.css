@@ -20,7 +20,6 @@ ol, ul {
 }
 .social-icon li i {
     font-size: 14px;
-    color: #262725;
     border: solid 2px #ffffff;
     height: 31px;
     width: 31px;
@@ -125,10 +124,6 @@ footer .social-icon li i:hover {
     border-color: #4b8800;
 }
 
-.footer-bottom {
-    background: #4b8800;
-    padding: 10px 0px;
-}
 .footer-bottom ul li {
     display: inline;
     margin-right: 20px;
@@ -144,7 +139,4 @@ footer .social-icon li i:hover {
 
 .footer-bottom ul li:last-child {
     margin-right: 0;
-}
-.copyright {
-    font-size: 18px;
 }

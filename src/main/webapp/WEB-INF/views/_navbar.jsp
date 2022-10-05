@@ -1,12 +1,15 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" %>
+<%@ page import="org.springframework.data.domain.Page" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <link rel="stylesheet" href="/public/css/nav.css">
 
 
 <!--Navbar -->
 <nav class="mb-4 navbar navbar-expand-lg navbar-dark cyan" style="font-size: 20px;">
-	<a class="navbar-brand font-bold" href="#">Navbar</a>
+<%--	insert icon hopital --%>
+	<a class="navbar-brand" href="/"><img src="/public/images/logo.png" alt="logo" style="width: 50px; height: 50px;"> <b>Hospital Management</b></a>
 	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-4" aria-controls="navbarSupportedContent-4" aria-expanded="false" aria-label="Toggle navigation">
 		<span class="navbar-toggler-icon"></span>
 	</button>

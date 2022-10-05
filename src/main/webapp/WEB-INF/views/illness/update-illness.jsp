@@ -26,6 +26,12 @@
                                 <label for="name" class="error-msg text-danger"
                                        id="medicineName-error"></label>
                             </div>
+                            <div class="item">
+                                <label for="illnessDescription" class="text-label">Illness description</label>
+                                <textarea name="description" id="illnessDescription" class="input text-input"
+                                          placeholder="Eg: Acetaminophen" rows="5">${ illness.description }</textarea>
+                                <label for="description" class="error-msg text-danger"
+                                       id="medicineDescription-error"></label>
                         </div>
                         <div class="item d-flex justify-content-end mt-2">
                             <button type="button" id="submit" class="btn btn-primary">Save</button>
@@ -58,7 +64,7 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal"
                         id="btn-continue">Continue</button>
-                <button type="button" class="btn btn-primary" onclick="goToTestList();">Back to list</button>
+                <button type="button" class="btn btn-primary" onclick="goToIllnessList();">Back to list</button>
             </div>
         </div>
     </div>
