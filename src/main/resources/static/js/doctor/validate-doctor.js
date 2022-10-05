@@ -13,7 +13,7 @@ const ERROR_EMPTY_MESSAGES = {
 const INVALID_PHONE_NUMBER_MSG = "Your phone number is not valid";
 const PHONE_REGEX = /^[0-9]{10,15}$/g;
 
-function validatePatientForm(doctor) {
+function validateDoctorForm(doctor) {
     let errors = new Object();
     let isValid = true;
     for (let key in doctor) {
@@ -30,26 +30,30 @@ function validatePatientForm(doctor) {
         errors["phoneNumber"] = INVALID_PHONE_NUMBER_MSG;
     }
 
-    if (doctorForm.id) doctor.id = doctorForm.id.value;
     showErrorMsg(errors);
     return isValid;
 }
 
-function goToPatientList() {
-    window.location.href = BASE_PATIENT_URL;
+function goToDoctorList() {
+    window.location.href = BASE_DOCTOR_URL;
 }
 
 function goBack() {
     history.back();
 }
 
-function mapForm2Object() {
+function mapForm2DoctorObject() {
     let doctor = new Object();
     doctor.name = doctorForm.name.value;
     doctor.gender = doctorForm.gender.value;
     doctor.phoneNumber = doctorForm.phoneNumber.value;
     doctor.address = doctorForm.address.value;
     doctor.dateOfBirth = new Date(doctorForm.dateOfBirth.value);
+    doctor.id = doctorForm.doctorId?.value;
+    let departmentId = doctorForm.departmentId.value;
+    if (departmentId.trim().length) {
+        doctor.department = { id: departmentId };
+    }
     return doctor;
 }
 

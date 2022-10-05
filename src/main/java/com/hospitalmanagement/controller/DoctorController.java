@@ -69,6 +69,9 @@ public class DoctorController {
 		ModelAndView modelAndView = new ModelAndView("doctor/update-doctor");
 		Doctor doctor = doctorService.findById(id);
 		modelAndView.addObject("doctor", doctor);
+		
+		List<Department> departments = departmentService.findAll();
+		modelAndView.addObject("departmentList", departments);
 		return modelAndView;
 	}
 	

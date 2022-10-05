@@ -1,7 +1,5 @@
-<>
-    <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" %>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-</>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 
@@ -63,9 +61,9 @@
                                 <div class="item">
                                     <label for="departmentId" class="text-label">Department</label>
                                     <select name="departmentId" class="input">
-                                    	<option value="">Please select department</option>
+                                        <option value="">Please select department</option>
                                         <c:forEach var="department" items="${ departmentList }">
-                                        	<option value="${ department.id }">${department.name }</option>
+                                            <option value="${ department.id }">${department.name }</option>
                                         </c:forEach>
                                     </select>
                                     <label for="departmentId" class="error-msg text-danger"
