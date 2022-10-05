@@ -34,7 +34,7 @@ function deleteIllness() {
         },
     })
         .then((response) => {
-            if (response.status == 200) {
+            if (response.status == OK) {
                 illnessList.removeChild(selectedRow);
                 $("#alertModel").modal("hide");
             } else {

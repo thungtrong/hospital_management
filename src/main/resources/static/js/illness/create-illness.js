@@ -6,7 +6,7 @@ document.getElementById("submit").addEventListener("click", function (e) {
     let illness = mapForm2IllnessObject();
     let isValid = validateIllness(illness);
     if (isValid) {
-        fetch(BASE_ILLNESS_URL + "/create", {
+        fetch(BASE_ILLNESS_API + "/create", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

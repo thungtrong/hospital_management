@@ -34,6 +34,7 @@
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">Illness Name</th>
+                            <th scope="col">Description</th>
                             <th></th>
                         </tr>
                         </thead>
@@ -43,7 +44,7 @@
                             <tr>
                                 <th scope="row">${ illness.id }</th>
                                 <td>${ illness.name }</td>
-
+								<td>${ illness.description }</td>
                                 <td class="group-action">
                                     <!-- <a href="/illness/view/${ illness.id }" type="button" class="btn btn-secondary"> <i class="fa fa-eye" aria-hidden="true"></i></a> -->
                                     <a href="/illness/update/${ illness.id }" type="button"

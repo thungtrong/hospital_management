@@ -27,6 +27,16 @@
                                        id="medicineName-error"></label>
                             </div>
                         </div>
+                        
+                        <div class="col">
+                            <div class="item">
+                                <label for="illnessDescription" class="text-label">Description</label>
+                                <input type="text" name="description" id="illnessDescription" class="input text-input"
+                                       placeholder="Eg: Acetaminophen"  value="${ illness.description }">
+                                <label for="description" class="error-msg text-danger"
+                                       id="illnessDescription-error"></label>
+                            </div>
+                        </div>
                         <div class="item d-flex justify-content-end mt-2">
                             <button type="button" id="submit" class="btn btn-primary">Save</button>
                             <button type="button" id="cancel" class="btn btn-light ml-2"
