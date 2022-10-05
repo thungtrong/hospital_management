@@ -17,7 +17,7 @@ document.getElementById("submit").addEventListener("click", function (e) {
         })
             .then((response) => {
                 if (response.status === ACCEPTED) {
-                    modelBody.innerHTML = `Update Test successfully!`;
+                    modelBody.innerHTML = `Update Illness successfully!`;
                     $("#alertModel").modal("show");
                 }
                 if (response.status === BAD_REQUEST) {

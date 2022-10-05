@@ -14,7 +14,6 @@ import com.hospitalmanagement.service.AccountService;
 @RestController
 @RequestMapping("/account")
 public class AccountRestController {
-	
 	@Autowired
 	private AccountService accountService;
 	@Autowired
