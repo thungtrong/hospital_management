@@ -4,7 +4,7 @@ document.getElementById("btn-continue").addEventListener("click", () => {
 
 document.getElementById("submit").addEventListener("click", function (e) {
     let medicine = mapForm2MedicineObject();
-    let isValid = validateTest(medicine);
+    let isValid = validateMedicine(medicine);
     if (isValid) {
         fetch(BASE_MEDICINE_API + "/create", {
             method: "POST",
@@ -17,10 +17,10 @@ document.getElementById("submit").addEventListener("click", function (e) {
                 console.log(response);
                 let modalBody = document.getElementById("modal-body");
                 if (response.status === CREATED) {
-                    modalBody.innerHTML = `Create Test successfully!`;
+                    modalBody.innerHTML = `Create Medicine successfully!`;
                     $("#alertModel").modal("show");
                 } else {
-                    modalBody.innerHTML = `Create Test failure!`;
+                    modalBody.innerHTML = `Create Medicine failure!`;
                     $("#alertModel").modal("show");
                     return response.json();
                 }

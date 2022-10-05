@@ -1,7 +1,6 @@
 /**
  *
  */
-
 var modelBody = document.getElementById("modal-body");
 
 document.getElementById("submit").addEventListener("click", function (e) {
@@ -17,7 +16,7 @@ document.getElementById("submit").addEventListener("click", function (e) {
         })
             .then((response) => {
                 if (response.status === ACCEPTED) {
-                    modelBody.innerHTML = `Update department successfully!`;
+                    modelBody.innerHTML = `Update Department successfully!`;
                     $("#alertModel").modal("show");
                 }
                 if (response.status === BAD_REQUEST) {
@@ -25,7 +24,7 @@ document.getElementById("submit").addEventListener("click", function (e) {
                 }
             })
             .catch((error) => {
-                modelBody.innerHTML = `Update department failure!<br>Internal Error`;
+                modelBody.innerHTML = `Update Department failure!<br>Internal Error`;
                 $("#alertModel").modal("show");
             })
             .then((data) => {

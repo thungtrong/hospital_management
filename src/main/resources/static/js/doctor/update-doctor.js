@@ -1,22 +1,25 @@
 /**
  *
  */
+
 var modelBody = document.getElementById("modal-body");
 
 document.getElementById("submit").addEventListener("click", function (e) {
-    let medicine = mapForm2MedicineObject();
-    let isValid = validateMedicine(medicine);
+    let doctor = mapForm2DoctorObject();
+    console.log(doctor);
+    let isValid = validateDoctorForm(doctor);
     if (isValid) {
-        fetch(BASE_MEDICINE_API + "/update", {
+        fetch(BASE_DOCTOR_API + "/update", {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify(medicine),
+            body: JSON.stringify(doctor),
         })
             .then((response) => {
+                console.log(response);
                 if (response.status === ACCEPTED) {
-                    modelBody.innerHTML = `Update Medicine successfully!`;
+                    modelBody.innerHTML = `Update Doctor successfully!`;
                     $("#alertModel").modal("show");
                 }
                 if (response.status === BAD_REQUEST) {
@@ -24,7 +27,7 @@ document.getElementById("submit").addEventListener("click", function (e) {
                 }
             })
             .catch((error) => {
-                modelBody.innerHTML = `Update Medicine failure!<br>Internal Error`;
+                modelBody.innerHTML = `Update Doctor failure!<br>Internal Error`;
                 $("#alertModel").modal("show");
             })
             .then((data) => {
@@ -32,11 +35,3 @@ document.getElementById("submit").addEventListener("click", function (e) {
             });
     }
 });
-
-function goToTestList() {
-    window.location.href = BASE_MEDICINE_URL;
-}
-
-function goBack() {
-    history.back();
-}

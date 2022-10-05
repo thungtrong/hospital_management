@@ -9,7 +9,7 @@ function showErrorMsg(errors) {
     }
 }
 
-function validateTest(medicine) {
+function validateMedicine(medicine) {
     let errors = new Object();
     let r = true;
     if (!medicine.name.length) {

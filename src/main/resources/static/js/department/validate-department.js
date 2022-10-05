@@ -16,10 +16,6 @@ function validateDepartment(department) {
         errors.name = "Please fill department name";
         r = false;
     }
-    if (!department.unit.length) {
-        errors.unit = "Please fill department unit";
-        r = false;
-    }
     showErrorMsg(errors);
     return r;
 }
@@ -27,9 +23,10 @@ function validateDepartment(department) {
 function mapForm2DepartmentObject() {
     let departmentForm = document.forms.department;
     let department = new Object({
-        id: departmentForm.id?.value,
+        id: departmentForm.departmentId?.value,
         name: departmentForm.name.value,
         description: departmentForm.description.value,
     });
+
     return department;
 }

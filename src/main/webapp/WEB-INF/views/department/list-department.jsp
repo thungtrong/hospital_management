@@ -48,9 +48,7 @@
                                 <td>${ department.name }</td>
                                 <td>${ department.description }</td>
                                 <td class="group-action">
-                                    <a href="/department/view/${ department.id }" type="button"
-                                       class="btn btn-secondary"> <i class="fa fa-eye"
-                                                                     aria-hidden="true"></i></a>
+                                   
                                     <a href="/department/update/${ department.id }" type="button"
                                        class="btn btn-primary">
                                         <i class="fa fa-pencil-square-o" aria-hidden="true"></i>

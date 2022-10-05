@@ -44,7 +44,11 @@
                             <tr>
                                 <th scope="row">${ illness.id }</th>
                                 <td>${ illness.name }</td>
+<<<<<<< HEAD
                                 <td>${ illness.description }</td>
+=======
+								<td>${ illness.description }</td>
+>>>>>>> 4fcba6a37852dcc1c8370b63e2233831328fe377
                                 <td class="group-action">
                                     <!-- <a href="/illness/view/${ illness.id }" type="button" class="btn btn-secondary"> <i class="fa fa-eye" aria-hidden="true"></i></a> -->
                                     <a href="/illness/update/${ illness.id }" type="button"
