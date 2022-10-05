@@ -6,6 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name = "illness")
@@ -14,7 +15,9 @@ public class Illness {
 	@SequenceGenerator(name = "illness_pk", allocationSize = 1, initialValue = 1)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "illness_pk")
 	private Integer id;
+	@NotEmpty(message = "Please fill in the name")
 	private String name;
+	@NotEmpty(message = "Please fill in the description")
 	private String description;
 
 	public Illness() {

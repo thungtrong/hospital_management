@@ -93,17 +93,13 @@ document
             });
     });
 
-function fillPatienFormPart(patient) {
-    let admissionForm = document.forms.admission;
-    admissionForm.patientId.value = patient.id;
-    admissionForm.name.value = patient.name;
-    admissionForm.gender.value = patient.gender;
-    admissionForm.dateOfBirth.value = patient.dateOfBirth;
-    admissionForm.phoneNumber.value = patient.phoneNumber;
-    admissionForm.address.value = patient.address;
+function fillDepartmentFormPart(department) {
+    let departmentForm = document.forms.department;
+    departmentForm.department.value = department.id;
+    departmentForm.name.value = department.name;
+    departmentForm.description.value = department.description;
 }
-
-function goToAdmissionList()
+function goToDepartmentList()
 {
     window.location.href=BASE_ADMISSION_URL;
 }
