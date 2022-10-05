@@ -20,7 +20,6 @@ document.getElementById("submit").addEventListener("click", function (e) {
         dateIn: new Date(admissionForm.dateIn.value),
         dateOut: new Date(admissionForm.dateOut.value),
     });
-    console.log(admission);
     let isValid = validateAdmission(admission);
     if (isValid) {
         fetch(BASE_ADMISSION_API + "/update", {
@@ -31,7 +30,6 @@ document.getElementById("submit").addEventListener("click", function (e) {
             body: JSON.stringify(admission),
         })
             .then((response) => {
-                console.log(response);
                 let modalBody = document.getElementById("modal-body");
                 if (response.status === ACCEPTED) {
                     modalBody.innerHTML = `Create Admission successfully!`;

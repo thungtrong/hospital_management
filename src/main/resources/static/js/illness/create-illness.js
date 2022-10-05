@@ -14,7 +14,6 @@ document.getElementById("submit").addEventListener("click", function (e) {
             body: JSON.stringify(illness),
         })
             .then((response) => {
-                // console.log(response);
                 let modalBody = document.getElementById("modal-body");
                 if (response.status === CREATED) {
                     modalBody.innerHTML = `Create Illness successfully!`;

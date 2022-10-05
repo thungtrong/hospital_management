@@ -5,7 +5,6 @@ document.getElementById("submit").addEventListener("click", function (e) {
     healthRecord.removeIllnessIds = removeIllnessIds || [];
     healthRecord.removeHealthRecordDetailIds =
         removeHealthRecordDetailIds || [];
-    // console.log(healthRecord);
 
     let isValid = validateHealthRecord(healthRecord);
     if (isValid) {

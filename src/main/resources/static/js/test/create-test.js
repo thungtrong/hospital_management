@@ -19,14 +19,13 @@ document.getElementById("submit").addEventListener("click", function (e) {
             body: JSON.stringify(test),
         })
             .then((response) => {
-            	console.log(response);
                 let modalBody = document.getElementById("modal-body");
                 if (response.status === CREATED) {
                     modalBody.innerHTML = `Create Test successfully!`;
                     $("#alertModel").modal("show");
                 } else {
                     modalBody.innerHTML = `Create Test failure!`;
-                    $("#alertModel").modal("show")
+                    $("#alertModel").modal("show");
                     return response.json();
                 }
             })
