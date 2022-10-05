@@ -1,17 +1,26 @@
 package com.hospitalmanagement.model;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name="medicine")
 public class Medicine {
 	@Id
+	@SequenceGenerator(name = "medicine_pk", allocationSize = 1, initialValue = 100)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "medicine_pk")
 	private Integer id;
+	@NotBlank(message = "Please enter medicine name")
 	private String name;
+	@NotBlank(message = "Please enter medicine unit")
 	private String unit;
 	private String instruction;
+	
 	public Medicine() {
 		super();
 	}

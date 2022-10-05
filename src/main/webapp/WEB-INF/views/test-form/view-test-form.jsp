@@ -7,7 +7,7 @@
 <head>
 	<meta charset="ISO-8859-1">
 	<jsp:include page="../_shared.jsp"></jsp:include>
-	<title>Update Test Form</title>
+	<title>View Test Form</title>
 	<link rel="stylesheet" href="/css/test_form.css" type="text/css">
 </head>
 
