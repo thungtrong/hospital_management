@@ -6,39 +6,41 @@ import java.util.List;
 import javax.persistence.*;
 
 @Entity
-@Table(name="health_record")
+@Table(name = "health_record")
 public class HealthRecord {
 	@Id
-	@SequenceGenerator(name="health_record_pk")
+	@SequenceGenerator(name = "health_record_pk")
 	@GeneratedValue(generator = "health_record_pk", strategy = GenerationType.SEQUENCE)
 	private Long id;
 	@Temporal(TemporalType.DATE)
-	@Column(name="creation_date")
+	@Column(name = "creation_date")
 	private Date creationDate;
 	@Temporal(TemporalType.DATE)
-	@Column(name="re_date")
+	@Column(name = "re_date")
 	private Date reDate;
 	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(
-		name="health_record_detail",
-		joinColumns = @JoinColumn(name="health_record_id", referencedColumnName = "id"),
-		inverseJoinColumns = @JoinColumn(name="illness_id", referencedColumnName = "id")
-	)
+	@JoinTable(name = "health_record_detail", joinColumns = @JoinColumn(name = "health_record_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "illness_id", referencedColumnName = "id"))
 	private List<Illness> illnessList;
 
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name="doctor_id", referencedColumnName = "id")
+	@JoinColumn(name = "doctor_id", referencedColumnName = "id")
 	private Doctor doctor;
+
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name="patient_id", referencedColumnName = "id")
+	@JoinColumn(name = "patient_id", referencedColumnName = "id")
 	private Patient patient;
-	
+
+	@OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+	@JoinColumn(name = "health_record_id", referencedColumnName = "id")
+	private List<PrescriptionDetail> healthRecordDetails;
+
 	public HealthRecord() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public HealthRecord(Long id, Date creationDate, Date reDate, List<Illness> illnessList, Doctor doctor, Patient patient) {
+	public HealthRecord(Long id, Date creationDate, Date reDate, List<Illness> illnessList, Doctor doctor,
+			Patient patient) {
 		this.id = id;
 		this.creationDate = creationDate;
 		this.reDate = reDate;
@@ -95,15 +97,17 @@ public class HealthRecord {
 		this.patient = patient;
 	}
 
+	public List<PrescriptionDetail> getHealthRecordDetails() {
+		return healthRecordDetails;
+	}
+
+	public void setHealthRecordDetails(List<PrescriptionDetail> healthRecordDetails) {
+		this.healthRecordDetails = healthRecordDetails;
+	}
+
 	@Override
 	public String toString() {
-		return "HealthRecord{" +
-				"id=" + id +
-				", creationDate=" + creationDate +
-				", reDate=" + reDate +
-				", illnessList=" + illnessList +
-				", doctor=" + doctor +
-				", patient=" + patient +
-				'}';
+		return "HealthRecord{" + "id=" + id + ", creationDate=" + creationDate + ", reDate=" + reDate + ", illnessList="
+				+ illnessList + ", doctor=" + doctor + ", patient=" + patient + '}';
 	}
 }

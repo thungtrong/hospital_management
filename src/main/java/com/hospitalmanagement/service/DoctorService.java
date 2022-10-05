@@ -70,6 +70,8 @@ public class DoctorService implements PagingAndSortingService<Doctor, Long> {
 		return doctorRepository.existsById(id);
 	}
 
-	
+	public List<Doctor> findAllByName(String name) {
+		return doctorRepository.findAllByNameContainingIgnoreCase(name);
+	}
 
 }

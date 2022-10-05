@@ -6,7 +6,6 @@ var modelBody = document.getElementById("modal-body");
 
 document.getElementById("submit").addEventListener("click", function (e) {
     let doctor = mapForm2DoctorObject();
-    console.log(doctor);
     let isValid = validateDoctorForm(doctor);
     if (isValid) {
         fetch(BASE_DOCTOR_API + "/update", {
@@ -17,7 +16,6 @@ document.getElementById("submit").addEventListener("click", function (e) {
             body: JSON.stringify(doctor),
         })
             .then((response) => {
-                console.log(response);
                 if (response.status === ACCEPTED) {
                     modelBody.innerHTML = `Update Doctor successfully!`;
                     $("#alertModel").modal("show");

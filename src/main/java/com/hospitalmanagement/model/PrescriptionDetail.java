@@ -9,6 +9,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="prescription_detail")
 public class PrescriptionDetail {
@@ -20,6 +22,9 @@ public class PrescriptionDetail {
 	@JoinColumn(name="medicine_id")
 	private Medicine medicine;
 	private Integer quantity;
+	@JsonIgnore
+	@ManyToOne
+	private HealthRecord healthRecord;
 	
 	public PrescriptionDetail() {
 		super();
@@ -49,6 +54,10 @@ public class PrescriptionDetail {
 	public void setQuantity(Integer quantity) {
 		this.quantity = quantity;
 	}
-	
-	
+	public HealthRecord getHealthRecord() {
+		return healthRecord;
+	}
+	public void setHealthRecord(HealthRecord healthRecord) {
+		this.healthRecord = healthRecord;
+	}
 }

@@ -1,6 +1,7 @@
 package com.hospitalmanagement.restcontroller;
 
 import com.hospitalmanagement.exception.ModelNotVaildException;
+import com.hospitalmanagement.model.Doctor;
 import com.hospitalmanagement.model.Illness;
 import com.hospitalmanagement.service.IllnessService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,4 +52,9 @@ public class IllnessRestController {
     public ResponseEntity<Boolean> delete(@PathVariable Integer id) {
         return new ResponseEntity<>(illnessService.deleteById(id), HttpStatus.OK);
     }
+    
+    @GetMapping("/findByName")
+	public ResponseEntity<List<Illness>> findByName(@RequestParam String name) {
+		return new ResponseEntity<>(illnessService.findAllByName(name), HttpStatus.OK);
+	}
 }

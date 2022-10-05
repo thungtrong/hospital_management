@@ -17,7 +17,7 @@ function validateDoctorForm(doctor) {
     let errors = new Object();
     let isValid = true;
     for (let key in doctor) {
-        if (key != "dateOfBirth" && doctor[key].length == 0) {
+        if (key != 'id' && key != "dateOfBirth" && !doctor[key]) {
             errors[key] = ERROR_EMPTY_MESSAGES[key];
             isValid = false;
         } else if (key == "dateOfBirth" && isNaN(doctor[key].getTime())) {

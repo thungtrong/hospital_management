@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(ConstValue.BASE_API_URL + "/healthcare")
+@RequestMapping(ConstValue.BASE_API_URL + "/health-record")
 public class HealthRecordRestController {
     @Autowired
     private HealthRecordService healthRecordService;
@@ -36,10 +36,14 @@ public class HealthRecordRestController {
     }
     @PostMapping("/create")
     public ResponseEntity<HealthRecord> create(@RequestBody HealthRecord healthRecord) {
+    	
         return new ResponseEntity<>(healthRecordService.insert(healthRecord), HttpStatus.CREATED);
     }
     @PutMapping("/update")
     public ResponseEntity<HealthRecord> update(@RequestBody HealthRecord healthRecord) {
+    	healthRecord.getHealthRecordDetails().forEach(prescriptionDetail -> {
+    		prescriptionDetail.setHealthRecord(healthRecord);
+    	});
         return new ResponseEntity<>(healthRecordService.update(healthRecord), HttpStatus.ACCEPTED);
     }
     @DeleteMapping("/delete/{id}")

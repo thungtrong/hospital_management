@@ -65,4 +65,8 @@ public class IllnessService implements PagingAndSortingService<Illness, Integer>
     public Page<Illness> findAll(int page, int size, Sort sort) {
         return illnessRepository.findAll(PageRequest.of(page, size, sort));
     }
+
+	public List<Illness> findAllByName(String name) {
+		return illnessRepository.findAllByNameContainingIgnoreCase(name);
+	}
 }

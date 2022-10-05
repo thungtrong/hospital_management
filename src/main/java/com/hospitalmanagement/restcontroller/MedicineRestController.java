@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hospitalmanagement.exception.ModelNotVaildException;
+import com.hospitalmanagement.model.Illness;
 import com.hospitalmanagement.model.Medicine;
 import com.hospitalmanagement.service.MedicineService;
 
@@ -61,4 +62,9 @@ public class MedicineRestController {
     public ResponseEntity<Boolean> delete(@PathVariable Integer id) {
         return new ResponseEntity<>(medicineService.deleteById(id), HttpStatus.OK);
     }
+    
+    @GetMapping("/findByName")
+	public ResponseEntity<List<Medicine>> findByName(@RequestParam String name) {
+		return new ResponseEntity<>(medicineService.findAllByName(name), HttpStatus.OK);
+	}
 }

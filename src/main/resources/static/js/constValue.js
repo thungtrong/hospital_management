@@ -24,6 +24,9 @@ const BASE_ILLNESS_API = `${BASE_API_URL}/illness`;
 
 const BASE_DOCTOR_URL = `${ORIGIN}/doctor`;
 const BASE_DOCTOR_API = `${BASE_API_URL}/doctor`;
+
+const BASE_HEALTH_RECORD_URL = `${ORIGIN}/health-record`;
+const BASE_HEALTH_RECORD_API = `${BASE_API_URL}/health-record`;
 // Http Status
 const OK = 200;
 const CREATED = 201;

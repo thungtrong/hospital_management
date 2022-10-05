@@ -2,7 +2,11 @@ package com.hospitalmanagement.service;
 
 import com.hospitalmanagement.exception.RecordNotFoundException;
 import com.hospitalmanagement.model.HealthRecord;
+import com.hospitalmanagement.model.PrescriptionDetail;
 import com.hospitalmanagement.repository.HealthRecordRepository;
+import com.hospitalmanagement.repository.IllnessRepository;
+import com.hospitalmanagement.repository.PrescriptionDetailRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -15,6 +19,9 @@ import java.util.List;
 public class HealthRecordService implements PagingAndSortingService<HealthRecord, Long> {
     @Autowired
     private HealthRecordRepository healthRecordRepository;
+    @Autowired
+    private PrescriptionDetailRepository detailRepository;
+    
     @Override
     public HealthRecord insert(HealthRecord healthRecord) {
         return healthRecordRepository.save(healthRecord);
@@ -26,7 +33,10 @@ public class HealthRecordService implements PagingAndSortingService<HealthRecord
             throw new IllegalArgumentException();
         if (healthRecordRepository.existsById(healthRecord.getId()) == false)
             throw new RecordNotFoundException("Health record not found");
-        return healthRecordRepository.save(healthRecord);
+        
+        detailRepository.deleteByHealthRecordNull();
+        healthRecord = healthRecordRepository.save(healthRecord);
+        return healthRecord;
     }
 
     @Override

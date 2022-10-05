@@ -1,7 +1,7 @@
 /**
- * 
+ *
  */
- 
+
 var searchModel = document.getElementById("searchModel");
 
 document.getElementById("btn-patient").addEventListener("click", function (e) {
@@ -15,12 +15,12 @@ document.getElementById("btn-continue").addEventListener("click", () => {
 document.getElementById("submit").addEventListener("click", function (e) {
     let admissionForm = document.forms.admission;
     let admission = new Object({
-    	id: admissionForm.admissionId.value,
+        id: admissionForm.admissionId.value,
         patient: { id: admissionForm.patientId.value },
         dateIn: new Date(admissionForm.dateIn.value),
         dateOut: new Date(admissionForm.dateOut.value),
     });
-    console.log(admission)
+    console.log(admission);
     let isValid = validateAdmission(admission);
     if (isValid) {
         fetch(BASE_ADMISSION_API + "/update", {
@@ -116,12 +116,10 @@ function fillPatienFormPart(patient) {
     admissionForm.address.value = patient.address;
 }
 
-function goToAdmissionList()
-{
-	window.location.href=BASE_ADMISSION_URL;
+function goToAdmissionList() {
+    window.location.href = BASE_ADMISSION_URL;
 }
 
-function goBack()
-{
-	history.back();
+function goBack() {
+    history.back();
 }

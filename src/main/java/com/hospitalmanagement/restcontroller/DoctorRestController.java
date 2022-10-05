@@ -33,6 +33,11 @@ public class DoctorRestController {
 	public ResponseEntity<List<Doctor>> list() {
 		return new ResponseEntity<>(doctorService.findAll(), HttpStatus.OK);
 	}
+	
+	@GetMapping("/findByName")
+	public ResponseEntity<List<Doctor>> findByName(@RequestParam String name) {
+		return new ResponseEntity<>(doctorService.findAllByName(name), HttpStatus.OK);
+	}
 
 	@GetMapping("/page")
 	public ResponseEntity<Page<Doctor>> page(
