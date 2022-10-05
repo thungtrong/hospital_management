@@ -1,12 +1,11 @@
 /**
  *
  */
-
 var modelBody = document.getElementById("modal-body");
 
 document.getElementById("submit").addEventListener("click", function (e) {
     let medicine = mapForm2MedicineObject();
-    let isValid = validateTest(medicine);
+    let isValid = validateMedicine(medicine);
     if (isValid) {
         fetch(BASE_MEDICINE_API + "/update", {
             method: "PUT",
@@ -17,7 +16,7 @@ document.getElementById("submit").addEventListener("click", function (e) {
         })
             .then((response) => {
                 if (response.status === ACCEPTED) {
-                    modelBody.innerHTML = `Update Test successfully!`;
+                    modelBody.innerHTML = `Update Medicine successfully!`;
                     $("#alertModel").modal("show");
                 }
                 if (response.status === BAD_REQUEST) {
@@ -25,7 +24,7 @@ document.getElementById("submit").addEventListener("click", function (e) {
                 }
             })
             .catch((error) => {
-                modelBody.innerHTML = `Update Test failure!<br>Internal Error`;
+                modelBody.innerHTML = `Update Medicine failure!<br>Internal Error`;
                 $("#alertModel").modal("show");
             })
             .then((data) => {

@@ -28,8 +28,8 @@
                         </div>
                         <div class="col">
                             <div class="item">
-                                <label for="address" class="text-label">Description</label>
-                                <input type="text" name="address" id="address" class="input text-input"
+                                <label for="description" class="text-label">Description</label>
+                                <input type="text" name="description" id="description" class="input text-input"
                                        placeholder="" value="${ department.description }">
                                 <label for="address" class="error-msg text-danger" id="address-error"></label>
                             </div>

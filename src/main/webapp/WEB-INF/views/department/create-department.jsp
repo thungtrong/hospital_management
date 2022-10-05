@@ -15,9 +15,7 @@
         <div class="title-form">Create Department Form</div>
         <div class="detail-form">
             <div class="form-container-inside">
-                <div class="sub-title-container d-flex justify-content-end mb-3">
-                    <button class="btn btn-primary" id="btn-department">CHANGE</button>
-                </div>
+               
 
                 <div class="detail-department">
                     <form id="department-form" name="department" autocomplete="off">
@@ -25,8 +23,7 @@
                             <input type="hidden" name="departmentId">
                             <div class="item">
                                 <label for="name" class="text-label">Department name</label>
-                                <input type="text" name="name" id="name" class="input text-input"
-                                        >
+                                <input type="text" name="name" id="name" class="input text-input">
                                 <label for="name" class="error-msg text-danger" id="name-error"></label>
                             </div>
 
@@ -43,7 +40,7 @@
 
                         </div>
                         <div class="item d-flex justify-content-end">
-                            <button type="button" id="submit" href=""  class="btn btn-primary">Save</button>
+                            <button type="button" id="submit" class="btn btn-primary">Save</button>
                             <button type="button" id="cancel" class="btn btn-light ml-2"
                                     onclick="goBack()">Back</button>
                         </div>
