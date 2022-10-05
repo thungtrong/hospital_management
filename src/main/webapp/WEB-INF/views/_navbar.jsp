@@ -25,7 +25,7 @@
 				<a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i> Profile </a>
 				<div class="dropdown-menu dropdown-menu-right dropdown-cyan" aria-labelledby="navbarDropdownMenuLink-4">
 					<a class="dropdown-item" href="#">My account</a>
-					<a class="dropdown-item" href="#">Log out</a>
+					<a class="dropdown-item" href="login">Log out</a>
 				</div>
 			</li>
 		</ul>
