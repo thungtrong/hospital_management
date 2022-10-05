@@ -18,6 +18,9 @@ const BASE_TEST_FORM_API = `${BASE_API_URL}/test-form`;
 
 const BASE_MEDICINE_URL = `${ORIGIN}/medicine`;
 const BASE_MEDICINE_API = `${BASE_API_URL}/medicine`;
+
+const BASE_ILLNESS_URL = `${ORIGIN}/illness`;
+const BASE_ILLNESS_API = `${BASE_API_URL}/illness`;
 // Http Status
 const OK = 200;
 const CREATED = 201;

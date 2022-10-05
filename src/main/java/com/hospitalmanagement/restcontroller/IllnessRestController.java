@@ -1,5 +1,6 @@
 package com.hospitalmanagement.restcontroller;
 
+import com.hospitalmanagement.exception.ModelNotVaildException;
 import com.hospitalmanagement.model.Illness;
 import com.hospitalmanagement.service.IllnessService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,8 +8,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -33,11 +36,15 @@ public class IllnessRestController {
         return new ResponseEntity<>(illnessService.findById(id), HttpStatus.OK);
     }
     @PostMapping("/create")
-    public ResponseEntity<Illness> create(@RequestBody Illness illness) {
+    public ResponseEntity<Illness> create(@Valid @RequestBody Illness illness, BindingResult bindingResult) throws ModelNotVaildException {
+        if (bindingResult.hasErrors())
+            throw ModelNotVaildException.fromBindingResult(bindingResult);
         return new ResponseEntity<>(illnessService.insert(illness), HttpStatus.CREATED);
     }
     @PutMapping("/update")
-    public ResponseEntity<Illness> update(@RequestBody Illness illness) {
+    public ResponseEntity<Illness> update(@Valid @RequestBody Illness illness,BindingResult bindingResult) throws ModelNotVaildException {
+        if (bindingResult.hasErrors())
+            throw ModelNotVaildException.fromBindingResult(bindingResult);
         return new ResponseEntity<>(illnessService.update(illness), HttpStatus.ACCEPTED);
     }
     @DeleteMapping("/delete/{id}")

@@ -1,22 +1,23 @@
 /**
  *
  */
+
 var modelBody = document.getElementById("modal-body");
 
 document.getElementById("submit").addEventListener("click", function (e) {
-    let department = mapForm2DepartmentObject();
-    let isValid = validateDepartment(department);
+    let illness = mapForm2IllnessObject();
+    let isValid = validateIllness(illness);
     if (isValid) {
-        fetch(BASE_DEPARTMENT_API + "/update", {
+        fetch(BASE_ILLNESS_API + "/update", {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify(department),
+            body: JSON.stringify(illness),
         })
             .then((response) => {
                 if (response.status === ACCEPTED) {
-                    modelBody.innerHTML = `Update Department successfully!`;
+                    modelBody.innerHTML = `Update Test successfully!`;
                     $("#alertModel").modal("show");
                 }
                 if (response.status === BAD_REQUEST) {
@@ -24,7 +25,7 @@ document.getElementById("submit").addEventListener("click", function (e) {
                 }
             })
             .catch((error) => {
-                modelBody.innerHTML = `Update Department failure!<br>Internal Error`;
+                modelBody.innerHTML = `Update Illness failure!<br>Internal Error`;
                 $("#alertModel").modal("show");
             })
             .then((data) => {
@@ -33,8 +34,8 @@ document.getElementById("submit").addEventListener("click", function (e) {
     }
 });
 
-function goToDepartmentList() {
-    window.location.href = BASE_DEPARTMENT_URL;
+function goToTestList() {
+    window.location.href = BASE_ILLNESS_URL;
 }
 
 function goBack() {

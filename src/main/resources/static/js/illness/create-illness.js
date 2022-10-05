@@ -1,28 +1,27 @@
-var searchModel = document.getElementById("searchModel");
-
 document.getElementById("btn-continue").addEventListener("click", () => {
-    document.forms.department.reset();
+    document.forms.illness.reset();
 });
 
 document.getElementById("submit").addEventListener("click", function (e) {
-    let department = mapForm2DepartmentObject();
-    let isValid = validateDepartment(department);
+    let illness = mapForm2IllnessObject();
+    let isValid = validateIllness(illness);
     if (isValid) {
-        fetch(BASE_DEPARTMENT_API + "/create", {
+        fetch(BASE_ILLNESS_URL + "/create", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify(department),
+            body: JSON.stringify(illness),
         })
             .then((response) => {
+                console.log(response);
                 let modalBody = document.getElementById("modal-body");
                 if (response.status === CREATED) {
-                    modalBody.innerHTML = `Create Department successfully!`;
-                    $("#alertModal").modal("show");
+                    modalBody.innerHTML = `Create Illness successfully!`;
+                    $("#alertModel").modal("show");
                 } else {
-                    modalBody.innerHTML = `Create Department failure!`;
-                    $("#alertModal").modal("show");
+                    modalBody.innerHTML = `Create Illness failure!`;
+                    $("#alertModel").modal("show");
                     return response.json();
                 }
             })
@@ -34,8 +33,8 @@ document.getElementById("submit").addEventListener("click", function (e) {
     }
 });
 
-function goToDepartmentList() {
-    window.location.href = BASE_DEPARTMENT_URL;
+function goToIllnessList() {
+    window.location.href = BASE_ILLNESS_URL;
 }
 
 function goBack() {
