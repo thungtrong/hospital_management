@@ -11,6 +11,8 @@ import com.hospitalmanagement.model.Account;
 
 public class UserPrincipal implements UserDetails{
 	static final String DOCTOR = "DOCTOR";
+	static final String ADMIN = "ADMIN";
+	
 	private Account account;
 	
 	public UserPrincipal() {
@@ -24,7 +26,10 @@ public class UserPrincipal implements UserDetails{
 	
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		return Collections.singleton(new SimpleGrantedAuthority(DOCTOR));
+		System.out.println(account);
+		String role = account.getRole();
+		role = role.equals("") ? DOCTOR : ADMIN; 
+		return Collections.singleton(new SimpleGrantedAuthority(role));
 	}
 
 	@Override

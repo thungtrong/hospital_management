@@ -12,20 +12,20 @@ import com.hospitalmanagement.model.Account;
 import com.hospitalmanagement.service.AccountService;
 
 @RestController
-@RequestMapping("/account")
+@RequestMapping(ConstValue.BASE_API_URL + "/account")
 public class AccountRestController {
 	@Autowired
 	private AccountService accountService;
 	@Autowired
 	private BCryptPasswordEncoder encoder;
-	
-	@PutMapping("/")
+
+	@PutMapping({"/", ""})
 	public Account insertOrUpdate(@RequestBody Account account)
 	{
 		account.setPassword(encoder.encode(account.getPassword()));
 		accountService.saveAccount(account);
 		return account;
 	}
-	
-	
+
+
 }

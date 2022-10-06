@@ -5,9 +5,14 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>HOME</title>
+<<<<<<< HEAD
 
 	<link href="https://demo.dashboardpack.com/architectui-html-free/main.css" rel="stylesheet">
 	<jsp:include page="./_shared.jsp"></jsp:include>
+=======
+	<jsp:include page="./_shared.jsp"></jsp:include>
+	<link href="/css/main.css" rel="stylesheet">
+>>>>>>> 4cab48a693d17ad01b7507e103e1d1233b7df078
 </head>
 <body>
 <jsp:include page="./_navbar.jsp"></jsp:include>
