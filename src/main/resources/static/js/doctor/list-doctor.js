@@ -36,6 +36,7 @@ function deleteDoctorModal(target) {
 
 function deleteDoctor() {
     let id = hidden.value;
+    console.log(`${BASE_DOCTOR_API}/delete/${id}`);
     fetch(`${BASE_DOCTOR_API}/delete/${id}`, {
         method: "DELETE",
         headers: {
@@ -46,7 +47,7 @@ function deleteDoctor() {
             if (response.status == OK) {
                 doctorList.removeChild(selectedRow);
                 $("#alertModel").modal("hide");
-            }
+            } else console.log(response);
         })
         .catch((error) => console.log(error));
 }
