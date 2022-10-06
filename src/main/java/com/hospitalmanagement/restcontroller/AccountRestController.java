@@ -18,7 +18,7 @@ public class AccountRestController {
 	private AccountService accountService;
 	@Autowired
 	private BCryptPasswordEncoder encoder;
-	
+
 	@PutMapping({"/", ""})
 	public Account insertOrUpdate(@RequestBody Account account)
 	{
@@ -26,6 +26,6 @@ public class AccountRestController {
 		accountService.saveAccount(account);
 		return account;
 	}
-	
-	
+
+
 }

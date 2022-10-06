@@ -17,7 +17,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-	
+
 	@Autowired
 	@Qualifier(value = "accountService")
 	private UserDetailsService userDetailService;
@@ -27,7 +27,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	{
 		return new BCryptPasswordEncoder();
 	}
-	
+
 	@Bean
 	public AuthenticationProvider authProvider() {
 		DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
@@ -35,27 +35,27 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		provider.setPasswordEncoder(passwordEncoder());
 		return provider;
 	}
-	
+
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http
-		.csrf().disable()
-		.authorizeRequests()
-			.antMatchers(HttpMethod.DELETE).hasAnyRole(UserPrincipal.ADMIN)
-			.antMatchers("/public/**", "/api/account/**").permitAll()
-			.anyRequest().authenticated()
-		.and()
-        .formLogin()
-        	.loginPage("/login").permitAll()
-        	.loginProcessingUrl("/login").permitAll()
-        .and()
-        .logout()
-        	.invalidateHttpSession(true)
-        	.clearAuthentication(true)
-        	.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-        	.logoutSuccessUrl("/login")
-        .and()
-        .authenticationProvider(authProvider())
-        .httpBasic();
+				.csrf().disable()
+				.authorizeRequests()
+//			.antMatchers(HttpMethod.DELETE).hasRole(UserPrincipal.ADMIN)
+				.antMatchers("/public/**", "/api/account/**").permitAll()
+				.anyRequest().authenticated()
+				.and()
+				.formLogin()
+				.loginPage("/login").permitAll()
+				.loginProcessingUrl("/login").permitAll()
+				.and()
+				.logout()
+				.invalidateHttpSession(true)
+				.clearAuthentication(true)
+				.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+				.logoutSuccessUrl("/login")
+				.and()
+				.authenticationProvider(authProvider())
+				.httpBasic();
 	}
 }
