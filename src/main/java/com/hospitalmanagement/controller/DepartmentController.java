@@ -2,10 +2,15 @@ package com.hospitalmanagement.controller;
 
 import com.hospitalmanagement.model.Department;
 import com.hospitalmanagement.service.DepartmentService;
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Order;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,8 +31,9 @@ public class DepartmentController {
     @GetMapping(value={"/list", "/", ""})
     public ModelAndView list(
             @RequestParam(defaultValue = "1") Integer page, @RequestParam(defaultValue = "10") Integer size,
-            @RequestParam(defaultValue = "id") String orderBy, @RequestParam(defaultValue = "true") Boolean asc
-    )
+            @RequestParam(defaultValue = "id") String orderBy, @RequestParam(defaultValue = "true") Boolean asc,
+            Authentication authentication
+     )
     {
         ModelAndView modelAndView = new ModelAndView("department/list-department");
         Sort sort = asc ? Sort.by(Order.asc(orderBy)) : Sort.by(Order.desc(orderBy));
@@ -37,7 +43,12 @@ public class DepartmentController {
         modelAndView.addObject("departmentListSize", pageDepartment.getSize());
         modelAndView.addObject("currentPage", pageDepartment.getNumber()+1);
         modelAndView.addObject("totalPage", pageDepartment.getTotalPages());
-
+        
+        @SuppressWarnings("unchecked")
+		List<GrantedAuthority> authorities = (List<GrantedAuthority>) authentication.getAuthorities();
+		String role = authorities.get(0).getAuthority();
+		modelAndView.addObject("ROLE", role);
+		
         return modelAndView;
     }
 

@@ -58,9 +58,14 @@
 											class="fa fa-eye" aria-hidden="true"></i>
 									</a> --> <a href="/doctor/update/${ doctor.id }" type="button" class="btn btn-primary"> <i
 													class="fa fa-pencil-square-o" aria-hidden="true"></i>
-											</a> <a onclick="deleteDoctorModal(this)" type="button"
-												class="btn btn-danger"> <i class="fa fa-trash-o" aria-hidden="true"></i>
-											</a>
+											
+												</a> 
+												<c:set var="ROLE_ADMIN" value="ROLE_ADMIN"></c:set>
+	                                    		<c:if test="${ ROLE == ROLE_ADMIN }">
+													<a onclick="deleteDoctorModal(this)" type="button"
+														class="btn btn-danger"> <i class="fa fa-trash-o" aria-hidden="true"></i>
+													</a>
+												</c:if>
 										</td>
 									</tr>
 
@@ -134,7 +139,9 @@
 	</div>
 
 	<!-- Javascript -->
-	<script type="text/javascript" src="/js/doctor/list-doctor.js"></script>
+	<c:if test="${ ROLE == ROLE_ADMIN }">	
+		<script type="text/javascript" src="/js/doctor/list-doctor.js"></script>
+	</c:if>
 
 </body>
 

@@ -39,23 +39,26 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http
-				.csrf().disable()
-				.authorizeRequests()
-//			.antMatchers(HttpMethod.DELETE).hasRole(UserPrincipal.ADMIN)
-				.antMatchers("/public/**", "/api/account/**").permitAll()
+			.csrf().disable()
+			.authorizeRequests()
+				.antMatchers("/public/**", "/api/account/**", "/error").permitAll()
 				.anyRequest().authenticated()
-				.and()
+			.and()
+				.authorizeHttpRequests()
+				.antMatchers("/api/**/delete**").hasAnyRole(UserPrincipal.ADMIN)
+//				.antMatchers("**").hasAnyRole(UserPrincipal.DOCTOR, UserPrincipal.ADMIN)
+			.and()
 				.formLogin()
 				.loginPage("/login").permitAll()
 				.loginProcessingUrl("/login").permitAll()
-				.and()
+			.and()
 				.logout()
 				.invalidateHttpSession(true)
 				.clearAuthentication(true)
 				.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
 				.logoutSuccessUrl("/login")
-				.and()
-				.authenticationProvider(authProvider())
+			.and()
+//				.authenticationProvider(authProvider())
 				.httpBasic();
 	}
 }

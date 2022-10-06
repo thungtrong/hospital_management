@@ -5,7 +5,7 @@ var modalBody = document.getElementById("modal-body");
 var hidden = document.getElementById("admission-id");
 
 var selectedRow;
-var patientList = document.getElementById("admission-list");
+var admissionList = document.getElementById("admission-list");
 
 function deletePatientModal(target) {
     selectedRow = target.parentElement.parentElement;
@@ -48,7 +48,7 @@ function deleteAdmission() {
         .then((response) => {
         
             if (response.status == 200) {
-                patientList.removeChild(selectedRow);
+                admissionList.removeChild(selectedRow);
                 $("#alertModel").modal("hide");
             } else
             {

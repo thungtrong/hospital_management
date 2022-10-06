@@ -160,6 +160,7 @@ label{
 	min-width: 55px,
 	max-width: 100px;
 	display: flex;
+	justify-content: flex-end;
 }
 
 label.error-msg {

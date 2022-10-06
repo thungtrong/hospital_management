@@ -2,12 +2,15 @@ package com.hospitalmanagement.restcontroller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Order;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,9 +21,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.hospitalmanagement.model.Account;
+import com.hospitalmanagement.exception.ModelNotVaildException;
 import com.hospitalmanagement.model.Doctor;
-import com.hospitalmanagement.service.AccountService;
 import com.hospitalmanagement.service.DoctorService;
 
 @RestController
@@ -54,12 +56,16 @@ public class DoctorRestController {
 	}
 
 	@PostMapping("/create")
-	public ResponseEntity<Doctor> create(@RequestBody Doctor doctor) {
+	public ResponseEntity<Doctor> create(@Valid @RequestBody Doctor doctor, BindingResult bindingResult) throws ModelNotVaildException {
+		if (bindingResult.hasErrors())
+			throw ModelNotVaildException.fromBindingResult(bindingResult);
 		return new ResponseEntity<>(doctorService.insert(doctor), HttpStatus.CREATED);
 	}
 
 	@PutMapping("/update")
-	public ResponseEntity<Doctor> update(@RequestBody Doctor doctor) {
+	public ResponseEntity<Doctor> update(@Valid @RequestBody Doctor doctor, BindingResult bindingResult) throws ModelNotVaildException {
+		if (bindingResult.hasErrors())
+			throw ModelNotVaildException.fromBindingResult(bindingResult);
 		return new ResponseEntity<>(doctorService.update(doctor), HttpStatus.ACCEPTED);
 	}
 

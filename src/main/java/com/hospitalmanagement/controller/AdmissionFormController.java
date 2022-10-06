@@ -1,9 +1,13 @@
 package com.hospitalmanagement.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Order;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.hospitalmanagement.model.AdmissionForm;
-import com.hospitalmanagement.model.Patient;
 import com.hospitalmanagement.service.AdmissionFormService;
 
 @Controller
@@ -22,21 +25,26 @@ public class AdmissionFormController {
 	@Autowired
 	private AdmissionFormService admissionFormService;
 	
+	@SuppressWarnings("unchecked")
 	@GetMapping(value={"/list", "/", ""})
 	public ModelAndView list(
 			@RequestParam(defaultValue = "1") Integer page, @RequestParam(defaultValue = "10") Integer size, 
-			@RequestParam(defaultValue = "id") String orderBy, @RequestParam(defaultValue = "true") Boolean asc
-//			@RequestParam(defaultValue = "") String qName, @RequestParam(defaultValue = "") String qPhoneNumber
-			)
+			@RequestParam(defaultValue = "id") String orderBy, @RequestParam(defaultValue = "true") Boolean asc,
+//			@RequestParam(defaultValue = "") String qName, @RequestParam(defaultValue = "") String qPhoneNumber,
+			Authentication authentication)
 	{
 		ModelAndView modelAndView = new ModelAndView("admission/list-admission");
 		Sort sort = asc ? Sort.by(Order.asc(orderBy)) : Sort.by(Order.desc(orderBy));
 		Page<AdmissionForm> pageAdmission = admissionFormService.findAll(page-1, size, sort);
 		
+		List<GrantedAuthority> authorities = (List<GrantedAuthority>) authentication.getAuthorities();
+		String role = authorities.get(0).getAuthority();
+		
 		modelAndView.addObject("admissionList", pageAdmission.getContent());
 		modelAndView.addObject("admissionListSize", pageAdmission.getSize());
 		modelAndView.addObject("currentPage", pageAdmission.getNumber()+1);
 		modelAndView.addObject("totalPage", pageAdmission.getTotalPages());
+		modelAndView.addObject("ROLE", role);
 		
 		return modelAndView;
 	}

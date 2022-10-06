@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Order;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -31,7 +33,8 @@ public class TestFormController {
 			@RequestParam(defaultValue = "1") Integer page, @RequestParam(defaultValue = "10") Integer size, 
 			@RequestParam(defaultValue = "id") String orderBy, @RequestParam(defaultValue = "true") Boolean asc
 //			@RequestParam(defaultValue = "") String qName, @RequestParam(defaultValue = "") String qPhoneNumber
-			)
+			,Authentication authentication
+		)
 	{
 		ModelAndView modelAndView = new ModelAndView("test-form/list-test-form");
 		Sort sort = asc ? Sort.by(Order.asc(orderBy)) : Sort.by(Order.desc(orderBy));
@@ -46,6 +49,11 @@ public class TestFormController {
 		modelAndView.addObject("testFormListSize", pageTestForm.getSize());
 		modelAndView.addObject("currentPage", pageTestForm.getNumber()+1);
 		modelAndView.addObject("totalPage", pageTestForm.getTotalPages());
+		
+		@SuppressWarnings("unchecked")
+		List<GrantedAuthority> authorities = (List<GrantedAuthority>) authentication.getAuthorities();
+		String role = authorities.get(0).getAuthority();
+		modelAndView.addObject("ROLE", role);
 		
 		return modelAndView;
 	}
