@@ -9,15 +9,16 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "account")
-public class Account implements Serializable{
+public class Account implements Serializable {
+	
 	@Id
 	private String username;
 	@Column(name = "password", length = 60, nullable = false)
 	private String password;
-//	private String role;
+	private String role;
 	@Column(columnDefinition = "CHAR(1) default 1")
 	private Boolean enable;
-	
+
 	public String getUsername() {
 		return username;
 	}
@@ -34,11 +35,14 @@ public class Account implements Serializable{
 		this.password = password;
 	}
 
-	/*
-	 * public String getRole() { return role; }
-	 * 
-	 * public void setRole(String role) { this.role = role; }
-	 */
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+
 	public Boolean getEnable() {
 		return enable;
 	}
@@ -47,4 +51,10 @@ public class Account implements Serializable{
 		this.enable = enable;
 	}
 
+	@Override
+	public String toString() {
+		return "Account [username=" + username + ", password=" + password + ", role=" + role + ", enable=" + enable
+				+ "]";
+	}
+	
 }
