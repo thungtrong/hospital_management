@@ -2,10 +2,7 @@ package com.hospitalmanagement.model;
 
 import java.io.Serializable;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "account")
@@ -19,6 +16,9 @@ public class Account implements Serializable {
 	@Column(columnDefinition = "CHAR(1) default 1")
 	private Boolean enable;
 
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "doctor_id", referencedColumnName = "id")
+	private Doctor doctor;
 	public String getUsername() {
 		return username;
 	}

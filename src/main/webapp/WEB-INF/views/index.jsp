@@ -24,7 +24,7 @@
 						<div class="widget-content-right">
 							<div class="widget-numbers text-white">
 								<span>
-									<a>${departments}5</a>
+									<a>${departments}</a>
 								</span>
 							</div>
 						</div>
@@ -41,7 +41,9 @@
 							</a>
 						</div>
 						<div class="widget-content-right">
-							<div class="widget-numbers text-white"><span>568</span></div>
+							<div class="widget-numbers text-white"><span>
+								${patients}
+							</span></div>
 						</div>
 					</div>
 				</div>
@@ -56,7 +58,7 @@
 							</a>
 						</div>
 						<div class="widget-content-right">
-							<div class="widget-numbers text-white"><span>46</span></div>
+							<div class="widget-numbers text-white"><span>${departments}</span></div>
 						</div>
 					</div>
 				</div>
@@ -72,7 +74,7 @@
 							</a>
 						</div>
 						<div class="widget-content-right">
-							<div class="widget-numbers text-white"><span>58</span></div>
+							<div class="widget-numbers text-white"><span>${medicines}</span></div>
 						</div>
 					</div>
 				</div>
@@ -87,7 +89,7 @@
 							</a>
 						</div>
 						<div class="widget-content-right">
-							<div class="widget-numbers text-white"><span>46</span></div>
+							<div class="widget-numbers text-white"><span>${tests}</span></div>
 						</div>
 					</div>
 				</div>
@@ -102,7 +104,7 @@
 							</a>
 						</div>
 						<div class="widget-content-right">
-							<div class="widget-numbers text-white"><span>50</span></div>
+							<div class="widget-numbers text-white"><span>${admissionForms}</span></div>
 						</div>
 					</div>
 				</div>
@@ -117,28 +119,11 @@
 							</a>
 						</div>
 						<div class="widget-content-right">
-							<div class="widget-numbers text-white"><span>46</span></div>
+							<div class="widget-numbers text-white"><span>${illnesses}</span></div>
 						</div>
 					</div>
 				</div>
 			</div>
-
-			<div class="col-md-6 col-xl-4" id="account">
-				<div class="card mb-3 widget-content bg-grow-early">
-					<div class="widget-content-wrapper text-white">
-						<div class="widget-content-left">
-							<a href="/patient" style="color: white">
-								<div class="widget-heading">Account </div>
-								<div class="widget-subheading">Total Account</div>
-							</a>
-						</div>
-						<div class="widget-content-right">
-							<div class="widget-numbers text-white"><span>10</span></div>
-						</div>
-					</div>
-				</div>
-			</div>
-
 			<div class="col-md-6 col-xl-4" id="health-record">
 				<div class="card mb-3 widget-content bg-grow-early">
 					<div class="widget-content-wrapper text-white">
@@ -149,7 +134,22 @@
 							</a>
 						</div>
 						<div class="widget-content-right">
-							<div class="widget-numbers text-white"><span>10</span></div>
+							<div class="widget-numbers text-white"><span>${healthRecords}</span></div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6 col-xl-4" id="account">
+				<div class="card mb-3 widget-content bg-grow-early">
+					<div class="widget-content-wrapper text-white">
+						<div class="widget-content-left">
+							<a href="/patient" style="color: white">
+								<div class="widget-heading">Account </div>
+								<div class="widget-subheading">Total Account</div>
+							</a>
+						</div>
+						<div class="widget-content-right">
+							<div class="widget-numbers text-white"><span>${accounts}</span></div>
 						</div>
 					</div>
 				</div>

@@ -17,10 +17,14 @@ public class HandleErrorController implements ErrorController {
 	static {
 		MAP_MESSAGE = new HashMap<>();
 		MAP_MESSAGE.put("400", "The server cannot or will not process the request due to something that is perceived to be a client error");
-		MAP_MESSAGE.put("401", "You do not have permission to access");
-		MAP_MESSAGE.put("403", "You do not have permission to access");
-		MAP_MESSAGE.put("404", "The page you're looking for was not found.");
-		MAP_MESSAGE.put("500", "Something went wrong!");
+		MAP_MESSAGE.put("401", "The request has not been applied because it lacks valid authentication credentials for the target resource");
+		MAP_MESSAGE.put("403", "The server understood the request but refuses to authorize it");
+		MAP_MESSAGE.put("404", "The origin server did not find a current representation for the target resource or is not willing to disclose that one exists");
+		MAP_MESSAGE.put("405", "The method is not allowed for the requested URL");
+		MAP_MESSAGE.put("500", "The server encountered an internal error or misconfiguration and was unable to complete your request");
+		MAP_MESSAGE.put("502", "The server, while acting as a gateway or proxy, received an invalid response from the upstream server it accessed in attempting to fulfill the request");
+		MAP_MESSAGE.put("503", "The server is currently unavailable (because it is overloaded or down for maintenance)");
+		MAP_MESSAGE.put("504", "The server, while acting as a gateway or proxy, did not receive a timely response from the upstream server specified by the URI or some other auxiliary server it needed to access in attempting to complete the request");
 	}
 	@RequestMapping("/error")
 	public ModelAndView handleError(HttpServletRequest request) {

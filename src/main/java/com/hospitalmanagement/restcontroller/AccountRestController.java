@@ -26,6 +26,4 @@ public class AccountRestController {
 		accountService.saveAccount(account);
 		return account;
 	}
-
-
 }
