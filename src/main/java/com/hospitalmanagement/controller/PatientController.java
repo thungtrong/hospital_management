@@ -8,6 +8,8 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Order;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -31,6 +33,7 @@ public class PatientController {
 			@RequestParam(defaultValue = "1") Integer page, @RequestParam(defaultValue = "10") Integer size, 
 			@RequestParam(defaultValue = "id") String orderBy, @RequestParam(defaultValue = "true") Boolean asc
 //			@RequestParam(defaultValue = "") String qName, @RequestParam(defaultValue = "") String qPhoneNumber
+			,Authentication authentication
 			)
 	{
 		ModelAndView modelAndView = new ModelAndView("patient/list-patient");
@@ -42,6 +45,11 @@ public class PatientController {
 		modelAndView.addObject("patientListSize", pagePatient.getSize());
 		modelAndView.addObject("currentPage", pagePatient.getNumber()+1);
 		modelAndView.addObject("totalPage", pagePatient.getTotalPages());
+		
+		@SuppressWarnings("unchecked")
+		List<GrantedAuthority> authorities = (List<GrantedAuthority>) authentication.getAuthorities();
+		String role = authorities.get(0).getAuthority();
+		modelAndView.addObject("ROLE", role);
 		
 		return modelAndView;
 	}

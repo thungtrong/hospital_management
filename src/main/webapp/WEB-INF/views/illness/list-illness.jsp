@@ -44,20 +44,19 @@
                             <tr>
                                 <th scope="row">${ illness.id }</th>
                                 <td>${ illness.name }</td>
-<<<<<<< HEAD
                                 <td>${ illness.description }</td>
-=======
-								<td>${ illness.description }</td>
->>>>>>> 4fcba6a37852dcc1c8370b63e2233831328fe377
                                 <td class="group-action">
                                     <!-- <a href="/illness/view/${ illness.id }" type="button" class="btn btn-secondary"> <i class="fa fa-eye" aria-hidden="true"></i></a> -->
                                     <a href="/illness/update/${ illness.id }" type="button"
                                        class="btn btn-primary">
                                         <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                     </a>
-                                    <a onclick="deleteIllnessModal(this)" type="button" class="btn btn-danger">
-                                        <i class="fa fa-trash-o" aria-hidden="true"></i>
-                                    </a>
+                                    <c:set var="ROLE_ADMIN" value="ROLE_ADMIN"></c:set>
+									<c:if test="${ ROLE == ROLE_ADMIN }">
+	                                    <a onclick="deleteIllnessModal(this)" type="button" class="btn btn-danger">
+	                                        <i class="fa fa-trash-o" aria-hidden="true"></i>
+	                                    </a>
+									</c:if>
                                 </td>
                             </tr>
 
@@ -132,7 +131,10 @@
 </div>
 
 <!-- Javascript -->
+<c:set var="ROLE_ADMIN" value="ROLE_ADMIN"></c:set>
+<c:if test="${ ROLE == ROLE_ADMIN }">
 <script type="text/javascript" src="/js/illness/list-illness.js"></script>
+</c:if>
 
 </body>
 

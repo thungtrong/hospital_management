@@ -53,9 +53,12 @@
 											<a href="/test/update/${ test.id }" type="button" class="btn btn-primary"> 
 												<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
 											</a> 
-											<a onclick="deleteTestModal(this)" type="button" class="btn btn-danger">
-												<i class="fa fa-trash-o" aria-hidden="true"></i>
-											</a>
+											<c:set var="ROLE_ADMIN" value="ROLE_ADMIN"></c:set>
+                                    		<c:if test="${ ROLE == ROLE_ADMIN }">
+												<a onclick="deleteTestModal(this)" type="button" class="btn btn-danger">
+													<i class="fa fa-trash-o" aria-hidden="true"></i>
+												</a>
+                                    		</c:if>
 										</td>
 									</tr>
 
@@ -134,7 +137,10 @@
 
 
 	<!-- Javascript -->
-	<script type="text/javascript" src="/js/test/list-test.js"></script>
+	<c:set var="ROLE_ADMIN" value="ROLE_ADMIN"></c:set>
+	<c:if test="${ ROLE == ROLE_ADMIN }">
+		<script type="text/javascript" src="/js/test/list-test.js"></script>
+	</c:if>
 
 </body>
 </html>

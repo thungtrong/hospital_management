@@ -17,8 +17,7 @@ import com.hospitalmanagement.model.Account;
 public class AuthController {
 
 	@RequestMapping(value = { "/index", "/" })
-	public String index(HttpServletResponse response, Authentication authentication) {
-		System.out.println(authentication.getAuthorities());
+	public String index(HttpServletResponse response) {
 		return "index";
 	}
 
