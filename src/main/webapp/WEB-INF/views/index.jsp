@@ -6,7 +6,7 @@
 <meta charset="ISO-8859-1">
 <title>HOME</title>
 	<jsp:include page="./_shared.jsp"></jsp:include>
-	<link href="https://demo.dashboardpack.com/architectui-html-free/main.css" rel="stylesheet">
+	<link href="/css/main.css" rel="stylesheet">
 </head>
 <body>
 <jsp:include page="./_navbar.jsp"></jsp:include>
