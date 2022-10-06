@@ -132,6 +132,7 @@
 			</div>
 		</div>
 	</div>
+
 	<!-- Javascript -->
 	<script type="text/javascript" src="/js/doctor/list-doctor.js"></script>
 

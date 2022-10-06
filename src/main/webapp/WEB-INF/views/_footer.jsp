@@ -4,30 +4,12 @@
 <link rel="stylesheet" href="/public/css/footer.css">
 <footer>
     <div class="footer-top">
-        <div >
-            <div class="footer-day-time">
-                <div class="row">
-                    <div class="col-md-8">
-                        <ul>
-                            <li>Opening Hours: Mon - Friday: 8AM - 5PM</li>
-                            <li>Sunday: 8:00 AM - 12:00 PM</li>
-                        </ul>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="phone-no">
-                            <a href="tel:+12 34 56 78 90"><i class="fa fa-mobile" aria-hidden="true"></i>Call +12 34 56 78 90</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-4">
-
+        <div id="footer-container">
+            <div class="row" >
+                <div class="col-md-4" style="text-align:center">
                     <h4>About us</h4>
                     <p>Something about hospital management</p>
-
                 </div>
-
                 <div class="col-md-4">
                     <h4>Information</h4>
                     <ul class="address1">

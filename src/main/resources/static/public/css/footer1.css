@@ -1,5 +1,6 @@
 footer {
     color: #fff;
+    margin-left: 0px;
 }
 ul {
     padding: 0px;
@@ -27,12 +28,13 @@ ol, ul {
     vertical-align: middle;
     border-radius: 100px;
     line-height: 27px;
-    margin-right: 15px;
+    margin-left: 15px;
     transition: 1s;
     background: #fff;
+    padding-left: 50px;
 }
 .social-icon li i:hover {
-    /*border: solid 2px #262725;*/
+    border: solid 2px #262725;
     color: #ffffff;
     /*background: #262725;*/
 }
@@ -68,7 +70,7 @@ ol, ul {
 }
 .footer-top {
     background: #3e4776;
-    padding:50px 0 50px;
+    padding:50px;
 }
 .footer-top h4 {
     font-size: 19px;
@@ -82,6 +84,7 @@ ol, ul {
 
 footer p {
     margin-bottom:0;
+    margin-left:10px;
 }
 .footer-logo {
     display: block;
