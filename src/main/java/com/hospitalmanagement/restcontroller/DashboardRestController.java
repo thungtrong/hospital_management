@@ -32,13 +32,13 @@ public class DashboardRestController {
     public ModelAndView getDashboard() {
         ModelAndView modelAndView = new ModelAndView("dashboard");
         modelAndView.addObject("departments", departmentService.findAll().size());
-//        modelAndView.addObject("doctors", doctorService.findAll().size());
-//        modelAndView.addObject("patients", patientService.findAll().size());
-//        modelAndView.addObject("medicines", medicineService.findAll().size());
-//        modelAndView.addObject("illnesses", illnessService.findAll().size());
-//        modelAndView.addObject("healthRecords", healthRecordService.findAll().size());
-//        modelAndView.addObject("tests", testService.findAll().size());
-//        modelAndView.addObject("admissionForms", admissionFormService.findAll().size());
+        modelAndView.addObject("doctors", doctorService.findAll().size());
+        modelAndView.addObject("patients", patientService.findAll().size());
+        modelAndView.addObject("medicines", medicineService.findAll().size());
+        modelAndView.addObject("illnesses", illnessService.findAll().size());
+        modelAndView.addObject("healthRecords", healthRecordService.findAll().size());
+        modelAndView.addObject("tests", testService.findAll().size());
+        modelAndView.addObject("admissionForms", admissionFormService.findAll().size());
         return modelAndView;
     }
 
