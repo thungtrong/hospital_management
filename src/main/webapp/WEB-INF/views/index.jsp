@@ -5,14 +5,8 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>HOME</title>
-<<<<<<< HEAD
-
-	<link href="https://demo.dashboardpack.com/architectui-html-free/main.css" rel="stylesheet">
-	<jsp:include page="./_shared.jsp"></jsp:include>
-=======
 	<jsp:include page="./_shared.jsp"></jsp:include>
 	<link href="/css/main.css" rel="stylesheet">
->>>>>>> 4cab48a693d17ad01b7507e103e1d1233b7df078
 </head>
 <body>
 <jsp:include page="./_navbar.jsp"></jsp:include>
@@ -41,7 +35,7 @@
 				<div class="card mb-3 widget-content bg-arielle-smile">
 					<div class="widget-content-wrapper text-white">
 						<div class="widget-content-left">
-							<a href="patient" href="/patient"> style="color:white">
+							<a href="patient" href="/patient" style="color:white">
 								<div class="widget-heading">Patients</div>
 								<div class="widget-subheading">Total Patients</div>
 							</a>
@@ -68,27 +62,11 @@
 				</div>
 			</div>
 
-
-			<div class="col-md-6 col-xl-4" id="prescription">
-				<div class="card mb-3 widget-content bg-midnight-bloom">
-					<div class="widget-content-wrapper text-white">
-						<div class="widget-content-left">
-							<a href="prescription" href="/prescription" style="color:white">
-								<div class="widget-heading">Prescription</div>
-								<div class="widget-subheading">Prescription</div>
-							</a>
-						</div>
-						<div class="widget-content-right">
-							<div class="widget-numbers text-white"><span>50</span></div>
-						</div>
-					</div>
-				</div>
-			</div>
 			<div class="col-md-6 col-xl-4" id="medicine">
 				<div class="card mb-3 widget-content bg-arielle-smile">
 					<div class="widget-content-wrapper text-white">
 						<div class="widget-content-left">
-							<a href="medicine" href="/medicine"> style="color:white">
+							<a href="medicine" href="/medicine" style="color:white">
 								<div class="widget-heading">Medicine</div>
 								<div class="widget-subheading">Total Medicine</div>
 							</a>
@@ -178,8 +156,9 @@
 			</div>
 		</div>
 	</div>
-
+<jsp:include page="./_footer.jsp"></jsp:include>
 </div>
+
 <script type="text/javascript" src="/public/js/dashboard.js"></script>
 </body>
 </html>

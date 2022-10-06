@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
          pageEncoding="ISO-8859-1"%>
 <link rel="stylesheet" href="/public/css/nav.css">
-<link rel="stylesheet" href="/css/_shared.css" />
+<link rel="stylesheet" href="/public/css/footer.css">
 <footer>
     <div class="footer-top">
-        <div class="container">
+        <div >
             <div class="footer-day-time">
                 <div class="row">
                     <div class="col-md-8">
