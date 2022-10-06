@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Error </title>
-    <link rel="stylesheet" href="/css/error-page.css">
+    <link rel="stylesheet" href="/public/css/error-page.css">
   </head>
   <body>
     <div class="container-scroller">
