@@ -46,7 +46,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.and()
 				.authorizeHttpRequests()
 				.antMatchers("/api/**/delete**").hasRole(UserPrincipal.ADMIN)
-				.antMatchers("/api/**").hasAnyRole(UserPrincipal.DOCTOR, UserPrincipal.ADMIN)
+				//.antMatchers("/api/**").hasAnyRole(UserPrincipal.DOCTOR, UserPrincipal.ADMIN)
 			.and()
 				.formLogin()
 				.loginPage("/login").permitAll()
