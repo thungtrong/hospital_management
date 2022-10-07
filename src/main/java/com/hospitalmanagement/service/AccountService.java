@@ -1,6 +1,9 @@
 package com.hospitalmanagement.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -29,4 +32,9 @@ public class AccountService implements UserDetailsService {
 	{
 		return accountRepository.save(account);
 	}
+	
+	public Page<Account> findAll(int page, int size, Sort sort) {
+		return accountRepository.findAll(PageRequest.of(page, size, sort));
+	}
+
 }

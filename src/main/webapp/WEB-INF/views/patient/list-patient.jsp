@@ -142,7 +142,6 @@
 
 
 	<!-- Javascript -->
-	
 	<c:if test="${ isAdmin }">
 		<script type="text/javascript" src="/js/patient/list-patient.js"></script>
 	</c:if>

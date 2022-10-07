@@ -149,7 +149,7 @@
 			<div class="card mb-3 widget-content bg-grow-early">
 				<div class="widget-content-wrapper text-white">
 					<div class="widget-content-left">
-						<a href="/patient" style="color: white">
+						<a href="/account" style="color: white">
 							<div class="widget-heading">Account </div>
 							<div class="widget-subheading">Total Account</div>
 						</a>

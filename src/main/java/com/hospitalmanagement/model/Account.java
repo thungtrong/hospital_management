@@ -7,7 +7,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "account")
 public class Account implements Serializable {
-	
+
 	@Id
 	private String username;
 	@Column(name = "password", length = 60, nullable = false)
@@ -16,9 +16,10 @@ public class Account implements Serializable {
 	@Column(columnDefinition = "CHAR(1) default 1", nullable = false)
 	private Boolean enable;
 
-	@OneToOne(fetch = FetchType.LAZY)
+	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "doctor_id", referencedColumnName = "id")
 	private Doctor doctor;
+
 	public String getUsername() {
 		return username;
 	}
@@ -51,10 +52,18 @@ public class Account implements Serializable {
 		this.enable = enable;
 	}
 
+	public Doctor getDoctor() {
+		return doctor;
+	}
+
+	public void setDoctor(Doctor doctor) {
+		this.doctor = doctor;
+	}
+
 	@Override
 	public String toString() {
-		return "Account [username=" + username + ", password=" + password + ", role=" + role + ", enable=" + enable
-				+ "]";
+		return "Account [username=" + username + ", password=" + password + ", role=" + role + ", enable=" + enable + "]";
 	}
-	
+
+
 }
