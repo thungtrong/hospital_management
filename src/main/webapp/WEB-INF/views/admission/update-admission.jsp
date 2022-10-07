@@ -119,7 +119,7 @@
 	</div>
 
 	<!-- Modal -->
-	<div class="modal fade" id="searchModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+	<div class="modal fade" id="searchPatientModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
 		aria-hidden="true">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
@@ -140,6 +140,9 @@
 							<button class="btn btn-primary" type="button" id="btn-patient-search"><i
 									class="fa fa-search" aria-hidden="true"></i>
 							</button>
+						</div>
+						<div class="col text-center text-danger" id="patient-filter-message">
+
 						</div>
 					</form>
 				</div>
@@ -168,6 +171,7 @@
 	</div>
 
 	<!-- Javascript -->
+	<script type="text/javascript" src="/js/_search/search-patient.js"></script>
 	<script type="text/javascript" src="/js/admission/update-admission.js"></script>
 	<script type="text/javascript" src="/js/admission/validate-admission.js"></script>
 </body>

@@ -9,15 +9,19 @@ document.getElementById("btn-patient").addEventListener("click", function (e) {
     $("#searchPatientModel").modal("show");
 });
 
+function addEventFindPatientListener(targetForm, btnId)
+{
 document
-    .getElementById("btn-patient-search")
+    .getElementById(btnId || "btn-patient-search")
     .addEventListener("click", function (e) {
         let form = document.forms["patient-filter"];
+        let patientFilterMessage = document.getElementById("patient-filter-message");
+        patientFilterMessage.innerHTML = '';
         if (!(form.name.value || form.phoneNumber.value)) {
-            document.getElementById("patient-filter-message").innerHTML =
+            patientFilterMessage.innerHTML =
                 "Please enter patient name or phone number";
             return;
-        }
+        } 
 
         let formData = new FormData(form);
         let urlParams = new URLSearchParams(formData);
@@ -33,7 +37,7 @@ document
                 let patientListTable = document.getElementById("patient-list");
                 patientListTable.innerHTML = "";
                 let tr, td;
-
+				
                 if (data.length === 0) {
                     tr = document.createElement("tr");
                     tr.innerHTML =
@@ -72,13 +76,14 @@ document
                 console.log(error);
             });
     });
+}
 
 function fillPatienFormPart(patient) {
-    let healthRecord = document.forms["patient-form"];
-    healthRecord.patientId.value = patient.id;
-    healthRecord.patientName.value = patient.name;
-    healthRecord.patientGender.value = patient.gender;
-    healthRecord.patientDateOfBirth.value = patient.dateOfBirth;
-    healthRecord.patientPhoneNumber.value = patient.phoneNumber;
-    healthRecord.patientAddress.value = patient.address;
+    let formPart = document.forms['patient-form'];
+    formPart.patientId.value = patient.id;
+    formPart.patientName.value = patient.name;
+    formPart.patientGender.value = patient.gender;
+    formPart.patientDateOfBirth.value = patient.dateOfBirth;
+    formPart.patientPhoneNumber.value = patient.phoneNumber;
+    formPart.patientAddress.value = patient.address;
 }

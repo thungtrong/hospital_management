@@ -30,7 +30,7 @@ public class AdmissionForm {
 	private Date dateIn;
 
 	@Temporal(TemporalType.DATE)
-	@Column(name = "date_out", nullable = false)
+	@Column(name = "date_out")
 	private Date dateOut;
 
 	@ManyToOne(fetch = FetchType.EAGER)

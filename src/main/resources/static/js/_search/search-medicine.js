@@ -27,9 +27,19 @@ document
                 else console.log(response);
             })
             .then((data) => {
+                
+
                 let medicineListTable =
                     document.getElementById("medicine-list");
                 medicineListTable.innerHTML = "";
+                let tr, td;
+                if (data.length === 0) {
+                    tr = document.createElement("tr");
+                    tr.innerHTML =
+                        "<td colspan='4' class='text-center'>Nothing to show</td>";
+                    medicineListTable.append(tr);
+                    return;
+                }
                 let row;
                 for (let i = 0; i < data.length; i++) {
                     let medicine = data[i];

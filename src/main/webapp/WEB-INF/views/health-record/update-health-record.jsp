@@ -480,10 +480,10 @@
 
 				<!-- Javascript -->
 				<script type="text/javascript" src="/js/health-record/validate-health-record.js"></script>
-				<script type="text/javascript" src="/js/health-record/search-patient.js"></script>
-				<script type="text/javascript" src="/js/health-record/search-doctor.js"></script>
-				<script type="text/javascript" src="/js/health-record/search-illness.js"></script>
-				<script type="text/javascript" src="/js/health-record/search-medicine.js"></script>
+				<script type="text/javascript" src="/js/_search/search-patient.js"></script>
+				<script type="text/javascript" src="/js/_search/search-doctor.js"></script>
+				<script type="text/javascript" src="/js/_search/search-illness.js"></script>
+				<script type="text/javascript" src="/js/_search/search-medicine.js"></script>
 				<script type="text/javascript" src="/js/health-record/update-health-record.js"></script>
 			</body>
 

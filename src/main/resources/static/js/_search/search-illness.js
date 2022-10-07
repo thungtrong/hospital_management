@@ -26,7 +26,15 @@ document
             })
             .then((data) => {
                 let illnessListTable = document.getElementById("illness-list");
-                illnessListTable.innerHTML = "";
+                illnessListTable.innerHTML = "";                
+                if (data.length === 0) {
+                    let tr = document.createElement("tr");
+                    tr.innerHTML =
+                        "<td colspan='4' class='text-center'>Nothing to show</td>";
+                        illnessListTable.append(tr);
+                    return;
+                }
+
                 let row;
                 for (let i = 0; i < data.length; i++) {
                     let illness = data[i];

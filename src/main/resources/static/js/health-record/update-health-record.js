@@ -39,6 +39,8 @@ document.getElementById("submit").addEventListener("click", function (e) {
     }
 });
 
+addEventFindPatientListener();
+
 function goToHealthRecordList() {
     window.location.href = BASE_HEALTH_RECORD_URL;
 }

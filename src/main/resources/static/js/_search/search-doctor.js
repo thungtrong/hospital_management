@@ -14,6 +14,14 @@ document
     .getElementById("btn-doctor-search")
     .addEventListener("click", function (e) {
         let form = document.forms["doctor-filter"];
+        let doctorFilterMessage = document.getElementById("doctor-filter-message");
+        doctorFilterMessage.innerHTML = '';
+        if (!(form.name.value)) {
+            doctorFilterMessage.innerHTML =
+                "Please enter patient name or phone number";
+            return;
+        } 
+
         let formData = new FormData(form);
         let urlParams = new URLSearchParams(formData);
 
@@ -28,6 +36,14 @@ document
                 let doctorListTable = document.getElementById("doctor-list");
                 doctorListTable.innerHTML = "";
                 let tr, td;
+                if (data.length === 0) {
+                    tr = document.createElement("tr");
+                    tr.innerHTML =
+                        "<td colspan='4' class='text-center'>Nothing to show</td>";
+                        doctorListTable.append(tr);
+                    return;
+                }
+
                 for (let i = 0; i < data.length; i++) {
                     let doctor = data[i];
                     tr = document.createElement("tr");

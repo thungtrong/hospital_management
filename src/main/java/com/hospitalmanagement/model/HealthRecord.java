@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotBlank;
 
@@ -16,7 +17,7 @@ public class HealthRecord {
 	@GeneratedValue(generator = "health_record_pk", strategy = GenerationType.SEQUENCE)
 	private Long id;
 	
-	@NotEmpty(message = "Please enter the creation date")
+	@NotNull(message = "Please enter the creation date")
 	@Temporal(TemporalType.DATE)
 	@Column(name = "creation_date", nullable = false)
 	private Date creationDate;

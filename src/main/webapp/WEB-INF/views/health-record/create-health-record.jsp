@@ -286,6 +286,9 @@
 											class="fa fa-search" aria-hidden="true"></i>
 									</button>
 								</div>
+								<div class="col text-center text-danger" id="doctor-filter-message">
+
+								</div>
 							</form>
 						</div>
 						<div class="modal-body" id="modal-filter-body">
@@ -414,10 +417,10 @@
 
 			<!-- Javascript -->
 			<script type="text/javascript" src="/js/health-record/validate-health-record.js"></script>
-			<script type="text/javascript" src="/js/health-record/search-patient.js"></script>
-			<script type="text/javascript" src="/js/health-record/search-doctor.js"></script>
-			<script type="text/javascript" src="/js/health-record/search-illness.js"></script>
-			<script type="text/javascript" src="/js/health-record/search-medicine.js"></script>
+			<script type="text/javascript" src="/js/_search/search-patient.js"></script>
+			<script type="text/javascript" src="/js/_search/search-doctor.js"></script>
+			<script type="text/javascript" src="/js/_search/search-illness.js"></script>
+			<script type="text/javascript" src="/js/_search/search-medicine.js"></script>
 			<script type="text/javascript" src="/js/health-record/create-health-record.js"></script>
 		</body>
 
