@@ -28,56 +28,55 @@
 			</div>
 			<div class="detail-table">
 				<div class="table-container-inside table-responsive">
-					<c:if test="${healthRecordListSize == 0 }">
-						<h2>No things to show</h2>
-					</c:if>
-					<c:if test="${ healthRecordListSize != 0 }">
-						<table class="table table-striped" id="health-record-table">
-							<thead>
+					<table class="table table-striped" id="health-record-table">
+						<thead>
+							<tr>
+								<th scope="col">#</th>
+								<th scope="col">Doctor Name</th>
+								<th scope="col">Patient Name</th>
+								<th scope="col">Creation Date</th>
+								<th scope="col">Re Date</th>
+								<th></th>
+							</tr>
+						</thead>
+
+						<tbody id="health-record-list">
+							<c:if test="${ empty healthRecordList}">
 								<tr>
-									<th scope="col">#</th>
-									<th scope="col">Doctor Name</th>
-									<th scope="col">Patient Name</th>
-									<th scope="col">Creation Date</th>
-									<th scope="col">Re Date</th>
-									<th></th>
+									<td colspan="6" class="text-center text-danger">Nothing to show</td>
 								</tr>
-							</thead>
-
-							<tbody id="health-record-list">
-								<c:forEach var="healthRecord" items="${ healthRecordList }">
-									<tr>
-										<th scope="row">${ healthRecord.id }</th>
-										<td>${ healthRecord.doctor.name }</td>
-										<td>${ healthRecord.patient.name }</td>
-										<td>
-											${ healthRecord.creationDate }
-										</td>
-										<td>
-											${ healthRecord.reDate }
-										</td>
-										<td class="group-action">
-											<a href="/${base}/view/${ healthRecord.id }" type="button"
-												class="btn btn-secondary"> <i class="fa fa-eye"
-													aria-hidden="true"></i></a>
-											<a href="/${base}/update/${ healthRecord.id }" type="button"
-												class="btn btn-primary">
-												<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+							</c:if>	
+							<c:forEach var="healthRecord" items="${ healthRecordList }">
+									<th scope="row">${ healthRecord.id }</th>
+									<td>${ healthRecord.doctor.name }</td>
+									<td>${ healthRecord.patient.name }</td>
+									<td>
+										${ healthRecord.creationDate }
+									</td>
+									<td>
+										${ healthRecord.reDate }
+									</td>
+									<td class="group-action">
+										<a href="/${base}/view/${ healthRecord.id }" type="button"
+											class="btn btn-secondary"> <i class="fa fa-eye"
+												aria-hidden="true"></i></a>
+										<a href="/${base}/update/${ healthRecord.id }" type="button"
+											class="btn btn-primary">
+											<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+										</a>
+										<c:set var="ROLE_ADMIN" value="ROLE_ADMIN"></c:set>
+                                   		<c:if test="${ ROLE == ROLE_ADMIN }">
+											<a onclick="deleteTestFormModal(this)" type="button" class="btn btn-danger">
+												<i class="fa fa-trash-o" aria-hidden="true"></i>
 											</a>
-											<c:set var="ROLE_ADMIN" value="ROLE_ADMIN"></c:set>
-                                    		<c:if test="${ ROLE == ROLE_ADMIN }">
-												<a onclick="deleteTestFormModal(this)" type="button" class="btn btn-danger">
-													<i class="fa fa-trash-o" aria-hidden="true"></i>
-												</a>
-	                                    	</c:if>
-										</td>
-									</tr>
+                                    	</c:if>
+									</td>
+								</tr>
 
-								</c:forEach>
-							</tbody>
+							</c:forEach>
+						</tbody>
 
-						</table>
-					</c:if>
+					</table>
 				</div>
 
 
@@ -122,7 +121,8 @@
 
 		</div>
 	</div>
-
+	<jsp:include page="../_footer.jsp"></jsp:include>
+	
 	<!-- Modal -->
 	<div class="modal fade" id="alertModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
 		aria-hidden="true">

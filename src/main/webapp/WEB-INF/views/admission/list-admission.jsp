@@ -29,10 +29,6 @@
 			</div>
 			<div class="detail-table">
 				<div class="table-container-inside table-responsive">
-					<c:if test="${admissionListSize == 0 }">
-						<h2>No things to show</h2>
-					</c:if>
-					<c:if test="${ admissionListSize != 0 }">
 						<table class="table table-striped" id="admission-table">
 							<thead>
 								<tr>
@@ -86,7 +82,6 @@
 							</tbody>
 
 						</table>
-					</c:if>
 				</div>
 
 
@@ -131,7 +126,8 @@
 
 		</div>
 	</div>
-
+	<jsp:include page="../_footer.jsp"></jsp:include>
+	
 	<!-- Modal -->
 	<div class="modal fade" id="alertModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
 		aria-hidden="true">

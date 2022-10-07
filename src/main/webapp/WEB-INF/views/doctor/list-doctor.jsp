@@ -26,10 +26,6 @@
 			</div>
 			<div class="detail-table">
 				<div class="table-container-inside table-responsive">
-					<c:if test="${doctorListSize == 0 }">
-						<h2>No things to show</h2>
-					</c:if>
-					<c:if test="${ doctorListSize != 0 }">
 						<table class="table table-striped" id="doctor-table">
 							<thead>
 								<tr>
@@ -43,6 +39,11 @@
 							</thead>
 
 							<tbody id="doctor-list">
+								<c:if test="${ empty doctorList}">
+									<tr>
+										<td colspan="6" class="text-center text-danger">Nothing to show</td>
+									</tr>
+								</c:if>	
 								<c:forEach var="doctor" items="${ doctorList }">
 									<tr>
 										<th scope="row">${ doctor.id }</th>
@@ -73,7 +74,6 @@
 							</tbody>
 
 						</table>
-					</c:if>
 				</div>
 
 
@@ -117,7 +117,8 @@
 
 		</div>
 	</div>
-
+	<jsp:include page="../_footer.jsp"></jsp:include>
+	
 	<!-- Modal -->
 	<div class="modal fade" id="alertModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
 		aria-hidden="true">

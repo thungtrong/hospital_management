@@ -5,53 +5,50 @@
 <head>
     <meta charset="ISO-8859-1">
     <jsp:include page="../_shared.jsp"></jsp:include>
-    <title>Create Admission Form</title>
+    <title>Insert Admission Form</title>
 </head>
 
 <body>
 <jsp:include page="../_navbar.jsp"></jsp:include>
 <div class="container">
     <div class="form-container-outside">
-        <div class="title-form">Create Department Form</div>
+        <div class="title-form">Insert Department Form</div>
         <div class="detail-form">
             <div class="form-container-inside">
-               
 
                 <div class="detail-department">
                     <form id="department-form" name="department" autocomplete="off">
                         <div class="col">
-                            <input type="hidden" name="departmentId">
-                            <div class="item">
-                                <label for="name" class="text-label">Department name</label>
-                                <input type="text" name="name" id="name" class="input text-input">
-                                <label for="name" class="error-msg text-danger" id="name-error"></label>
-                            </div>
+                              <div class="item">
+                                  <label for="name" class="text-label">Department name</label>
+                                  <input type="text" name="name" id="name" class="input text-input"
+                                      placeholder="Eg: Medical Department" >
+                                  <label for="name" class="error-msg text-danger" id="name-error"></label>
+                              </div>
+                          </div>
+                          <div class="col">
+                              <div class="item">
+                                  <label for="description" class="text-label">Description</label>
+                                  <textarea rows="5" type="text" name="description" id="description" class="input text-input"
+                                      placeholder="Enter department's description" >${ department.description }</textarea>
+                                  <label for="address" class="error-msg text-danger" id="address-error"></label>
+                              </div>
+                          </div>
 
-                        </div>
-
-                        <div class="col">
-                            <div class="item">
-                                <label for="description" class="text-label">Description</label>
-                                <input type="text" name="description" id="description" class="input text-input"
-                                       placeholder="" >
-                                <label for="description" class="error-msg text-danger" id="description-error"></label>
-                            </div>
-                        </div>
-
-                        </div>
+                        
                         <div class="item d-flex justify-content-end">
                             <button type="button" id="submit" class="btn btn-primary">Save</button>
                             <button type="button" id="cancel" class="btn btn-light ml-2"
                                     onclick="goBack()">Back</button>
                         </div>
                     </form>
+                 </div>
                 </div>
             </div>
-
         </div>
 
     </div>
-</div>
+<jsp:include page="../_footer.jsp"></jsp:include>
 
 <!-- Modal -->
 <div class="modal fade" id="alertModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -59,7 +56,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Add Department</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Create Department</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>

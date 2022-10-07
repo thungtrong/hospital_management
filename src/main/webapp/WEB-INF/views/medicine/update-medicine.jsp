@@ -55,14 +55,15 @@
 
         </div>
     </div>
-
+	<jsp:include page="../_footer.jsp"></jsp:include>
+	
     <!-- Modal -->
     <div class="modal fade" id="alertModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Create Medicine</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Update Medicine</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>

@@ -43,7 +43,7 @@ document.getElementById("submit").addEventListener("click", function (e) {
 let btnList = document.getElementsByClassName("btn-remove-row");
 let tbodyTestDetail = document.getElementById("list-test-form-detail");
 let nothingElement = document.createElement("tr");
-nothingElement.innerHTML = `<td colspan='4' class='text-center'>Nothings to show</td>`;
+nothingElement.innerHTML = `<td colspan='4' class='text-center'>Nothing to show</td>`;
 
 function removeRow(e) {
     e.preventDefault();
@@ -106,7 +106,7 @@ document
                 if (data.length === 0) {
                     tr = document.createElement("tr");
                     tr.innerHTML =
-                        "<td colspan='4' class='text-center'>Nothings to show</td>";
+                        "<td colspan='4' class='text-center'>Nothing to show</td>";
                     patientListTable.append(tr);
                     return;
                 }

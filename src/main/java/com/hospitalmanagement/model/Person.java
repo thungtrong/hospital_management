@@ -33,6 +33,7 @@ public class Person {
 	@Temporal(TemporalType.DATE)
 	@Column(name="date_of_birth", nullable = false)
 	protected Date dateOfBirth;
+	
 	public Person() {
 	}
 	

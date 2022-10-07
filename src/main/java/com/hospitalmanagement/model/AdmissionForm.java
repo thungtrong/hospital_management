@@ -26,11 +26,11 @@ public class AdmissionForm {
 
 	@NotNull(message = "Please fill patient's date in")
 	@Temporal(TemporalType.DATE)
-	@Column(name = "date_in")
+	@Column(name = "date_in", nullable = false)
 	private Date dateIn;
 
 	@Temporal(TemporalType.DATE)
-	@Column(name = "date_out")
+	@Column(name = "date_out", nullable = false)
 	private Date dateOut;
 
 	@ManyToOne(fetch = FetchType.EAGER)

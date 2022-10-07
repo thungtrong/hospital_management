@@ -5,14 +5,14 @@
 <head>
     <meta charset="ISO-8859-1">
     <jsp:include page="../_shared.jsp"></jsp:include>
-    <title>Create Illness</title>
+    <title>Insert Illness</title>
 </head>
 
 <body>
 <jsp:include page="../_navbar.jsp"></jsp:include>
 <div class="container">
     <div class="form-container-outside">
-        <div class="title-form">Create Illness </div>
+        <div class="title-form">Insert Illness </div>
         <div class="detail-form">
             <div class="form-container-inside">
                 <div class="detail-illness">
@@ -29,8 +29,8 @@
                         <div class="col">
                             <div class="item">
                                 <label for="illnessDescription" class="text-label">Description</label>
-                                <input type="text" name="description" id="illnessDescription" class="input text-input"
-                                       placeholder="Eg: Acetaminophen">
+                                <textarea rows="5" name="description" id="illnessDescription" class="input text-input"
+                                       placeholder="Eg: Acetaminophen"></textarea>
                                 <label for="description" class="error-msg text-danger"
                                        id="illnessDescription-error"></label>
                             </div>
@@ -48,6 +48,7 @@
 
     </div>
 </div>
+<jsp:include page="../_footer.jsp"></jsp:include>
 
 <!-- Modal -->
 <div class="modal fade" id="alertModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -55,7 +56,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Create Illness</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Insert Illness</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>

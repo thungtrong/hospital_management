@@ -37,7 +37,7 @@ document
                 if (data.length === 0) {
                     tr = document.createElement("tr");
                     tr.innerHTML =
-                        "<td colspan='4' class='text-center'>Nothings to show</td>";
+                        "<td colspan='4' class='text-center'>Nothing to show</td>";
                     patientListTable.append(tr);
                     return;
                 }

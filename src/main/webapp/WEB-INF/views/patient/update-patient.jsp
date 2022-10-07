@@ -68,6 +68,7 @@
 
             </div>
         </div>
+		<jsp:include page="../_footer.jsp"></jsp:include>
 		
 		<!-- Modal -->
 		<div class="modal fade" id="alertModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

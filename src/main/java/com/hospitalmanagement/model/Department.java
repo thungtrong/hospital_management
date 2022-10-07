@@ -1,5 +1,6 @@
 package com.hospitalmanagement.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,9 +16,11 @@ public class Department {
 	@SequenceGenerator(name = "department_pk", allocationSize = 1, initialValue = 1)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "department_pk")
 	private Integer id;
+	
 	@NotEmpty(message = "Please fill department name")
+	@Column(nullable = false)
 	private String name;
-	@NotEmpty(message = "Please fill department description")
+	
 	private String description;
 
 	public Department() {

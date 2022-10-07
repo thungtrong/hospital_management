@@ -22,15 +22,15 @@
                                     <div class="item">
                                         <label for="name" class="text-label">Department name</label>
                                         <input type="text" name="name" id="name" class="input text-input"
-                                            placeholder="Eg: John Doe" value="${ department.name }">
+                                            placeholder="Eg: Medical Department" value="${ department.name }">
                                         <label for="name" class="error-msg text-danger" id="name-error"></label>
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="item">
                                         <label for="description" class="text-label">Description</label>
-                                        <input type="text" name="description" id="description" class="input text-input"
-                                            placeholder="" value="${ department.description }">
+                                        <textarea rows="5" type="text" name="description" id="description" class="input text-input"
+                                            placeholder="Enter department's description" value="${ department.description }">${ department.description }</textarea>
                                         <label for="address" class="error-msg text-danger" id="address-error"></label>
                                     </div>
                                 </div>
@@ -47,7 +47,8 @@
 
             </div>
         </div>
-
+		<jsp:include page="../_footer.jsp"></jsp:include>
+		
         <!-- Modal -->
         <div class="modal fade" id="alertModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
             aria-hidden="true">

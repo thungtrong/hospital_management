@@ -13,7 +13,7 @@ public class Account implements Serializable {
 	@Column(name = "password", length = 60, nullable = false)
 	private String password;
 	private String role;
-	@Column(columnDefinition = "CHAR(1) default 1")
+	@Column(columnDefinition = "CHAR(1) default 1", nullable = false)
 	private Boolean enable;
 
 	@OneToOne(fetch = FetchType.LAZY)

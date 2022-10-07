@@ -28,10 +28,6 @@
 			</div>
 			<div class="detail-table">
 				<div class="table-container-inside table-responsive">
-					<c:if test="${testFormListSize == 0 }">
-						<h2>No things to show</h2>
-					</c:if>
-					<c:if test="${ testFormListSize != 0 }">
 						<table class="table table-striped" id="test-form-table">
 							<thead>
 								<tr>
@@ -44,6 +40,11 @@
 							</thead>
 
 							<tbody id="test-form-list">
+								<c:if test="${ empty testFormList}">
+									<tr>
+										<td colspan="5" class="text-center text-danger">Nothing to show</td>
+									</tr>
+								</c:if>	
 								<c:forEach var="testForm" items="${ testFormList }">
 									<c:set var="patient" value="${ testForm.patient }"></c:set>
 									<tr>
@@ -75,7 +76,6 @@
 							</tbody>
 
 						</table>
-					</c:if>
 				</div>
 
 
@@ -124,7 +124,8 @@
 
 		</div>
 	</div>
-
+	<jsp:include page="../_footer.jsp"></jsp:include>
+	
 	<!-- Modal -->
 	<div class="modal fade" id="alertModel" tabindex="-1" role="dialog"
 		aria-labelledby="exampleModalLabel" aria-hidden="true">

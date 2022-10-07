@@ -5,14 +5,14 @@
 <head>
     <meta charset="ISO-8859-1">
     <jsp:include page="../_shared.jsp"></jsp:include>
-    <title>Create Medicine</title>
+    <title>Insert Medicine</title>
 </head>
 
 <body>
     <jsp:include page="../_navbar.jsp"></jsp:include>
     <div class="container">
         <div class="form-container-outside">
-            <div class="title-form">Create Medicine </div>
+            <div class="title-form">Insert Medicine </div>
             <div class="detail-form">
                 <div class="form-container-inside">
                     <div class="detail-medicine">
@@ -54,14 +54,15 @@
 
         </div>
     </div>
-
+	<jsp:include page="../_footer.jsp"></jsp:include>
+	
     <!-- Modal -->
     <div class="modal fade" id="alertModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Create Medicine</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Insert Medicine</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>

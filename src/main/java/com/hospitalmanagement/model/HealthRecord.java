@@ -4,6 +4,9 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+
+import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
 @Table(name = "health_record")
@@ -12,12 +15,17 @@ public class HealthRecord {
 	@SequenceGenerator(name = "health_record_pk")
 	@GeneratedValue(generator = "health_record_pk", strategy = GenerationType.SEQUENCE)
 	private Long id;
+	
+	@NotEmpty(message = "Please enter the creation date")
 	@Temporal(TemporalType.DATE)
-	@Column(name = "creation_date")
+	@Column(name = "creation_date", nullable = false)
 	private Date creationDate;
+	
+	
 	@Temporal(TemporalType.DATE)
 	@Column(name = "re_date")
 	private Date reDate;
+	
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "health_record_detail", joinColumns = @JoinColumn(name = "health_record_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "illness_id", referencedColumnName = "id"))
 	private List<Illness> illnessList;

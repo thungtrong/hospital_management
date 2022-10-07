@@ -106,7 +106,7 @@
 														<c:set var="details" value="${ testForm.details }"></c:set>
 														<c:if test="${ empty details  }">
 															<tr class="nothing">
-																<td class="text-center" colspan="4">Nothings to show
+																<td class="text-center" colspan="4">Nothing to show
 																</td>
 															</tr>
 														</c:if>
@@ -152,6 +152,7 @@
 
 				</div>
 				</div>
+				<jsp:include page="../_footer.jsp"></jsp:include>
 
 				<!-- Modal alertModal -->
 				<div class="modal fade" id="alertModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"

@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!-- Font -->
 <link
 	href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap"
@@ -26,5 +28,10 @@
 
 <!-- Css -->
 <link rel="stylesheet" href="/css/_shared.css" />
+
 <!-- Javascript -->
 <script rel="javascript" src="/js/constValue.js"></script>
+
+<!-- Constant Role -->
+<c:set var="ROLE_DOCTOR" value="ROLE_DOCTOR" scope="application"></c:set>
+<c:set var="ROLE_ADMIN" value="ROLE_ADMIN" scope="application"></c:set>

@@ -21,15 +21,11 @@
 			<div class="title-table">List Test</div>
 			<div class="d-flex justify-content-end">
 				<a href="/test/create" class="btn btn-success" id="create-button">
-					Create <i class="fa fa-plus" aria-hidden="true"></i>
+					Create<i class="fa fa-plus" aria-hidden="true"></i>
 				</a>
 			</div>
 			<div class="detail-table">
 				<div class="table-container-inside table-responsive">
-					<c:if test="${ testListSize == 0 }">
-						<h2>No things to show</h2>
-					</c:if>
-					<c:if test="${ testListSize != 0 }">
 						<table class="table table-striped" id="patient-table">
 							<thead>
 								<tr>
@@ -42,6 +38,11 @@
 							</thead>
 
 							<tbody id="test-list">
+								<c:if test="${ empty testList}">
+									<tr>
+										<td colspan="5" class="text-center text-danger">Nothing to show</td>
+									</tr>
+								</c:if>	
 								<c:forEach var="test" items="${ testList }">
 									<tr>
 										<th scope="row">${ test.id }</th>
@@ -66,7 +67,6 @@
 							</tbody>
 
 						</table>
-					</c:if>
 				</div>
 
 
@@ -111,7 +111,8 @@
 
 		</div>
 	</div>
-
+	<jsp:include page="../_footer.jsp"></jsp:include>
+	
 	<!-- Modal -->
 	<div class="modal fade" id="alertModel" tabindex="-1" role="dialog"
 		aria-labelledby="exampleModalLabel" aria-hidden="true">

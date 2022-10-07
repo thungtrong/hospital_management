@@ -94,7 +94,7 @@
 												</thead>
 												<tbody id="list-test-form-detail">
 													<tr class="nothing">
-														<td class="text-center" colspan="4">Nothings to show</td>
+														<td class="text-center" colspan="4">Nothing to show</td>
 													</tr>
 
 												</tbody>
@@ -117,7 +117,8 @@
 				</div>
 
 			</div>
-			</div>
+
+			<jsp:include page="../_footer.jsp"></jsp:include>
 
 			<!-- Modal alertModal -->
 			<div class="modal fade" id="alertModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -125,7 +126,7 @@
 				<div class="modal-dialog" role="document">
 					<div class="modal-content">
 						<div class="modal-header">
-							<h5 class="modal-title" id="exampleModalLabel">Add Test Form</h5>
+							<h5 class="modal-title" id="exampleModalLabel">Create Test Form</h5>
 							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 								<span aria-hidden="true">&times;</span>
 							</button>

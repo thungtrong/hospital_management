@@ -69,6 +69,7 @@ ol, ul {
 .footer-top {
     background: #3e4776;
     padding:50px 0 50px;
+    overflow: hidden;
 }
 .footer-top h4 {
     font-size: 19px;

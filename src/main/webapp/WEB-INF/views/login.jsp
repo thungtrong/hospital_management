@@ -17,6 +17,10 @@
     <title>Log In</title>
 </head>
 <body>
+	
+	<c:set var="ROLE_DOCTOR" value="ROLE_DOCTOR" scope="application"></c:set>
+	<c:set var="ROLE_ADMIN" value="ROLE_ADMIN" scope="application"></c:set>
+
     <div class="container">
         <div class="login-card">
             <div class="login">
@@ -38,7 +42,6 @@
                      <div class="btn">
 	                 			<!--  <div class="btn-in">LOGIN</div>  -->
 	                    <button type="submit" class="btn-in">LOGIN</button>
-			                <a href="/signup" class="sign-up">Sign up</a>
 	                </div>
                 </form>
                 

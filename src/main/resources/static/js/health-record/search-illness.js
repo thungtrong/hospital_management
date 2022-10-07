@@ -64,7 +64,7 @@ function generateIllnessRow(illness) {
 let tbodyListIllness = document.getElementById("tbody-list-illness");
 let nothingElement3 = document.createElement("tr");
 nothingElement3.className = "nothing";
-nothingElement3.innerHTML = `<td class="text-center" colspan="3">Nothings to show</td>`;
+nothingElement3.innerHTML = `<td class="text-center" colspan="3">Nothing to show</td>`;
 
 function removeIllnessNothingElement() {
     if (tbodyListIllness.firstElementChild?.className == "nothing")

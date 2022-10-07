@@ -90,7 +90,7 @@
 
 		</div>
 	</div>
-
+	<jsp:include page="../_footer.jsp"></jsp:include>
 
 	<!-- Javascript -->
 	<script type="text/javascript" src="/js/admission/view-admission.js"></script>

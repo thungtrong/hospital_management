@@ -26,19 +26,13 @@
                                 <label for="name" class="error-msg text-danger"
                                        id="medicineName-error"></label>
                             </div>
-                            <div class="item">
-                                <label for="illnessDescription" class="text-label">Illness description</label>
-                                <textarea name="description" id="illnessDescription" class="input text-input"
-                                          placeholder="Eg: Acetaminophen" rows="5">${ illness.description }</textarea>
-                                <label for="description" class="error-msg text-danger"
-                                       id="medicineDescription-error"></label>
-                        </div>
+                         </div>
                         
                         <div class="col">
                             <div class="item">
                                 <label for="illnessDescription" class="text-label">Description</label>
-                                <input type="text" name="description" id="illnessDescription" class="input text-input"
-                                       placeholder="Eg: Acetaminophen"  value="${ illness.description }">
+                                <textarea name="description" id="illnessDescription" class="input text-input"
+                                          placeholder="Eg: Acetaminophen" rows="5">${ illness.description }</textarea>
                                 <label for="description" class="error-msg text-danger"
                                        id="illnessDescription-error"></label>
                             </div>
@@ -56,6 +50,7 @@
 
     </div>
 </div>
+<jsp:include page="../_footer.jsp"></jsp:include>
 
 <!-- Modal -->
 <div class="modal fade" id="alertModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -63,7 +58,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Create Medicine</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Insert Illness</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>

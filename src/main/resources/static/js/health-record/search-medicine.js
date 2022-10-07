@@ -67,7 +67,7 @@ function generateMedicineRow(medicine) {
 let tbodyListMedicine = document.getElementById("list-prescription-detail");
 let nothingElement4 = document.createElement("tr");
 nothingElement4.className = "nothing";
-nothingElement4.innerHTML = `<td class="text-center" colspan="4">Nothings to show</td>`;
+nothingElement4.innerHTML = `<td class="text-center" colspan="4">Nothing to show</td>`;
 
 function removeMedinceNothingElement() {
     if (tbodyListMedicine.firstElementChild.className === "nothing")

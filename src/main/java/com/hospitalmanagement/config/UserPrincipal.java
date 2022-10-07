@@ -2,6 +2,8 @@ package com.hospitalmanagement.config;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -10,10 +12,15 @@ import org.springframework.security.core.userdetails.UserDetails;
 import com.hospitalmanagement.model.Account;
 
 public class UserPrincipal implements UserDetails{
-	static final String DOCTOR = "DOCTOR";
-	static final String ADMIN = "ADMIN";
+	public static final String DOCTOR = "DOCTOR";
+	public static final String ADMIN = "ADMIN";
+	public static final String ROLE_DOCTOR = "ROLE_DOCTOR";
+	public static final String ROLE_ADMIN = "ROLE_ADMIN";
+	
 	
 	private Account account;
+	
+	private Map<String, Boolean> rolesMap;
 	
 	public UserPrincipal() {
 		// TODO Auto-generated constructor stub
@@ -27,8 +34,8 @@ public class UserPrincipal implements UserDetails{
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		String role = account.getRole();
-		role = role.equals("") ? DOCTOR : role;
-		role = "ROLE_" + role;
+		role = role.equals(ADMIN) ? ROLE_ADMIN : ROLE_DOCTOR;
+		
 		return Collections.singleton(new SimpleGrantedAuthority(role));
 	}
 
@@ -64,8 +71,29 @@ public class UserPrincipal implements UserDetails{
 
 	@Override
 	public boolean isEnabled() {
-//		return account.getEnable();
-		return true;
+		return account.getEnable();
+//		return true;
 	}
 
+	public Account getAccount() {
+		return account;
+	}
+	
+	public void setAccount(Account account)
+	{
+		this.account=account;
+	}
+
+	public Map<String, Boolean> getRolesMap() {
+		if (rolesMap == null || rolesMap.isEmpty()) {
+			rolesMap = new HashMap<>();
+			rolesMap.put("isDoctor", account.getRole().equals(DOCTOR));
+			rolesMap.put("isAdmin", account.getRole().equals(ADMIN));
+		}
+		
+		return rolesMap;
+	}
+	
+
+	
 }
