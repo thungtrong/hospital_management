@@ -51,7 +51,6 @@ public class DashboardController {
         
         Map<String, Boolean> rolesMap = userPrincipal.getRolesMap();
         modelAndView.addAllObjects(rolesMap);
-        System.out.println(rolesMap);
         return modelAndView;
     }
 }
