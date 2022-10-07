@@ -25,11 +25,11 @@ public class AuthController {
 	public ModelAndView loginPage(HttpServletRequest request, Authentication authentication) {
 		ModelAndView model = new ModelAndView();
 		
-//		if (authentication != null && authentication.isAuthenticated())
-//		{
-//			model.setViewName("redirect:/");
-//			return model;
-//		}
+		if (authentication != null && authentication.isAuthenticated())
+		{
+			model.setViewName("redirect:/");
+			return model;
+		}
 
 		System.out.println(authentication);
 		model.setViewName("login");
