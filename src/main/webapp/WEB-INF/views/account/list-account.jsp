@@ -49,7 +49,7 @@
 							<c:forEach var="account" items="${ accountList }">
 								<c:set var="person" value="${ account.doctor }"></c:set>
 								<tr>
-									<th scope="row">${ account.username }</th>
+									<td scope="row">${ account.username }</td>
 									<td>${ person.name }</td>
 									<td>${ person.phoneNumber }</td>
 									<td>${ account.role }</td>
@@ -130,7 +130,7 @@
 				<div class="modal-body" id="modal-body">...</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-					<button type="button" class="btn btn-primary" id="btn-toogle-account">Toggle</button>
+					<button type="button" class="btn btn-primary" id="btn-toggle-account">Toggle</button>
 				</div>
 			</div>
 		</div>

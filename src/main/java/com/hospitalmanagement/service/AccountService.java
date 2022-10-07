@@ -27,6 +27,10 @@ public class AccountService implements UserDetailsService {
 			throw new UsernameNotFoundException(String.format("%s not exists", username));
 		return new UserPrincipal(account);
 	}
+	public Account findByUsername(String username) {
+		Account account = accountRepository.findById(username).orElse(null);
+		return account;
+	}
 	
 	public Account saveAccount(Account account)
 	{

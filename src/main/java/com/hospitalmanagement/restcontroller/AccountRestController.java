@@ -26,4 +26,17 @@ public class AccountRestController {
 		accountService.saveAccount(account);
 		return account;
 	}
+	@PutMapping("/toggle-status")
+	public Boolean toggleStatus(@RequestBody Account account)
+	{
+		try {
+			Account account2 = accountService.findByUsername(account.getUsername());
+			account2.setEnable(!account2.getEnable());
+			accountService.saveAccount(account2);
+			System.out.println(account2.getEnable());
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
 }
