@@ -19,9 +19,11 @@
     <div class="table-container-outside">
         <div class="title-table">List Illness</div>
         <div class="d-flex justify-content-end">
-            <a href="/illness/create" class="btn btn-success" id="create-button">
-                Create <i class="fa fa-plus" aria-hidden="true"></i>
-            </a>
+        	<c:if test="${ isAdmin }">
+	            <a href="/illness/create" class="btn btn-success" id="create-button">
+	                Create <i class="fa fa-plus" aria-hidden="true"></i>
+	            </a>
+        	</c:if>
         </div>
         <div class="detail-table">
             <div class="table-container-inside table-responsive">

@@ -21,9 +21,11 @@
     <div class="table-container-outside">
         <div class="title-table">List Department</div>
         <div class="d-flex justify-content-end">
-            <a href="/department/create" class="btn btn-success" id="create-button">
-                Create <i class="fa fa-plus" aria-hidden="true"></i>
-            </a>
+        	<c:if test="${ isAdmin }">
+	            <a href="/department/create" class="btn btn-success" id="create-button">
+	                Create <i class="fa fa-plus" aria-hidden="true"></i>
+	            </a>
+        	</c:if>
         </div>
         <div class="detail-table">
             <div class="table-container-inside table-responsive">
