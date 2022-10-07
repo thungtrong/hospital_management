@@ -60,10 +60,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/api/illness/update**", "/api/illness/create**").hasRole(UserPrincipal.ADMIN)
 				.antMatchers("/api/test/update**", "/api/test/create**").hasRole(UserPrincipal.ADMIN)
 				.antMatchers("/api/account**").hasRole(UserPrincipal.ADMIN)
-<<<<<<< HEAD
-				
-=======
->>>>>>> d0a06668732e8ffa00ce7410e41d8e8c9df74179
 			.and()
 				.formLogin()
 				.loginPage("/login").permitAll()
