@@ -1,6 +1,7 @@
 package com.hospitalmanagement.controller;
 
 
+import com.hospitalmanagement.config.UserPrincipal;
 import com.hospitalmanagement.model.Illness;
 import com.hospitalmanagement.service.IllnessService;
 
@@ -40,10 +41,8 @@ public class IllnessController {
         modelAndView.addObject("currentPage", pageTest.getNumber()+1);
         modelAndView.addObject("totalPage", pageTest.getTotalPages());
 
-        @SuppressWarnings("unchecked")
-		List<GrantedAuthority> authorities = (List<GrantedAuthority>) authentication.getAuthorities();
-		String role = authorities.get(0).getAuthority();
-		modelAndView.addObject("ROLE", role);
+        UserPrincipal userPrincipal = (UserPrincipal) authentication.getPrincipal();
+        modelAndView.addAllObjects(userPrincipal.getRolesMap());
         
         return modelAndView;
     }

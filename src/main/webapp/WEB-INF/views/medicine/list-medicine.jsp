@@ -49,13 +49,10 @@
 										<td>${ medicine.unit }</td>
 										<td>${ medicine.instruction }</td>
 										<td class="group-action">
-											<!-- <a href="/medicine/view/${ test.id }" type="button" class="btn btn-secondary"> <i class="fa fa-eye" aria-hidden="true"></i></a> -->
-											<a href="/medicine/update/${ medicine.id }" type="button"
-												class="btn btn-primary">
-												<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-											</a>
-											<c:set var="ROLE_ADMIN" value="ROLE_ADMIN"></c:set>
-                                    		<c:if test="${ ROLE == ROLE_ADMIN }">
+											<c:if test="${ isAdmin }">
+												<a href="/medicine/update/${ medicine.id }" type="button" class="btn btn-primary">
+													<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+												</a>
 												<a onclick="deleteMedicineModal(this)" type="button" class="btn btn-danger">
 													<i class="fa fa-trash-o" aria-hidden="true"></i>
 												</a>
@@ -134,8 +131,8 @@
 	</div>
 
 	<!-- Javascript -->
-	<c:set var="ROLE_ADMIN" value="ROLE_ADMIN"></c:set>
-	<c:if test="${ ROLE == ROLE_ADMIN }">
+	
+	<c:if test="${ isAdmin }">
 		<script type="text/javascript" src="/js/medicine/list-medicine.js"></script>
 	</c:if>
 

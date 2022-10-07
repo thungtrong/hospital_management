@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.hospitalmanagement.model.TestForm;
+import com.hospitalmanagement.config.UserPrincipal;
 import com.hospitalmanagement.model.Medicine;
 import com.hospitalmanagement.model.Test;
 import com.hospitalmanagement.service.MedicineService;
@@ -43,10 +44,8 @@ public class MedicineController {
 		modelAndView.addObject("currentPage", pageTest.getNumber()+1);
 		modelAndView.addObject("totalPage", pageTest.getTotalPages());
 		
-		@SuppressWarnings("unchecked")
-		List<GrantedAuthority> authorities = (List<GrantedAuthority>) authentication.getAuthorities();
-		String role = authorities.get(0).getAuthority();
-		modelAndView.addObject("ROLE", role);
+		UserPrincipal userPrincipal = (UserPrincipal) authentication.getPrincipal();
+        modelAndView.addAllObjects(userPrincipal.getRolesMap());
 		
 		return modelAndView;
 	}

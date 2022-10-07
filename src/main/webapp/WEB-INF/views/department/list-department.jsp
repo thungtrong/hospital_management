@@ -51,12 +51,11 @@
                                 <td>${ department.description }</td>
                                 <td class="group-action">
                                    
-                                    <a href="/department/update/${ department.id }" type="button"
-                                       class="btn btn-primary">
-                                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                                    </a>
-                                    <c:set var="ROLE_ADMIN" value="ROLE_ADMIN"></c:set>
-                                    <c:if test="${ ROLE == ROLE_ADMIN }">
+                                    <c:if test="${ isAdmin }">
+	                                    <a href="/department/update/${ department.id }" type="button"
+	                                       class="btn btn-primary">
+	                                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+	                                    </a>
 	                                    <a onclick="deleteDepartmentModal(this)" type="button" class="btn btn-danger">
 	                                        <i class="fa fa-trash-o" aria-hidden="true"></i>
 	                                    </a>
@@ -135,7 +134,7 @@
 </div>
 
 <!-- Javascript -->
-	<c:if test="${ ROLE == ROLE_ADMIN }">
+	<c:if test="${ isAdmin }">
 		<script type="text/javascript" src="/js/department/list-department.js"></script>
 	</c:if>
 

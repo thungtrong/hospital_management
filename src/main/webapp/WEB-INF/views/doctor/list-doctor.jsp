@@ -54,19 +54,14 @@
 											<fmt:formatDate value="${ doctor.dateOfBirth }" type="date" />
 										</td>
 										<td class="group-action">
-											<!-- <a href="/doctor/view/${ doctor.id }"
-										type="button" class="btn btn-secondary"> <i
-											class="fa fa-eye" aria-hidden="true"></i>
-									</a> --> <a href="/doctor/update/${ doctor.id }" type="button" class="btn btn-primary"> <i
-													class="fa fa-pencil-square-o" aria-hidden="true"></i>
-											
+											<c:if test="${ isAdmin }">
+												<a href="/doctor/update/${ doctor.id }" type="button" class="btn btn-primary"> 
+													<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
 												</a> 
-												<c:set var="ROLE_ADMIN" value="ROLE_ADMIN"></c:set>
-	                                    		<c:if test="${ ROLE == ROLE_ADMIN }">
-													<a onclick="deleteDoctorModal(this)" type="button"
-														class="btn btn-danger"> <i class="fa fa-trash-o" aria-hidden="true"></i>
-													</a>
-												</c:if>
+												<a onclick="deleteDoctorModal(this)" type="button"
+													class="btn btn-danger"> <i class="fa fa-trash-o" aria-hidden="true"></i>
+												</a>
+											</c:if>
 										</td>
 									</tr>
 
@@ -140,7 +135,7 @@
 	</div>
 
 	<!-- Javascript -->
-	<c:if test="${ ROLE == ROLE_ADMIN }">	
+	<c:if test="${ isAdmin }">	
 		<script type="text/javascript" src="/js/doctor/list-doctor.js"></script>
 	</c:if>
 

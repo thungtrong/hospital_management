@@ -22,12 +22,20 @@ public class AuthController {
 	}
 
 	@GetMapping(value = { "/login" })
-	public ModelAndView loginPage(HttpServletRequest request) {
-		System.out.println("login page");
+	public ModelAndView loginPage(HttpServletRequest request, Authentication authentication) {
+		ModelAndView model = new ModelAndView();
+		
+		if (authentication != null && authentication.isAuthenticated())
+		{
+			model.setViewName("redirect:/");
+			return model;
+		}
+		
+		model.setViewName("login");
 		String error = request.getParameter("error");
-		ModelAndView model = new ModelAndView("login");
 		if (error != null)
 			model.addObject("error", true);
+		
 		return model;
 	}
 

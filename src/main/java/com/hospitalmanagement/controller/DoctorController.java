@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.hospitalmanagement.config.UserPrincipal;
 import com.hospitalmanagement.model.Department;
 import com.hospitalmanagement.model.Doctor;
 import com.hospitalmanagement.service.DepartmentService;
@@ -45,12 +46,8 @@ public class DoctorController {
 		modelAndView.addObject("currentPage", pageDoctor.getNumber()+1);
 		modelAndView.addObject("totalPage", pageDoctor.getTotalPages());
 		
-		@SuppressWarnings("unchecked")
-		List<GrantedAuthority> authorities = (List<GrantedAuthority>) authentication.getAuthorities();
-		String role = authorities.get(0).getAuthority();
-		modelAndView.addObject("ROLE", role);
-
-
+		UserPrincipal userPrincipal = (UserPrincipal) authentication.getPrincipal();
+        modelAndView.addAllObjects(userPrincipal.getRolesMap());
 		return modelAndView;
 	}
 	

@@ -14,7 +14,7 @@
 
 <body>
 	<jsp:include page="../_navbar.jsp"></jsp:include>
-	<c:set var="ROLE_ADMIN" value="ROLE_ADMIN"></c:set>
+	
 	
 	<input type="hidden" id="admission-id" />
 	
@@ -70,10 +70,10 @@
 												<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
 											</a>
 											
-											<c:if test="${ ROLE == ROLE_ADMIN }">
-											<a onclick="deletePatientModal(this)" type="button" class="btn btn-danger">
-												<i class="fa fa-trash-o" aria-hidden="true"></i>
-											</a>
+											<c:if test="${ isAdmin }">
+												<a onclick="deletePatientModal(this)" type="button" class="btn btn-danger">
+													<i class="fa fa-trash-o" aria-hidden="true"></i>
+												</a>
 											</c:if>
 										</td>
 									</tr>
@@ -150,7 +150,7 @@
 
 
 	<!-- Javascript -->
-	<c:if test="${ ROLE == ROLE_ADMIN }">
+	<c:if test="${ isAdmin }">
 		<script type="text/javascript" src="/js/admission/list-admission.js"></script>
 	</c:if>
 </body>

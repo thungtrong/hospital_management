@@ -62,8 +62,7 @@
 												class="btn btn-primary">
 												<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
 											</a>
-											<c:set var="ROLE_ADMIN" value="ROLE_ADMIN"></c:set>
-                                    		<c:if test="${ ROLE == ROLE_ADMIN }">
+											<c:if test="${ isAdmin }">
 												<a onclick="deleteTestFormModal(this)" type="button"
 													class="btn btn-danger">
 													<i class="fa fa-trash-o" aria-hidden="true"></i>
@@ -149,8 +148,8 @@
 
 
 	<!-- Javascript -->
-	<c:set var="ROLE_ADMIN" value="ROLE_ADMIN"></c:set>
-           		<c:if test="${ ROLE == ROLE_ADMIN }">
+	
+           		<c:if test="${ isAdmin }">
 		<script type="text/javascript" src="/js/${base}/list-test-form.js"></script>
            		</c:if>
 
