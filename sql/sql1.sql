@@ -43,18 +43,18 @@ SET DEFINE OFF;
 
 REM INSERTING into VN_JAVA2.MEDICINE
 SET DEFINE OFF;
-Insert into VN_JAVA2.MEDICINE (INSTRUCTION,NAME,UNIT) values (null,'Acetaminophen','pellet');
-Insert into VN_JAVA2.MEDICINE (INSTRUCTION,NAME,UNIT) values (null,'Adderall','pellet');
-Insert into VN_JAVA2.MEDICINE (INSTRUCTION,NAME,UNIT) values (null,'Bacitracin','pellet');
-Insert into VN_JAVA2.MEDICINE (INSTRUCTION,NAME,UNIT) values (null,'Candesartan','pellet');
-Insert into VN_JAVA2.MEDICINE (INSTRUCTION,NAME,UNIT) values (null,'Denosumab','pellet');
-Insert into VN_JAVA2.MEDICINE (INSTRUCTION,NAME,UNIT) values (null,'Esomeprazole','pellet');
-Insert into VN_JAVA2.MEDICINE (INSTRUCTION,NAME,UNIT) values (null,'Estradiol','pellet');
-Insert into VN_JAVA2.MEDICINE (INSTRUCTION,NAME,UNIT) values (null,'Fludrocortisone','pellet');
-Insert into VN_JAVA2.MEDICINE (INSTRUCTION,NAME,UNIT) values (null,'Glutathione','pellet');
-Insert into VN_JAVA2.MEDICINE (INSTRUCTION,NAME,UNIT) values (null,'Halobetasol','pellet');
-Insert into VN_JAVA2.MEDICINE (INSTRUCTION,NAME,UNIT) values (null,'Inflectra','pellet');
-Insert into VN_JAVA2.MEDICINE (INSTRUCTION,NAME,UNIT) values (null,'Vilazodone','pellet');
+Insert into VN_JAVA2.MEDICINE (ID, INSTRUCTION,NAME,UNIT) values (1,null,'Acetaminophen','pellet');
+Insert into VN_JAVA2.MEDICINE (ID, INSTRUCTION,NAME,UNIT) values (2,null,'Adderall','pellet');
+Insert into VN_JAVA2.MEDICINE (ID, INSTRUCTION,NAME,UNIT) values (3,null,'Bacitracin','pellet');
+Insert into VN_JAVA2.MEDICINE (ID, INSTRUCTION,NAME,UNIT) values (4,null,'Candesartan','pellet');
+Insert into VN_JAVA2.MEDICINE (ID, INSTRUCTION,NAME,UNIT) values (5,null,'Denosumab','pellet');
+Insert into VN_JAVA2.MEDICINE (ID, INSTRUCTION,NAME,UNIT) values (6,null,'Esomeprazole','pellet');
+Insert into VN_JAVA2.MEDICINE (ID, INSTRUCTION,NAME,UNIT) values (7,null,'Estradiol','pellet');
+Insert into VN_JAVA2.MEDICINE (ID, INSTRUCTION,NAME,UNIT) values (8,null,'Fludrocortisone','pellet');
+Insert into VN_JAVA2.MEDICINE (ID, INSTRUCTION,NAME,UNIT) values (9,null,'Glutathione','pellet');
+Insert into VN_JAVA2.MEDICINE (ID, INSTRUCTION,NAME,UNIT) values (10,null,'Halobetasol','pellet');
+Insert into VN_JAVA2.MEDICINE (ID, INSTRUCTION,NAME,UNIT) values (11,null,'Inflectra','pellet');
+Insert into VN_JAVA2.MEDICINE (ID, INSTRUCTION,NAME,UNIT) values (12,null,'Vilazodone','pellet');
 
 REM INSERTING into VN_JAVA2.PATIENT
 SET DEFINE OFF;

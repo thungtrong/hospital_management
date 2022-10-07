@@ -24,12 +24,12 @@ public class AuthController {
 	@GetMapping(value = { "/login" })
 	public ModelAndView loginPage(HttpServletRequest request, Authentication authentication) {
 		ModelAndView model = new ModelAndView();
-		
-		if (authentication != null && authentication.isAuthenticated())
-		{
-			model.setViewName("redirect:/");
-			return model;
-		}
+		System.out.println(authentication);
+//		if (authentication != null && authentication.isAuthenticated())
+//		{
+//			model.setViewName("redirect:/");
+//			return model;
+//		}
 		
 		model.setViewName("login");
 		String error = request.getParameter("error");
