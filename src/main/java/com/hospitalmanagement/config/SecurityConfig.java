@@ -41,12 +41,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http
 			.csrf().disable()
 			.authorizeRequests()
-				.antMatchers("/public/**", "/api/account/**", "/error").permitAll()
+				.antMatchers("/public/**", "/error").permitAll()
+				.antMatchers("/account**").hasRole(UserPrincipal.ADMIN)
 				.anyRequest().authenticated()
 			.and()
-				.authorizeHttpRequests()
-				.antMatchers("/api/**/delete**").hasRole(UserPrincipal.ADMIN)
-				//.antMatchers("/api/**").hasAnyRole(UserPrincipal.DOCTOR, UserPrincipal.ADMIN)
+			.authorizeHttpRequests() // For API
+				.antMatchers("/api/**/delete**").hasRole(UserPrincipal.ADMIN)  
+				.antMatchers("/api/doctor/update**", "/api/doctor/create**").hasRole(UserPrincipal.ADMIN) 
+				.antMatchers("/api/department/update**", "/api/department/create**").hasRole(UserPrincipal.ADMIN)
+				.antMatchers("/api/medicine/update**", "/api/medicine/create**").hasRole(UserPrincipal.ADMIN)
+				.antMatchers("/api/illness/update**", "/api/illness/create**").hasRole(UserPrincipal.ADMIN)
+				.antMatchers("/api/account**").hasRole(UserPrincipal.ADMIN)
 			.and()
 				.formLogin()
 				.loginPage("/login").permitAll()
@@ -59,7 +64,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
 				.logoutSuccessUrl("/login")
 			.and()
-//				.authenticationProvider(authProvider())
+				.authenticationProvider(authProvider())
 				.httpBasic();
 	}
 }
