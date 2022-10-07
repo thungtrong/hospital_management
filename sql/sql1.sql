@@ -20,6 +20,7 @@ Insert into VN_JAVA2.DOCTOR (ID,ADDRESS,DATE_OF_BIRTH,GENDER,NAME,PHONE_NUMBER,D
 Insert into VN_JAVA2.DOCTOR (ID,ADDRESS,DATE_OF_BIRTH,GENDER,NAME,PHONE_NUMBER,DEPARTMENT_ID) values (2,'724, Millersburg Cynthiana Road, Bourbon County, Kentucky, 40361, United States',to_date('06-FEB-86','DD-MON-RR'),1,'Sara McGee','5081053325',null);
 
 
+
 Insert into VN_JAVA2.PATIENT (ID,ADDRESS,DATE_OF_BIRTH,GENDER,NAME,PHONE_NUMBER) values (1,' Brawners Levee Road, Weakley County, West Tennessee, Tennessee, 38229, United States',to_date('12-JUL-50','DD-MON-RR'),1,'Doreen Wilkinson','4089093803');
 Insert into VN_JAVA2.PATIENT (ID,ADDRESS,DATE_OF_BIRTH,GENDER,NAME,PHONE_NUMBER) values (2,'Barren Island, United States',to_date('05-DEC-70','DD-MON-RR'),0,'Shah Khada','8024868256');
 Insert into VN_JAVA2.PATIENT (ID,ADDRESS,DATE_OF_BIRTH,GENDER,NAME,PHONE_NUMBER) values (3,'Ho Chi Minh city',to_date('11-DEC-99','DD-MON-RR'),'0','Nguyen Huy Quyen','0937825673');
@@ -61,8 +62,13 @@ Insert into VN_JAVA2.MEDICINE (Id,INSTRUCTION,NAME,UNIT) values ( 12,null,'Vilaz
 
 
 
-
 Insert into VN_JAVA2.TEST (ID,DESCRIPTION,NORMAL_RESULT,TEST_NAME) values (100,null,'5,000,000 red cells per cubic millimetre','Red blood cells');
 Insert into VN_JAVA2.TEST (ID,DESCRIPTION,NORMAL_RESULT,TEST_NAME) values (101,null,'7,000 white cells per cubic millimetre','White blood cells');
-
+--insert test
+Insert into VN_JAVA2.TEST (ID,DESCRIPTION,NORMAL_RESULT,TEST_NAME) values (102,null,'4.5-5.5','Haemoglobin');
+Insert into VN_JAVA2.TEST (ID,DESCRIPTION,NORMAL_RESULT,TEST_NAME) values (103,null,'3.5-5.0','Haematocrit');
+Insert into VN_JAVA2.TEST (ID,DESCRIPTION,NORMAL_RESULT,TEST_NAME) values (104,null,'135-165','Mean corpuscular volume');
+Insert into VN_JAVA2.TEST (ID,DESCRIPTION,NORMAL_RESULT,TEST_NAME) values (105,null,'32-36','Mean corpuscular haemoglobin');
+Insert into VN_JAVA2.TEST (ID,DESCRIPTION,NORMAL_RESULT,TEST_NAME) values (106,null,'11.5-14.5','Mean corpuscular haemoglobin concentration');
+Insert into VN_JAVA2.TEST (ID,DESCRIPTION,NORMAL_RESULT,TEST_NAME) values (107,null,'150-450','Platelets');
 commit;
