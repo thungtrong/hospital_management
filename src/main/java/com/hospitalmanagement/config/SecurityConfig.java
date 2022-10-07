@@ -49,6 +49,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/department/create", "/department/update").hasRole(UserPrincipal.ADMIN)
 				.antMatchers("/medicine/update**", "/medicine/create**").hasRole(UserPrincipal.ADMIN)
 				.antMatchers("/illness/update**", "/illness/create**").hasRole(UserPrincipal.ADMIN)
+				.antMatchers("/test/update**", "/test/create**").hasRole(UserPrincipal.ADMIN)
 			.and()
 			.authorizeHttpRequests() // For API
 				.antMatchers("/api/**/delete**").hasRole(UserPrincipal.ADMIN)  
@@ -56,6 +57,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/api/department/update**", "/api/department/create**").hasRole(UserPrincipal.ADMIN)
 				.antMatchers("/api/medicine/update**", "/api/medicine/create**").hasRole(UserPrincipal.ADMIN)
 				.antMatchers("/api/illness/update**", "/api/illness/create**").hasRole(UserPrincipal.ADMIN)
+				.antMatchers("/api/test/update**", "/api/test/create**").hasRole(UserPrincipal.ADMIN)
 				.antMatchers("/api/account**").hasRole(UserPrincipal.ADMIN)
 				.anyRequest().authenticated()
 			.and()

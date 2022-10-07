@@ -20,9 +20,11 @@
 		<div class="table-container-outside">
 			<div class="title-table">List Test</div>
 			<div class="d-flex justify-content-end">
-				<a href="/test/create" class="btn btn-success" id="create-button">
-					Create<i class="fa fa-plus" aria-hidden="true"></i>
-				</a>
+				<c:if test="${ isAdmin }">				
+					<a href="/test/create" class="btn btn-success" id="create-button">
+						Create<i class="fa fa-plus" aria-hidden="true"></i>
+					</a>
+				</c:if>
 			</div>
 			<div class="detail-table">
 				<div class="table-container-inside table-responsive">
@@ -51,10 +53,11 @@
 										<td>${ test.description }</td>
 										<td class="group-action">
 											<!-- <a href="/test/view/${ test.id }" type="button" class="btn btn-secondary"> <i class="fa fa-eye" aria-hidden="true"></i></a> --> 
-											<a href="/test/update/${ test.id }" type="button" class="btn btn-primary"> 
-												<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-											</a> 
 											<c:if test="${ isAdmin }">
+												<a href="/test/update/${ test.id }" type="button" class="btn btn-primary"> 
+													<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+												</a> 
+											
 												<a onclick="deleteTestModal(this)" type="button" class="btn btn-danger">
 													<i class="fa fa-trash-o" aria-hidden="true"></i>
 												</a>

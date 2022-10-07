@@ -45,5 +45,5 @@ function goBack() {
 }
 
 function goToTestList() {
-    window.location.href = BASE_ADMISSION_URL;
+    window.location.href = BASE_TEST_URL;
 }
