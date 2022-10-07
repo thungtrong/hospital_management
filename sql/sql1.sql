@@ -13,31 +13,31 @@ Insert into VN_JAVA2.ACCOUNT (USERNAME,PASSWORD,ROLE) values ('doctor1','$2a$10$
 
 REM INSERTING into VN_JAVA2.DOCTOR
 SET DEFINE OFF;
-Insert into VN_JAVA2.DOCTOR (ID,ADDRESS,DATE_OF_BIRTH,GENDER,NAME,PHONE_NUMBER,DEPARTMENT_ID) values (1,'hcmc',to_date('11-NOV-11','DD-MON-RR'),'0','doca','0987654321',null);
-Insert into VN_JAVA2.DOCTOR (ID,ADDRESS,DATE_OF_BIRTH,GENDER,NAME,PHONE_NUMBER,DEPARTMENT_ID) values (4,'Quang Ngai',to_date('31-DEC-80','DD-MON-RR'),'0','oidpsff','0987654316',null);
-Insert into VN_JAVA2.DOCTOR (ID,ADDRESS,DATE_OF_BIRTH,GENDER,NAME,PHONE_NUMBER,DEPARTMENT_ID) values (3,'Ha noi',to_date('12-DEC-80','DD-MON-RR'),'0','sadfghj','0987746728',null);
-Insert into VN_JAVA2.DOCTOR (ID,ADDRESS,DATE_OF_BIRTH,GENDER,NAME,PHONE_NUMBER,DEPARTMENT_ID) values (5,'Dong Thap',to_date('21-MAR-85','DD-MON-RR'),'0','doc skal as','0987654632',null);
-Insert into VN_JAVA2.DOCTOR (ID,ADDRESS,DATE_OF_BIRTH,GENDER,NAME,PHONE_NUMBER,DEPARTMENT_ID) values (26,'tmp',to_date('12-DEC-00','DD-MON-RR'),'0','tmp','0987654324',null);
+Insert into VN_JAVA2.DOCTOR (ADDRESS,DATE_OF_BIRTH,GENDER,NAME,PHONE_NUMBER,DEPARTMENT_ID) values ('hcmc',to_date('11-NOV-11','DD-MON-RR'),'0','doca','0987654321',null);
+Insert into VN_JAVA2.DOCTOR (ADDRESS,DATE_OF_BIRTH,GENDER,NAME,PHONE_NUMBER,DEPARTMENT_ID) values ('Quang Ngai',to_date('31-DEC-80','DD-MON-RR'),'0','oidpsff','0987654316',null);
+Insert into VN_JAVA2.DOCTOR (ADDRESS,DATE_OF_BIRTH,GENDER,NAME,PHONE_NUMBER,DEPARTMENT_ID) values ('Ha noi',to_date('12-DEC-80','DD-MON-RR'),'0','sadfghj','0987746728',null);
+Insert into VN_JAVA2.DOCTOR (ADDRESS,DATE_OF_BIRTH,GENDER,NAME,PHONE_NUMBER,DEPARTMENT_ID) values ('Dong Thap',to_date('21-MAR-85','DD-MON-RR'),'0','doc skal as','0987654632',null);
+Insert into VN_JAVA2.DOCTOR (ADDRESS,DATE_OF_BIRTH,GENDER,NAME,PHONE_NUMBER,DEPARTMENT_ID) values ('tmp',to_date('12-DEC-00','DD-MON-RR'),'0','tmp','0987654324',null);
 
 REM INSERTING into VN_JAVA2.PATIENT
 SET DEFINE OFF;
-Insert into VN_JAVA2.PATIENT (ID,ADDRESS,DATE_OF_BIRTH,GENDER,NAME,PHONE_NUMBER) values (22,'Ho Chi Minh city',to_date('11-DEC-99','DD-MON-RR'),'0','Nguyen Huy Quyen','0937825673');
-Insert into VN_JAVA2.PATIENT (ID,ADDRESS,DATE_OF_BIRTH,GENDER,NAME,PHONE_NUMBER) values (2,'Ho Chi Minh city',to_date('01-FEB-90','DD-MON-RR'),'0','Bui Thuy Duong','0987654321');
-Insert into VN_JAVA2.PATIENT (ID,ADDRESS,DATE_OF_BIRTH,GENDER,NAME,PHONE_NUMBER) values (21,'Dong Thap province',to_date('21-DEC-00','DD-MON-RR'),'0','Tran Hung Trong','0939946728');
-Insert into VN_JAVA2.PATIENT (ID,ADDRESS,DATE_OF_BIRTH,GENDER,NAME,PHONE_NUMBER) values (24,'Ha Noi',to_date('01-FEB-98','DD-MON-RR'),'1','Thieu Ngoc Tram','0939943213');
-Insert into VN_JAVA2.PATIENT (ID,ADDRESS,DATE_OF_BIRTH,GENDER,NAME,PHONE_NUMBER) values (46,'Thanh Hoa province',to_date('12-DEC-99','DD-MON-RR'),'0','Huynh Quang Anh','0987762810');
+Insert into VN_JAVA2.PATIENT (ADDRESS,DATE_OF_BIRTH,GENDER,NAME,PHONE_NUMBER) values ('Ho Chi Minh city',to_date('11-DEC-99','DD-MON-RR'),'0','Nguyen Huy Quyen','0937825673');
+Insert into VN_JAVA2.PATIENT (ADDRESS,DATE_OF_BIRTH,GENDER,NAME,PHONE_NUMBER) values ('Ho Chi Minh city',to_date('01-FEB-90','DD-MON-RR'),'0','Bui Thuy Duong','0987654321');
+Insert into VN_JAVA2.PATIENT (ADDRESS,DATE_OF_BIRTH,GENDER,NAME,PHONE_NUMBER) values ('Dong Thap province',to_date('21-DEC-00','DD-MON-RR'),'0','Tran Hung Trong','0939946728');
+Insert into VN_JAVA2.PATIENT (ADDRESS,DATE_OF_BIRTH,GENDER,NAME,PHONE_NUMBER) values ('Ha Noi',to_date('01-FEB-98','DD-MON-RR'),'1','Thieu Ngoc Tram','0939943213');
+Insert into VN_JAVA2.PATIENT (ADDRESS,DATE_OF_BIRTH,GENDER,NAME,PHONE_NUMBER) values ('Thanh Hoa province',to_date('12-DEC-99','DD-MON-RR'),'0','Huynh Quang Anh','0987762810');
 
 REM INSERTING into VN_JAVA2.MEDICINE
 SET DEFINE OFF;
-Insert into VN_JAVA2.MEDICINE (ID,INSTRUCTION,NAME,UNIT) values (100,null,'Acetaminophen','pellet');
-Insert into VN_JAVA2.MEDICINE (ID,INSTRUCTION,NAME,UNIT) values (101,null,'Adderall','pellet');
-Insert into VN_JAVA2.MEDICINE (ID,INSTRUCTION,NAME,UNIT) values (102,null,'Bacitracin','pellet');
-Insert into VN_JAVA2.MEDICINE (ID,INSTRUCTION,NAME,UNIT) values (103,null,'Candesartan','pellet');
-Insert into VN_JAVA2.MEDICINE (ID,INSTRUCTION,NAME,UNIT) values (104,null,'Denosumab','pellet');
-Insert into VN_JAVA2.MEDICINE (ID,INSTRUCTION,NAME,UNIT) values (105,null,'Esomeprazole','pellet');
-Insert into VN_JAVA2.MEDICINE (ID,INSTRUCTION,NAME,UNIT) values (106,null,'Estradiol','pellet');
-Insert into VN_JAVA2.MEDICINE (ID,INSTRUCTION,NAME,UNIT) values (107,null,'Fludrocortisone','pellet');
-Insert into VN_JAVA2.MEDICINE (ID,INSTRUCTION,NAME,UNIT) values (108,null,'Glutathione','pellet');
-Insert into VN_JAVA2.MEDICINE (ID,INSTRUCTION,NAME,UNIT) values (109,null,'Halobetasol','pellet');
-Insert into VN_JAVA2.MEDICINE (ID,INSTRUCTION,NAME,UNIT) values (110,null,'Inflectra','pellet');
-Insert into VN_JAVA2.MEDICINE (ID,INSTRUCTION,NAME,UNIT) values (112,null,'Vilazodone','pellet');
+Insert into VN_JAVA2.MEDICINE (INSTRUCTION,NAME,UNIT) values (null,'Acetaminophen','pellet');
+Insert into VN_JAVA2.MEDICINE (INSTRUCTION,NAME,UNIT) values (null,'Adderall','pellet');
+Insert into VN_JAVA2.MEDICINE (INSTRUCTION,NAME,UNIT) values (null,'Bacitracin','pellet');
+Insert into VN_JAVA2.MEDICINE (INSTRUCTION,NAME,UNIT) values (null,'Candesartan','pellet');
+Insert into VN_JAVA2.MEDICINE (INSTRUCTION,NAME,UNIT) values (null,'Denosumab','pellet');
+Insert into VN_JAVA2.MEDICINE (INSTRUCTION,NAME,UNIT) values (null,'Esomeprazole','pellet');
+Insert into VN_JAVA2.MEDICINE (INSTRUCTION,NAME,UNIT) values (null,'Estradiol','pellet');
+Insert into VN_JAVA2.MEDICINE (INSTRUCTION,NAME,UNIT) values (null,'Fludrocortisone','pellet');
+Insert into VN_JAVA2.MEDICINE (INSTRUCTION,NAME,UNIT) values (null,'Glutathione','pellet');
+Insert into VN_JAVA2.MEDICINE (INSTRUCTION,NAME,UNIT) values (null,'Halobetasol','pellet');
+Insert into VN_JAVA2.MEDICINE (INSTRUCTION,NAME,UNIT) values (null,'Inflectra','pellet');
+Insert into VN_JAVA2.MEDICINE (INSTRUCTION,NAME,UNIT) values (null,'Vilazodone','pellet');
