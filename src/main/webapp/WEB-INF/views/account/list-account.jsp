@@ -143,7 +143,7 @@
 	
 	<!-- Javascript -->
 	<script type="text/javascript" src="/js/account/toggle-account.js"></script>
-
+	<script type="text/javascript" src="/js/_alert/alert.js"></script>
 </body>
 
 </html>

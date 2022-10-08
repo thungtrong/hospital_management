@@ -55,16 +55,6 @@ function toggleStatusAccountModel(e) {
     $("#alertModel").modal("show");
 }
 
-let alertContainer = $("#alert-container");
-
-let successAlert = document.createElement("div");
-successAlert.className = "alert alert-success";
-successAlert.setAttribute("role", "alert");
-
-let errorAlert = document.createElement("div");
-errorAlert.className = "alert alert-danger";
-errorAlert.setAttribute("role", "alert");
-
 // fetch api to update status
 function toggleStatusAccount() {
     let url = "/api/account/toggle-status";
@@ -85,26 +75,16 @@ function toggleStatusAccount() {
         .then((data) => {
             if (data.status) {
                 $("#alertModel").modal("hide");
-                addCloneAlert(successAlert, data.message);
+                addSuccessAlert(data.message);
                 toggleStatusTextOnRow(selectedRow);
             } else {
                 $("#alertModel").modal("hide");
-                addCloneAlert(errorAlert, data.message);
+                addErrorAlert(data.message);
             }
         })
         .catch((error) => {
             console.error("Error:", error);
         });
-}
-
-function addCloneAlert(alert, message) {
-    let alertClone = alert.cloneNode(true);
-    alertClone.innerHTML = message;
-    alertContainer.append(alertClone);
-    setTimeout(() => {
-        alertClone.className += " fade";
-        $(alertClone).alert("close");
-    }, 2000);
 }
 
 function toggleStatusTextOnRow(row) {
