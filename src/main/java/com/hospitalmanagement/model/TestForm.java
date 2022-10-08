@@ -7,6 +7,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -24,15 +25,15 @@ import com.hospitalmanagement.request.TestFormRequest;
 @Table(name = "test_form")
 public class TestForm {
 	@Id
-	@SequenceGenerator(name = "sequence_test_form_pk", allocationSize = 1)
-	@GeneratedValue(generator = "sequence_test_form_pk", strategy = GenerationType.SEQUENCE)
+	@SequenceGenerator(name = "seq_test_form_pk", allocationSize = 1, initialValue = 1)
+	@GeneratedValue(generator = "seq_test_form_pk", strategy = GenerationType.SEQUENCE)
 	private Long id;
 	@Temporal(TemporalType.DATE)
 	@Column(name = "creation_date")
 	private Date creationDate;
 
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "patient_id", referencedColumnName = "id")
+	@JoinColumn(name = "patient_id", referencedColumnName = "id", foreignKey = @ForeignKey(name = "test_form_patient_fk"))
 	private Patient patient;
 
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "testForm", cascade = { CascadeType.ALL })

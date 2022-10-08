@@ -25,8 +25,8 @@ import javax.validation.constraints.NotNull;
 @Table(name = "health_record")
 public class HealthRecord {
 	@Id
-	@SequenceGenerator(name = "health_record_pk")
-	@GeneratedValue(generator = "health_record_pk", strategy = GenerationType.SEQUENCE)
+	@SequenceGenerator(name = "seq_health_record_pk", allocationSize = 1, initialValue = 1000)
+	@GeneratedValue(generator = "seq_health_record_pk", strategy = GenerationType.SEQUENCE)
 	private Long id;
 
 	@NotNull(message = "Please enter the creation date")

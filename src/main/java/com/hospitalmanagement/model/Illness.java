@@ -12,8 +12,8 @@ import javax.validation.constraints.NotEmpty;
 @Table(name = "illness")
 public class Illness {
 	@Id
-	@SequenceGenerator(name = "illness_pk", allocationSize = 1, initialValue = 1)
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "illness_pk")
+	@SequenceGenerator(name = "seq_illness_pk", allocationSize = 1, initialValue = 1000)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_illness_pk")
 	private Integer id;
 	@NotEmpty(message = "Please fill in the name")
 	private String name;

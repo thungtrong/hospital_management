@@ -16,8 +16,8 @@ import javax.persistence.Table;
 @Inheritance
 public class Patient extends Person {
 	@Id
-	@SequenceGenerator(allocationSize = 1, name = "sequence_patient_pk")
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequence_patient_pk")
+	@SequenceGenerator(allocationSize = 1, name = "seq_patient_pk", initialValue = 1000)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_patient_pk")
 	private Long id;
 
 	@OneToMany(mappedBy = "patient")

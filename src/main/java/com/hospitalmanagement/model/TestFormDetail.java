@@ -2,6 +2,7 @@ package com.hospitalmanagement.model;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -13,24 +14,24 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name="test_detail")
+@Table(name = "test_detail")
 public class TestFormDetail {
 	@Id
-	@SequenceGenerator(name="test_detail_pk")
-	@GeneratedValue(generator = "test_detail_pk", strategy = GenerationType.SEQUENCE)
+	@SequenceGenerator(name = "seq_test_detail_pk", allocationSize = 1)
+	@GeneratedValue(generator = "seq_test_detail_pk", strategy = GenerationType.SEQUENCE)
 	private Long id;
-	
+
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "test_id", referencedColumnName = "id")
 	private Test test;
-	
+
 	private String result;
-	
+
 	@ManyToOne
 	@JsonIgnore
-	@JoinColumn(name="test_form_id", referencedColumnName = "id")
+	@JoinColumn(name = "test_form_id", referencedColumnName = "id", foreignKey = @ForeignKey(name = "test_form_detail_fk"))
 	private TestForm testForm;
-	
+
 	public TestFormDetail() {
 		super();
 	}
@@ -74,6 +75,5 @@ public class TestFormDetail {
 	public void setResult(String result) {
 		this.result = result;
 	}
-	
-	
+
 }
