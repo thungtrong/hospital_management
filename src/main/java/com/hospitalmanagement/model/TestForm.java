@@ -18,26 +18,24 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import org.springframework.beans.BeanUtils;
-
 import com.hospitalmanagement.request.TestFormRequest;
 
 @Entity
-@Table(name="test_form")
+@Table(name = "test_form")
 public class TestForm {
 	@Id
-	@SequenceGenerator(name="sequence_test_form_pk", allocationSize = 1)
+	@SequenceGenerator(name = "sequence_test_form_pk", allocationSize = 1)
 	@GeneratedValue(generator = "sequence_test_form_pk", strategy = GenerationType.SEQUENCE)
 	private Long id;
 	@Temporal(TemporalType.DATE)
-	@Column(name="creation_date")
+	@Column(name = "creation_date")
 	private Date creationDate;
-	
+
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "patient_id", referencedColumnName = "id")
 	private Patient patient;
-	
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "testForm", cascade = {CascadeType.ALL})
+
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "testForm", cascade = { CascadeType.ALL })
 	private List<TestFormDetail> details;
 
 	public TestForm() {
@@ -84,15 +82,13 @@ public class TestForm {
 		this.details = details;
 	}
 
-
 	@Override
 	public String toString() {
 		return "TestForm [id=" + id + ", creationDate=" + creationDate + ", patient=" + patient + ", details=" + details
 				+ "]";
 	}
-	
-	public static TestForm fromTestFormRequest(TestFormRequest testFormRequest)
-	{
+
+	public static TestForm fromTestFormRequest(TestFormRequest testFormRequest) {
 		TestForm testForm = new TestForm();
 		testForm.setId(testFormRequest.getId());
 		testForm.setPatient(testFormRequest.getPatient());
@@ -100,5 +96,5 @@ public class TestForm {
 		testForm.setCreationDate(testFormRequest.getCreationDate());
 		return testForm;
 	}
-	
+
 }

@@ -1,7 +1,7 @@
 package com.hospitalmanagement.controller;
 
-import com.hospitalmanagement.config.UserPrincipal;
-import com.hospitalmanagement.repository.*;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -9,10 +9,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.security.Principal;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import com.hospitalmanagement.config.UserPrincipal;
+import com.hospitalmanagement.repository.AccountRepository;
+import com.hospitalmanagement.repository.AdmissionFormRepository;
+import com.hospitalmanagement.repository.DepartmentRepository;
+import com.hospitalmanagement.repository.DoctorRepository;
+import com.hospitalmanagement.repository.HealthRecordRepository;
+import com.hospitalmanagement.repository.IllnessRepository;
+import com.hospitalmanagement.repository.MedicineRepository;
+import com.hospitalmanagement.repository.PatientRepository;
+import com.hospitalmanagement.repository.TestRepository;
 
 @Controller
 public class DashboardController {
@@ -34,11 +40,12 @@ public class DashboardController {
     AdmissionFormRepository admissionFormRepository;
     @Autowired
     AccountRepository accountRepository;
-    @RequestMapping(value = {"","/","index"}, method= RequestMethod.GET )
+
+    @RequestMapping(value = { "", "/", "index" }, method = RequestMethod.GET)
     public ModelAndView getDashboard(Authentication authentication) {
-    	UserPrincipal userPrincipal = (UserPrincipal) authentication.getPrincipal();
-    	
-    	ModelAndView modelAndView = new ModelAndView("index");
+        UserPrincipal userPrincipal = (UserPrincipal) authentication.getPrincipal();
+
+        ModelAndView modelAndView = new ModelAndView("index");
         modelAndView.addObject("departments", departmentRepository.count());
         modelAndView.addObject("doctors", doctorRepository.count());
         modelAndView.addObject("patients", patientRepository.count());
@@ -48,7 +55,7 @@ public class DashboardController {
         modelAndView.addObject("tests", testRepository.count());
         modelAndView.addObject("admissionForms", admissionFormRepository.count());
         modelAndView.addObject("accounts", accountRepository.count());
-        
+
         Map<String, Boolean> rolesMap = userPrincipal.getRolesMap();
         modelAndView.addAllObjects(rolesMap);
         return modelAndView;

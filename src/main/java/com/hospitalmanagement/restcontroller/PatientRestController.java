@@ -1,8 +1,6 @@
 package com.hospitalmanagement.restcontroller;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.validation.Valid;
 
@@ -14,7 +12,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -34,13 +31,13 @@ import com.hospitalmanagement.service.PatientService;
 public class PatientRestController {
 	@Autowired
 	private PatientService patientService;
-	
-	@GetMapping(value="/all", produces = {MediaType.APPLICATION_JSON_VALUE})
+
+	@GetMapping(value = "/all", produces = { MediaType.APPLICATION_JSON_VALUE })
 	public ResponseEntity<List<Patient>> list() {
 		return new ResponseEntity<>(patientService.findAll(), HttpStatus.OK);
 	}
 
-	@GetMapping(value="/page")
+	@GetMapping(value = "/page")
 	public ResponseEntity<Page<Patient>> page(@RequestParam(defaultValue = "0") Integer page,
 			@RequestParam(defaultValue = "10") Integer size, @RequestParam(defaultValue = "id") String orderBy,
 			@RequestParam(defaultValue = "true") Boolean asc) {
@@ -53,9 +50,10 @@ public class PatientRestController {
 	public ResponseEntity<Patient> findById(@PathVariable Long id) {
 		return new ResponseEntity<>(patientService.findById(id), HttpStatus.OK);
 	}
-	
+
 	@PostMapping("/create")
-	public ResponseEntity<Patient> create(@Valid @RequestBody Patient patient, BindingResult bindingResult) throws ModelNotVaildException {
+	public ResponseEntity<Patient> create(@Valid @RequestBody Patient patient, BindingResult bindingResult)
+			throws ModelNotVaildException {
 		if (bindingResult.hasErrors()) {
 			throw ModelNotVaildException.fromBindingResult(bindingResult);
 		}
@@ -63,7 +61,8 @@ public class PatientRestController {
 	}
 
 	@PutMapping("/update")
-	public ResponseEntity<Patient> update(@Valid @RequestBody Patient patient, BindingResult bindingResult) throws ModelNotVaildException {
+	public ResponseEntity<Patient> update(@Valid @RequestBody Patient patient, BindingResult bindingResult)
+			throws ModelNotVaildException {
 		if (bindingResult.hasErrors()) {
 			throw ModelNotVaildException.fromBindingResult(bindingResult);
 		}
@@ -74,12 +73,12 @@ public class PatientRestController {
 	public ResponseEntity<Boolean> delete(@PathVariable Long id) {
 		return new ResponseEntity<>(patientService.deleteById(id), HttpStatus.OK);
 	}
-	
+
 	@GetMapping("/findByNameAndPhone")
-	public ResponseEntity<List<Patient>> findByNameAndPhone(@RequestParam String name, @RequestParam String phoneNumber)
-	{
+	public ResponseEntity<List<Patient>> findByNameAndPhone(@RequestParam String name,
+			@RequestParam String phoneNumber) {
 		List<Patient> patients = patientService.findByNameAndPhone(name, phoneNumber);
 		return new ResponseEntity<>(patients, HttpStatus.OK);
 	}
-	
+
 }
