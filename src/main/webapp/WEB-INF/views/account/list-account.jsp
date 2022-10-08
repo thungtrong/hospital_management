@@ -58,6 +58,7 @@
 									<td>${ account.role }</td>
 									<td>${ account.enable ? 'Enabled' : 'Disabled' }</td>
 									<td class="group-action">
+										<c:if test="${ currentAccount != account.username }">
 										<c:if test="${account.enable}">
 											<a type="button" class="btn btn-warning btn-toggle-account-modal">
 												<i class="fa fa-toggle-on" aria-hidden="true"></i>
@@ -68,7 +69,7 @@
 												<i class="fa fa-toggle-off" aria-hidden="true"></i>
 											</a>
 										</c:if>
-
+										</c:if>
 									</td>
 								</tr>
 

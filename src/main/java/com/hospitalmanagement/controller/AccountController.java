@@ -34,7 +34,7 @@ public class AccountController {
 		model.addObject("accountListSize", pageAccount.getSize());
 		model.addObject("currentPage", pageAccount.getNumber()+1);
 		model.addObject("totalPage", pageAccount.getTotalPages());
-		
+		model.addObject("currentAccount", authentication.getName());
 		return model;
 	}
 }
