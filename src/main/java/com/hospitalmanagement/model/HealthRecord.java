@@ -3,11 +3,23 @@ package com.hospitalmanagement.model;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
-
-import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
 @Table(name = "health_record")
@@ -16,17 +28,16 @@ public class HealthRecord {
 	@SequenceGenerator(name = "health_record_pk")
 	@GeneratedValue(generator = "health_record_pk", strategy = GenerationType.SEQUENCE)
 	private Long id;
-	
+
 	@NotNull(message = "Please enter the creation date")
 	@Temporal(TemporalType.DATE)
 	@Column(name = "creation_date", nullable = false)
 	private Date creationDate;
-	
-	
+
 	@Temporal(TemporalType.DATE)
 	@Column(name = "re_date")
 	private Date reDate;
-	
+
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "health_record_detail", joinColumns = @JoinColumn(name = "health_record_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "illness_id", referencedColumnName = "id"))
 	private List<Illness> illnessList;
@@ -39,7 +50,7 @@ public class HealthRecord {
 	@JoinColumn(name = "patient_id", referencedColumnName = "id")
 	private Patient patient;
 
-	@OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+	@OneToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	@JoinColumn(name = "health_record_id", referencedColumnName = "id")
 	private List<PrescriptionDetail> healthRecordDetails;
 

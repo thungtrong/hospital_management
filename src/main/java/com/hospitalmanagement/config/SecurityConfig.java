@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -23,8 +22,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	private UserDetailsService userDetailService;
 
 	@Bean
-	public BCryptPasswordEncoder passwordEncoder()
-	{
+	public BCryptPasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
 
@@ -39,11 +37,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http
-			.csrf().disable()
-			.authorizeRequests()
+				.csrf().disable()
+				.authorizeRequests()
 				.antMatchers("/public/**", "/error").permitAll()
-			.and()
-			.authorizeRequests()
+				.and()
+				.authorizeRequests()
 				.antMatchers("/account**").hasRole(UserPrincipal.ADMIN)
 				.antMatchers("/doctor/create", "/doctor/update").hasRole(UserPrincipal.ADMIN)
 				.antMatchers("/department/create", "/department/update").hasRole(UserPrincipal.ADMIN)
@@ -51,27 +49,27 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/illness/update**", "/illness/create**").hasRole(UserPrincipal.ADMIN)
 				.antMatchers("/test/update**", "/test/create**").hasRole(UserPrincipal.ADMIN)
 				.anyRequest().authenticated()
-			.and()
-			.authorizeHttpRequests() // For API
-				.antMatchers("/api/**/delete**").hasRole(UserPrincipal.ADMIN)  
-				.antMatchers("/api/doctor/update**", "/api/doctor/create**").hasRole(UserPrincipal.ADMIN) 
+				.and()
+				.authorizeHttpRequests() // For API
+				.antMatchers("/api/**/delete**").hasRole(UserPrincipal.ADMIN)
+				.antMatchers("/api/doctor/update**", "/api/doctor/create**").hasRole(UserPrincipal.ADMIN)
 				.antMatchers("/api/department/update**", "/api/department/create**").hasRole(UserPrincipal.ADMIN)
 				.antMatchers("/api/medicine/update**", "/api/medicine/create**").hasRole(UserPrincipal.ADMIN)
 				.antMatchers("/api/illness/update**", "/api/illness/create**").hasRole(UserPrincipal.ADMIN)
 				.antMatchers("/api/test/update**", "/api/test/create**").hasRole(UserPrincipal.ADMIN)
 				.antMatchers("/api/account**").hasRole(UserPrincipal.ADMIN)
-			.and()
+				.and()
 				.formLogin()
 				.loginPage("/login").permitAll()
 				.loginProcessingUrl("/login").permitAll()
 				.defaultSuccessUrl("/")
-			.and()
+				.and()
 				.logout()
 				.invalidateHttpSession(true)
 				.clearAuthentication(true)
 				.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
 				.logoutSuccessUrl("/login")
-			.and()
+				.and()
 				.authenticationProvider(authProvider())
 				.httpBasic();
 	}

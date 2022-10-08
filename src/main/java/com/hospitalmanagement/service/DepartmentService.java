@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 import com.hospitalmanagement.exception.RecordNotFoundException;
 import com.hospitalmanagement.model.Department;
 import com.hospitalmanagement.repository.DepartmentRepository;
-import org.springframework.stereotype.Service;
 
 @Service
 public class DepartmentService implements PagingAndSortingService<Department, Integer> {
@@ -28,13 +27,13 @@ public class DepartmentService implements PagingAndSortingService<Department, In
 	public Department update(Department department) {
 		if (department.getId() == null)
 			throw new IllegalArgumentException();
-		
+
 		if (departmentRepository.existsById(department.getId()) == false)
 			throw new RecordNotFoundException("Department not found");
-		
+
 		return departmentRepository.save(department);
 	}
-	
+
 	@Override
 	public List<Department> findAll() {
 		return departmentRepository.findAll();
@@ -49,7 +48,7 @@ public class DepartmentService implements PagingAndSortingService<Department, In
 	public boolean deleteById(Integer id) {
 		if (!departmentRepository.existsById(id))
 			throw new RecordNotFoundException("Department not found");
-		
+
 		departmentRepository.deleteById(id);
 
 		return true;
@@ -69,7 +68,5 @@ public class DepartmentService implements PagingAndSortingService<Department, In
 	public boolean existsById(Integer id) {
 		return departmentRepository.existsById(id);
 	}
-
-	
 
 }

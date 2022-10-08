@@ -2,21 +2,26 @@ package com.hospitalmanagement.model;
 
 import java.io.Serializable;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "account")
 public class Account implements Serializable {
 
-	@Id	
+	@Id
 	private String username;
-	
+
 	@Column(name = "password", length = 60, nullable = false)
 	private String password;
-	
+
 	private String role;
-	
+
 	@Column(columnDefinition = "CHAR(1) default 1", nullable = false)
 	private Boolean enable;
 
@@ -66,8 +71,8 @@ public class Account implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Account [username=" + username + ", password=" + password + ", role=" + role + ", enable=" + enable + "]";
+		return "Account [username=" + username + ", password=" + password + ", role=" + role + ", enable=" + enable
+				+ "]";
 	}
-
 
 }

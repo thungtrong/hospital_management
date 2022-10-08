@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -18,7 +17,6 @@ public class AdmissionFormService implements PagingAndSortingService<AdmissionFo
 
 	@Autowired
 	private AdmissionFormRepository admissionFormRepository;
-	
 
 	@Override
 	public AdmissionForm insert(AdmissionForm admissionForm) {
@@ -29,13 +27,13 @@ public class AdmissionFormService implements PagingAndSortingService<AdmissionFo
 	public AdmissionForm update(AdmissionForm admissionForm) {
 		if (admissionForm.getId() == null)
 			throw new IllegalArgumentException();
-		
+
 		if (admissionFormRepository.existsById(admissionForm.getId()) == false)
 			throw new RecordNotFoundException("Admission form not found");
-		
+
 		return admissionFormRepository.save(admissionForm);
 	}
-	
+
 	@Override
 	public List<AdmissionForm> findAll() {
 		return admissionFormRepository.findAll();
@@ -50,7 +48,7 @@ public class AdmissionFormService implements PagingAndSortingService<AdmissionFo
 	public boolean deleteById(Long id) {
 		if (!admissionFormRepository.existsById(id))
 			throw new RecordNotFoundException("Admission form not found");
-		
+
 		admissionFormRepository.deleteById(id);
 
 		return true;
@@ -70,7 +68,5 @@ public class AdmissionFormService implements PagingAndSortingService<AdmissionFo
 	public boolean existsById(Long id) {
 		return admissionFormRepository.existsById(id);
 	}
-	
-	
 
 }

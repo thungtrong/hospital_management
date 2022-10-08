@@ -1,6 +1,5 @@
 package com.hospitalmanagement.exception;
 
-import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -8,7 +7,8 @@ import java.util.Map;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 
-public class ModelNotVaildException extends Exception implements Serializable {
+public class ModelNotVaildException extends Exception {
+
 	Map<String, String> fieldErrors;
 
 	public ModelNotVaildException() {
@@ -27,13 +27,11 @@ public class ModelNotVaildException extends Exception implements Serializable {
 	public void setFieldErrors(Map<String, String> fieldErrors) {
 		this.fieldErrors = fieldErrors;
 	}
-	
-	public static ModelNotVaildException fromBindingResult(BindingResult bindingResult)
-	{
+
+	public static ModelNotVaildException fromBindingResult(BindingResult bindingResult) {
 		List<FieldError> errors = bindingResult.getFieldErrors();
 		Map<String, String> fieldErrorsMap = new HashMap<>();
-		for (FieldError fieldErrors:errors)
-		{				
+		for (FieldError fieldErrors : errors) {
 			fieldErrorsMap.put(fieldErrors.getField(), fieldErrors.getDefaultMessage());
 		}
 		return new ModelNotVaildException(fieldErrorsMap);
