@@ -13,6 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -31,6 +32,9 @@ public class Doctor extends Person {
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "department_id", referencedColumnName = "id", foreignKey = @ForeignKey(name = "doctor_department_fk"))
 	private Department department;
+
+	@OneToOne(mappedBy = "doctor")
+	private Account account;
 
 	public Doctor() {
 	}

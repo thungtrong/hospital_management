@@ -26,7 +26,6 @@ public class AuthController {
 			return model;
 		}
 
-		System.out.println(authentication);
 		model.setViewName("login");
 		String error = request.getParameter("error");
 		if (error != null)
