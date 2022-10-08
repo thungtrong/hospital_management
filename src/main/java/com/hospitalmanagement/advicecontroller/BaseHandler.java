@@ -12,21 +12,21 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import com.hospitalmanagement.exception.ModelNotVaildException;
 import com.hospitalmanagement.exception.RecordNotFoundException;
+import com.hospitalmanagement.response.BasicResponse;
 
 @ControllerAdvice
 public class BaseHandler {
 	// Exception of service
 	@ExceptionHandler(value = {IllegalArgumentException.class})
-	public ResponseEntity<Object> invalidArgument()
+	public ResponseEntity<Object> invalidArgument(Exception e)
 	{
-		return new ResponseEntity<>("Invalid data", HttpStatus.BAD_REQUEST);
+		return new ResponseEntity<>(createBasicResponse(e), HttpStatus.BAD_REQUEST);
 	}
 	
 	@ExceptionHandler(value= {RecordNotFoundException.class})
 	public ResponseEntity<Object> notFound(Exception e)
 	{
-		String message = e.getMessage();
-		return new ResponseEntity<>(message, HttpStatus.NO_CONTENT);
+		return new ResponseEntity<>(createBasicResponse(e), HttpStatus.NO_CONTENT);
 	}
 	
 	// Exception of Controller 
@@ -34,5 +34,12 @@ public class BaseHandler {
 	public ResponseEntity<Object> modelNotValid(ModelNotVaildException e)
 	{
 		return new ResponseEntity<>(e.getFieldErrors(), HttpStatus.BAD_REQUEST);
+	}
+	
+	private BasicResponse createBasicResponse(Exception e)
+	{
+		String exceptionMessage = e.getMessage();
+		String message = (exceptionMessage==null || exceptionMessage.isBlank()) ? "Invalid data" : exceptionMessage;
+		return new BasicResponse(false, message);
 	}
 }

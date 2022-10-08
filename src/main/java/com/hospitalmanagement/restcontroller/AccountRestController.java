@@ -24,13 +24,19 @@ public class AccountRestController {
 	@Autowired
 	private BCryptPasswordEncoder encoder;
 
-	@PutMapping({"/", ""})
-	public Account insertOrUpdate(@RequestBody Account account)
+	@PostMapping({"/create"})
+	public ResponseEntity<Object> create(@RequestBody Account account)
 	{
+		if (account.getDoctor() == null || account.getDoctor().getId() == null)
+		{
+			throw new IllegalArgumentException();
+		}
+		
 		account.setPassword(encoder.encode(account.getPassword()));
 		accountService.saveAccount(account);
-		return account;
+		return new ResponseEntity<>(account, HttpStatus.CREATED);
 	}
+	
 	@PutMapping("/toggle-status")
 	public ResponseEntity<BasicResponse> toggleStatus(@RequestBody Account account, Authentication authentication)
 	{
