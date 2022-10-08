@@ -57,7 +57,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/api/medicine/update**", "/api/medicine/create**").hasRole(UserPrincipal.ADMIN)
 				.antMatchers("/api/illness/update**", "/api/illness/create**").hasRole(UserPrincipal.ADMIN)
 				.antMatchers("/api/test/update**", "/api/test/create**").hasRole(UserPrincipal.ADMIN)
-				.antMatchers("/api/account/update-profile").hasAnyRole(UserPrincipal.ADMIN, UserPrincipal.DOCTOR)
+				.antMatchers("/api/account/update-profile", "/api/account/change-password").hasAnyRole(UserPrincipal.ADMIN, UserPrincipal.DOCTOR)
 				.antMatchers("/api/account**").hasRole(UserPrincipal.ADMIN)
 				.and()
 				.formLogin()

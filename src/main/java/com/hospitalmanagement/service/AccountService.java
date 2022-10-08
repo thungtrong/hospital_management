@@ -45,4 +45,12 @@ public class AccountService implements UserDetailsService {
 		return accountRepository.findByDoctorId(doctorId);
 	}
 
+    public Account update(Account account) {
+		if (account.getUsername() != null && account.getUsername().isEmpty())
+		{
+			throw new IllegalArgumentException("Username must not be empty");
+		}
+		return accountRepository.save(account);
+    }
+
 }

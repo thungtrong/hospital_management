@@ -18,6 +18,7 @@ import com.hospitalmanagement.config.UserPrincipal;
 import com.hospitalmanagement.exception.ModelNotVaildException;
 import com.hospitalmanagement.model.Account;
 import com.hospitalmanagement.model.Doctor;
+import com.hospitalmanagement.request.ChangePasswordRequest;
 import com.hospitalmanagement.response.BasicResponse;
 import com.hospitalmanagement.service.AccountService;
 import com.hospitalmanagement.service.DoctorService;
@@ -28,7 +29,7 @@ public class AccountRestController {
 	@Autowired
 	private AccountService accountService;
 	@Autowired
-	private BCryptPasswordEncoder encoder;
+	private BCryptPasswordEncoder passwordEncoder;
 
 	@PostMapping({ "/create" })
 	public ResponseEntity<Object> create(@RequestBody Account account) {
@@ -38,18 +39,18 @@ public class AccountRestController {
 		}
 		if (accountService.findByDoctorId(doctor.getId()) != null) {
 			BasicResponse response = new BasicResponse();
-			response.setStatus(false);
-			response.setMessage("Doctor already have a account");
+			
+			response.failure("Doctor already have a account");
 			return new ResponseEntity<>(response, HttpStatus.CONFLICT);
 		}
 		account.setEnable(true);
 		account.setRole(UserPrincipal.DOCTOR);
-		account.setPassword(encoder.encode("12345678"));
+		account.setPassword(passwordEncoder.encode("12345678"));
 		accountService.saveAccount(account);
 
 		BasicResponse response = new BasicResponse();
-		response.setStatus(true);
-		response.setMessage("Create account successfully");
+
+		response.success("Create account successfully");
 		return new ResponseEntity<>(response, HttpStatus.CREATED);
 	}
 
@@ -59,22 +60,19 @@ public class AccountRestController {
 
 		UserPrincipal userPrincipal = (UserPrincipal) authentication.getPrincipal();
 		if (!userPrincipal.isAdmin()) {
-			body.setStatus(false);
-			body.setMessage("You do not have permission to perform this action");
+			body.failure("You do not have permission to perform this action");
 			return new ResponseEntity<>(body, HttpStatus.FORBIDDEN);
 		}
 
 		// Not allow disable current account
 		String username = account.getUsername(); // username which toggle status
 		if (userPrincipal.getUsername().equals(username)) {
-			body.setStatus(false);
-			body.setMessage("You can not disable your-self");
+			body.failure("You can not disable your-self");
 			return new ResponseEntity<>(body, HttpStatus.FORBIDDEN);
 		}
 
 		if (username.length() == 0) {
-			body.setStatus(false);
-			body.setMessage("Username should not be empty");
+			body.failure("Username should not be empty");
 			return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
 		}
 
@@ -83,13 +81,12 @@ public class AccountRestController {
 			account2.setEnable(!account2.getEnable());
 			accountService.saveAccount(account2);
 
-			body.setStatus(true);
+
 			String statusString = account2.getEnable() ? "enable" : "disable";
-			body.setMessage(String.format("%s is %s now", username, statusString));
+			body.success(String.format("%s is %s now", username, statusString));
 			return new ResponseEntity<>(body, HttpStatus.OK);
 		} catch (Exception e) {
-			body.setStatus(true);
-			body.setMessage("Something went wrong! Please try again after some time");
+			body.failure("Something went wrong! Please try again after some time");
 			return new ResponseEntity<>(body, HttpStatus.OK);
 		}
 	}
@@ -98,11 +95,11 @@ public class AccountRestController {
 	private DoctorService doctorService;
 
 	@PutMapping("/update-profile")
-	public ResponseEntity<Object> updateProfile(@Valid @RequestBody Doctor doctor, BindingResult bindingResult) throws ModelNotVaildException
-	{
+	public ResponseEntity<Object> updateProfile(@Valid @RequestBody Doctor doctor, BindingResult bindingResult)
+			throws ModelNotVaildException {
 		if (bindingResult.hasErrors())
 			throw ModelNotVaildException.fromBindingResult(bindingResult);
-		
+
 		Doctor doctor2 = doctorService.findById(doctor.getId());
 		doctor2.setName(doctor.getName());
 		doctor2.setAddress(doctor.getAddress());
@@ -111,5 +108,37 @@ public class AccountRestController {
 		doctor.setPhoneNumber(doctor.getPhoneNumber());
 		doctorService.update(doctor2);
 		return new ResponseEntity<>(doctor2, HttpStatus.ACCEPTED);
+	}
+
+	@PutMapping("change-password")
+	public ResponseEntity<Object> changePassword(@Valid @RequestBody ChangePasswordRequest request,
+			BindingResult bindingResult, Authentication authentication) throws ModelNotVaildException {
+		
+		if (bindingResult.hasErrors()) {
+			throw ModelNotVaildException.fromBindingResult(bindingResult);
+		}
+
+		BasicResponse response = new BasicResponse();
+		UserPrincipal userPrincipal = (UserPrincipal) authentication.getPrincipal();
+		Account account = userPrincipal.getAccount();
+		
+		if (passwordEncoder.matches(request.getOldPassword(), account.getPassword()) == false) {
+			response.failure("Password is not correct");
+			return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+		}
+		
+		String newPassword = request.getNewPassword();
+		if (newPassword.equals(request.getConfirmNewPassword()) == false) {
+			response.failure("Confirm password is not correct");
+			return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+		}
+
+		newPassword = passwordEncoder.encode(newPassword);
+		account.setPassword(newPassword);
+		accountService.update(account);
+
+		response.success("Change password successfully");
+		
+		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
 }

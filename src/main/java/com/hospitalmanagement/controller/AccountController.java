@@ -6,13 +6,15 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Order;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.hospitalmanagement.config.UserPrincipal;
 import com.hospitalmanagement.model.Account;
+import com.hospitalmanagement.model.Doctor;
 import com.hospitalmanagement.service.AccountService;
-import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 @RequestMapping("/account")
@@ -45,4 +47,18 @@ public class AccountController {
 		return model;
 	}
 
+	@GetMapping(value={"profile", "my-account"})
+	public ModelAndView getProfile(Authentication authentication) {
+		ModelAndView model = new ModelAndView("account/profile");
+		UserPrincipal userPrincipal = (UserPrincipal) authentication.getPrincipal();
+		Doctor doctor = userPrincipal.getAccount().getDoctor();
+		model.addObject("doctor", doctor);
+		return model;
+	}
+
+	@GetMapping(value = "/change-password")
+	public String changePassword()
+	{
+		return "account/change-password";
+	}
 }

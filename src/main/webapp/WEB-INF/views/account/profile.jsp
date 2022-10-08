@@ -6,13 +6,13 @@
 
 <head>
     <meta charset="ISO-8859-1">
-    <jsp:include page="./_shared.jsp"></jsp:include>
+    <jsp:include page="../_shared.jsp"></jsp:include>
     <title>My Profile</title>
     <!--   <link rel="stylesheet" href=""> -->
 </head>
 
 <body>
-    <jsp:include page="./_navbar.jsp"></jsp:include>
+    <jsp:include page="../_navbar.jsp"></jsp:include>
     <div class="container">
         <div class="form-container-outside">
             <!-- <div class="title-form">Insert Doctor Form</div> -->
@@ -82,7 +82,7 @@
 
         </div>
     </div>
-    <jsp:include page="./_footer.jsp"></jsp:include>
+    <jsp:include page="../_footer.jsp"></jsp:include>
 
     <!-- Modal -->
     <div class="modal fade" id="alertModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -90,7 +90,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Update Doctor</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Update Profile</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>

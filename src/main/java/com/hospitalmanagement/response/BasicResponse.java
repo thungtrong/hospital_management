@@ -27,5 +27,13 @@ public class BasicResponse implements Serializable{
 		this.message = message;
 	}
 	
-	
+	public void success(String message) {
+		this.status = true;
+		this.message = message;
+	}
+
+	public void failure(String message) {
+		this.status = false;
+		this.message = message;
+	}
 }

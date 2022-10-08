@@ -8,9 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.hospitalmanagement.config.UserPrincipal;
-import com.hospitalmanagement.model.Doctor;
-
 @Controller
 public class AuthController {
 
@@ -37,12 +34,5 @@ public class AuthController {
 	}
 
 
-	@GetMapping(value={"profile", "my-account"})
-	public ModelAndView getProfile(Authentication authentication) {
-		ModelAndView model = new ModelAndView("profile");
-		UserPrincipal userPrincipal = (UserPrincipal) authentication.getPrincipal();
-		Doctor doctor = userPrincipal.getAccount().getDoctor();
-		model.addObject("doctor", doctor);
-		return model;
-	}
+	
 }

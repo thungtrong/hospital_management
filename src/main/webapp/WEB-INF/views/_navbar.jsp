@@ -24,8 +24,8 @@
 			<li class="nav-item dropdown">
 				<a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i> Profile </a>
 				<div class="dropdown-menu dropdown-menu-right dropdown-cyan" aria-labelledby="navbarDropdownMenuLink-4">
-					<a class="dropdown-item" href="/profile">My account</a>
-					<a class="dropdown-item" href="/change-password">Change password</a>
+					<a class="dropdown-item" href="/account/profile">My account</a>
+					<a class="dropdown-item" href="/account/change-password">Change password</a>
 					<a class="dropdown-item" href="/logout">Log out</a>
 				</div>
 			</li>
