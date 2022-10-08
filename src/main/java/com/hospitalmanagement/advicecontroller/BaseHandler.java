@@ -29,7 +29,7 @@ public class BaseHandler {
 		return new ResponseEntity<>(createBasicResponse(e), HttpStatus.NO_CONTENT);
 	}
 	
-	// Exception of Controller 
+	// Exception of model
 	@ExceptionHandler(value= {ModelNotVaildException.class})
 	public ResponseEntity<Object> modelNotValid(ModelNotVaildException e)
 	{
@@ -39,7 +39,7 @@ public class BaseHandler {
 	private BasicResponse createBasicResponse(Exception e)
 	{
 		String exceptionMessage = e.getMessage();
-		String message = (exceptionMessage==null || exceptionMessage.isBlank()) ? "Invalid data" : exceptionMessage;
+		String message = (exceptionMessage==null || exceptionMessage.isEmpty()) ? "Invalid data" : exceptionMessage;
 		return new BasicResponse(false, message);
 	}
 }
