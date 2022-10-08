@@ -1,9 +1,7 @@
-<>
     <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" %>
         <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
             <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                 <%@ page import="java.lang.String" %>
-</>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,9 +17,7 @@
     <script type="text/javascript" src="/public/js/login.js"></script>
     <title>Log In</title>
 </head>
-
 <body>
-
     <c:set var="ROLE_DOCTOR" value="ROLE_DOCTOR" scope="application"></c:set>
     <c:set var="ROLE_ADMIN" value="ROLE_ADMIN" scope="application"></c:set>
 

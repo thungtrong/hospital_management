@@ -1,10 +1,13 @@
 package com.hospitalmanagement.restcontroller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -12,10 +15,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hospitalmanagement.config.UserPrincipal;
+import com.hospitalmanagement.exception.ModelNotVaildException;
 import com.hospitalmanagement.model.Account;
 import com.hospitalmanagement.model.Doctor;
 import com.hospitalmanagement.response.BasicResponse;
 import com.hospitalmanagement.service.AccountService;
+import com.hospitalmanagement.service.DoctorService;
 
 @RestController
 @RequestMapping(ConstValue.BASE_API_URL + "/account")
@@ -87,5 +92,24 @@ public class AccountRestController {
 			body.setMessage("Something went wrong! Please try again after some time");
 			return new ResponseEntity<>(body, HttpStatus.OK);
 		}
+	}
+
+	@Autowired
+	private DoctorService doctorService;
+
+	@PutMapping("/update-profile")
+	public ResponseEntity<Object> updateProfile(@Valid @RequestBody Doctor doctor, BindingResult bindingResult) throws ModelNotVaildException
+	{
+		if (bindingResult.hasErrors())
+			throw ModelNotVaildException.fromBindingResult(bindingResult);
+		
+		Doctor doctor2 = doctorService.findById(doctor.getId());
+		doctor2.setName(doctor.getName());
+		doctor2.setAddress(doctor.getAddress());
+		doctor2.setDateOfBirth(doctor.getDateOfBirth());
+		doctor.setGender(doctor.getGender());
+		doctor.setPhoneNumber(doctor.getPhoneNumber());
+		doctorService.update(doctor2);
+		return new ResponseEntity<>(doctor2, HttpStatus.ACCEPTED);
 	}
 }

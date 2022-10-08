@@ -1,20 +1,21 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" %>
+    <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" %>
         <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 
 <head>
     <meta charset="ISO-8859-1">
-    <jsp:include page="../_shared.jsp"></jsp:include>
-    <title>Update Doctor</title>
+    <jsp:include page="./_shared.jsp"></jsp:include>
+    <title>My Profile</title>
     <!--   <link rel="stylesheet" href=""> -->
 </head>
 
 <body>
-    <jsp:include page="../_navbar.jsp"></jsp:include>
+    <jsp:include page="./_navbar.jsp"></jsp:include>
     <div class="container">
         <div class="form-container-outside">
-            <div class="title-form">Insert Doctor Form</div>
+            <!-- <div class="title-form">Insert Doctor Form</div> -->
             <div class="detail-form">
                 <div class="form-container-inside">
                     <div class="detail-doctor">
@@ -22,7 +23,7 @@
                             <input type="hidden" name="doctorId" value="${ doctor.id }">
                             <div class="col">
                                 <div class="item">
-                                    <label for="name" class="text-label">Doctor name</label>
+                                    <label for="name" class="text-label">Name</label>
                                     <input type="text" name="name" id="name" class="input text-input"
                                         placeholder="Eg: John Doe" value="${ doctor.name }">
                                     <label for="name" class="error-msg text-danger" id="name-error"></label>
@@ -61,11 +62,8 @@
                                 </div>
                                 <div class="item">
                                     <label for="departmentId" class="text-label">Department</label>
-                                    <select name="departmentId" class="input">
-                                        <option value="">Please select department</option>
-                                        <c:forEach var="department" items="${ departmentList }">
-                                            <option value="${ department.id }" ${ department.id == doctor.department.id ? 'selected' : '' }>${department.name }</option>
-                                        </c:forEach>
+                                    <select name="departmentId" class="input" disabled>
+                                        <option value="${ department.id }" selected>${ department.name }</option>
                                     </select>
                                     <label for="departmentId" class="error-msg text-danger"
                                         id="departmentId-error"></label>
@@ -84,8 +82,8 @@
 
         </div>
     </div>
-	<jsp:include page="../_footer.jsp"></jsp:include>
-	
+    <jsp:include page="./_footer.jsp"></jsp:include>
+
     <!-- Modal -->
     <div class="modal fade" id="alertModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
@@ -98,12 +96,12 @@
                     </button>
                 </div>
                 <div class="modal-body" id="modal-body">
-                    ...
+                    ..
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal"
                         id="btn-continue">Continue</button>
-                    <button type="button" class="btn btn-primary" onclick="goToDoctorList();">Back to list</button>
+                    <button type="button" class="btn btn-primary" id="btn-back">Back to dashboard</button>
                 </div>
             </div>
         </div>
@@ -112,7 +110,7 @@
 
     <!-- Javascript -->
     <script type="text/javascript" src="/js/doctor/validate-doctor.js"></script>
-    <script type="text/javascript" src="/js/doctor/update-doctor.js"></script>
+    <script type="text/javascript" src="/js/account/update-profile.js"></script>
 </body>
 
 </html>

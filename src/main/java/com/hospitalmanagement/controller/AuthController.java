@@ -6,13 +6,15 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.hospitalmanagement.config.UserPrincipal;
+import com.hospitalmanagement.model.Doctor;
 
 @Controller
 public class AuthController {
 
-	@RequestMapping(value = { "/index", "/" })
+	@GetMapping(value = { "/index", "/" })
 	public String index(HttpServletResponse response) {
 		return "index";
 	}
@@ -34,9 +36,13 @@ public class AuthController {
 		return model;
 	}
 
-	@RequestMapping(value = { "signup" })
-	public ModelAndView signup() {
-		return new ModelAndView("signup");
-	}
 
+	@GetMapping(value={"profile", "my-account"})
+	public ModelAndView getProfile(Authentication authentication) {
+		ModelAndView model = new ModelAndView("profile");
+		UserPrincipal userPrincipal = (UserPrincipal) authentication.getPrincipal();
+		Doctor doctor = userPrincipal.getAccount().getDoctor();
+		model.addObject("doctor", doctor);
+		return model;
+	}
 }
