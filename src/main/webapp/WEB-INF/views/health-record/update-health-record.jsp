@@ -302,7 +302,7 @@
 												class="fa fa-search" aria-hidden="true"></i>
 										</button>
 									</div>
-									<div class="col text-center text-danger" id="patient-filter-message">
+									<div class="text-center text-danger" id="patient-filter-message">
 
 									</div>
 								</form>

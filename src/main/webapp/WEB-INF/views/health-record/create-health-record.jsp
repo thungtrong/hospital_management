@@ -12,7 +12,10 @@
 
 		<body>
 			<jsp:include page="../_navbar.jsp"></jsp:include>
+			<div id="alert-container" class="d-flex flex-column justify-content-center">
+			</div>
 			<div class="container">
+
 				<div class="form-container-outside">
 					<div class="title-form">Create Health Record</div>
 					<div class="detail-form">
@@ -236,7 +239,7 @@
 											class="fa fa-search" aria-hidden="true"></i>
 									</button>
 								</div>
-								<div class="col text-center text-danger" id="patient-filter-message">
+								<div class="text-center text-danger" id="patient-filter-message">
 
 								</div>
 							</form>
@@ -286,7 +289,7 @@
 											class="fa fa-search" aria-hidden="true"></i>
 									</button>
 								</div>
-								<div class="col text-center text-danger" id="doctor-filter-message">
+								<div class="text-center text-danger" id="doctor-filter-message">
 
 								</div>
 							</form>
@@ -416,6 +419,7 @@
 			</div>
 
 			<!-- Javascript -->
+			<script type="text/javascript" src="/js/_alert/alert.js"></script>
 			<script type="text/javascript" src="/js/health-record/validate-health-record.js"></script>
 			<script type="text/javascript" src="/js/_search/search-patient.js"></script>
 			<script type="text/javascript" src="/js/_search/search-doctor.js"></script>
