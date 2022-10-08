@@ -3,16 +3,20 @@ package com.hospitalmanagement.model;
 import java.io.Serializable;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name = "account")
 public class Account implements Serializable {
 
-	@Id
+	@Id	
 	private String username;
+	
 	@Column(name = "password", length = 60, nullable = false)
 	private String password;
+	
 	private String role;
+	
 	@Column(columnDefinition = "CHAR(1) default 1", nullable = false)
 	private Boolean enable;
 

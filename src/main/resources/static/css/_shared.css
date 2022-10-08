@@ -182,3 +182,10 @@ table td {
 table td:nth-child(3) {
 	max-width: 20vw;
 }
+table th {
+	font-weight: bold;
+}
+div#alert-container {
+    position: fixed;
+    right: 1rem;
+}

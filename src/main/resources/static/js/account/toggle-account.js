@@ -8,11 +8,21 @@ let btnToggleModels = document.getElementsByClassName(
 for (let i = 0; i < btnToggleModels.length; i++) {
     btnToggleModels[i].addEventListener("click", toggleStatusAccountModel);
 }
-document.getElementById("btn-toggle-account").addEventListener("click", toggleStatusAccount);
+document
+    .getElementById("btn-toggle-account")
+    .addEventListener("click", toggleStatusAccount, true);
+
 var hidden;
+let selectedRow;
+
 function toggleStatusAccountModel(e) {
     let target = e.target;
-    let row = target.parentElement.parentElement.parentElement;
+    console.log(target);
+    let row = target;
+    while (row.tagName !== "TR") row = row.parentElement;
+
+    selectedRow = row;
+
     let cols = row.getElementsByTagName("td");
     let status = cols[4].innerText;
 
@@ -42,16 +52,25 @@ function toggleStatusAccountModel(e) {
     </tr>
     </table`;
     hidden = cols[0].innerHTML;
-    console.log(cols);
     $("#alertModel").modal("show");
 }
+
+let alertContainer = $("#alert-container");
+
+let successAlert = document.createElement("div");
+successAlert.className = "alert alert-success";
+successAlert.setAttribute("role", "alert");
+
+let errorAlert = document.createElement("div");
+errorAlert.className = "alert alert-danger";
+errorAlert.setAttribute("role", "alert");
+
 // fetch api to update status
 function toggleStatusAccount() {
     let url = "/api/account/toggle-status";
     let data = {
         username: hidden,
     };
-    console.log(data);
     fetch(url, {
         method: "PUT",
         headers: {
@@ -59,20 +78,47 @@ function toggleStatusAccount() {
         },
         body: JSON.stringify(data),
     })
-        .then((response) =>{
+        .then((response) => {
             console.log(response);
             return response.json();
         })
-
         .then((data) => {
-            console.log(data);
-            if (data !=null) {
+            if (data.status) {
                 $("#alertModel").modal("hide");
-                location.reload();
+                addCloneAlert(successAlert, data.message);
+                toggleStatusTextOnRow(selectedRow);
+            } else {
+                $("#alertModel").modal("hide");
+                addCloneAlert(errorAlert, data.message);
             }
-
         })
         .catch((error) => {
             console.error("Error:", error);
         });
+}
+
+function addCloneAlert(alert, message) {
+    let alertClone = alert.cloneNode(true);
+    alertClone.innerHTML = message;
+    alertContainer.append(alertClone);
+    setTimeout(() => {
+        alertClone.className += " fade";
+        $(alertClone).alert("close");
+    }, 2000);
+}
+
+function toggleStatusTextOnRow(row) {
+    let cols = row.getElementsByTagName("td");
+    let currentStatus = cols[4].innerHTML;
+    let isEnabled = currentStatus == "Enabled";
+    cols[4].innerHTML = isEnabled ? "Disabled" : "Enabled";
+
+    let btn = row.lastElementChild.lastElementChild;
+    if (isEnabled) {
+        btn.className = "btn btn-info btn-toggle-account-modal";
+        btn.lastElementChild.className = "fa fa-toggle-off";
+    } else {
+        btn.className = "btn btn-warning btn-toggle-account-modal";
+        btn.lastElementChild.className = "fa fa-toggle-on";
+    }
 }

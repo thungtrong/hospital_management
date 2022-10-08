@@ -69,10 +69,10 @@ public class UserPrincipal implements UserDetails{
 
 	@Override
 	public boolean isEnabled() {
-//		if (account.getEnable() == null)
-//			return false;
-//		return account.getEnable();
-		return true;
+		if (account == null)
+			return false;
+		return account.getEnable();
+//		return true;
 	}
 
 	public Account getAccount() {
@@ -94,6 +94,14 @@ public class UserPrincipal implements UserDetails{
 		return rolesMap;
 	}
 	
-
+	public Boolean isAdmin()
+	{
+		return getRolesMap().get("isAdmin");
+	}
+	
+	public Boolean isDoctor()
+	{
+		return getRolesMap().get("isDoctor");
+	}
 	
 }

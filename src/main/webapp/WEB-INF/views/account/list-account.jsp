@@ -17,8 +17,11 @@
 <body>
 	<jsp:include page="../_navbar.jsp"></jsp:include>
 	<input type="hidden" id="username" />
+	<div id="alert-container" class="d-flex flex-column justify-content-center">
+		
+	</div>
 	<div class="container">
-
+		
 		<div class="table-container-outside">
 			<div class="title-table">List Account</div>
 			<div class="d-flex justify-content-end">
@@ -135,7 +138,8 @@
 			</div>
 		</div>
 	</div>
-
+	
+	
 	<!-- Javascript -->
 	<script type="text/javascript" src="/js/account/toggle-account.js"></script>
 
