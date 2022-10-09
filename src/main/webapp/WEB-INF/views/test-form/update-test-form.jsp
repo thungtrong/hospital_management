@@ -1,11 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 		<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 			<!DOCTYPE html>
 			<html>
 
 			<head>
-				<meta charset="ISO-8859-1">
+				<meta charset="UTF-8">
 				<jsp:include page="../_shared.jsp"></jsp:include>
 				<title>Update Test Form</title>
 				<link rel="stylesheet" href="/css/test_form.css" type="text/css">

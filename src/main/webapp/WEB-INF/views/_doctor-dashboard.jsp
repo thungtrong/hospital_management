@@ -1,4 +1,4 @@
-	<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" %>
+	<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <div class="container" style="font-size:20px; color: white">
 	<div class="row">
 		<div class="col-md-6 col-xl-4">

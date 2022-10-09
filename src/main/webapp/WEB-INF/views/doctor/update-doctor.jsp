@@ -1,10 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
         <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 
 <head>
-    <meta charset="ISO-8859-1">
+    <meta charset="UTF-8">
     <jsp:include page="../_shared.jsp"></jsp:include>
     <title>Update Doctor</title>
     <!--   <link rel="stylesheet" href=""> -->
@@ -14,7 +14,7 @@
     <jsp:include page="../_navbar.jsp"></jsp:include>
     <div class="container">
         <div class="form-container-outside">
-            <div class="title-form">Insert Doctor Form</div>
+            <div class="title-form">Update Doctor Form</div>
             <div class="detail-form">
                 <div class="form-container-inside">
                     <div class="detail-doctor">
