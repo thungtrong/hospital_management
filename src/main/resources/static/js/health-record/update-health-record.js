@@ -1,4 +1,4 @@
-document.getElementById("submit").addEventListener("click", function (e) {
+document.getElementById("submit").addEventListener("click", async function (e) {
     let hidden = document.getElementById("health-record-id");
     let healthRecord = mapForm2HealthRecordObject();
     healthRecord.id = hidden.value;
@@ -8,34 +8,30 @@ document.getElementById("submit").addEventListener("click", function (e) {
 
     let isValid = validateHealthRecord(healthRecord);
     if (isValid) {
-        fetch(BASE_HEALTH_RECORD_API + "/update", {
+        let response = await fetch(BASE_HEALTH_RECORD_API + "/update", {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify(healthRecord),
         })
-            .then((response) => {
-                let modalBody = document.getElementById("modal-body");
-                if (response.status === ACCEPTED) {
-                    modalBody.innerHTML = `Update Health Record successfully!`;
-                    $("#alertModal").modal("show");
-                    return response.json();
-                } else {
-                    modalBody.innerHTML = `Update Health Record failure!`;
-                    $("#alertModal").modal("show");
-                    return response.json();
-                }
-            })
-            .catch((error) => {
-                let modalBody = document.getElementById("modal-body");
-                console.error(error);
-                modalBody.innerHTML = `Update Health Record failure!<br>Internal Error`;
-                $("#alertModal").modal("show");
-            });
-        // .then((data) => {
-        //     console.log(data);
-        // });
+        .catch((error) => {
+            let modalBody = document.getElementById("modal-body");
+            modalBody.innerHTML = `Update Health Record failure!<br>Internal Error`;
+            $("#alertModal").modal("show");
+        });
+
+        let modalBody = document.getElementById("modal-body");
+        if (response.status === ACCEPTED) {
+            modalBody.innerHTML = `Update Health Record successfully!`;
+            $("#alertModal").modal("show");
+        } else {
+            addErrorAlert(`Update Health Record failure!`);
+            let data = await response.json();
+            for (let key in data) {
+                addErrorAlert(data[key]);
+            }
+        }
     }
 });
 

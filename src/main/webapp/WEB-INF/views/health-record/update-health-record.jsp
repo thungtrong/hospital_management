@@ -16,7 +16,7 @@
 				<div class="container">
 					<input type="hidden" value="${ healthRecord.id }" id="health-record-id">
 					<div class="form-container-outside">
-						<div class="title-form">Create Health Record</div>
+						<div class="title-form">Update Health Record</div>
 						<div class="detail-form">
 							<div class="form-container-inside">
 								<!-- Doctor Part -->
@@ -24,7 +24,9 @@
 									<c:set var="doctor" value="${healthRecord.doctor}"></c:set>
 									<div class="sub-title-container d-flex justify-content-between mb-3">
 										<h5>Doctor Information</h5>
+										<c:if test="${isAdmin}" >
 										<button class="btn btn-primary" id="btn-doctor">CHANGE</button>
+										</c:if>
 									</div>
 									<form onsubmit="return false" name="doctor-form">
 										<div class="col">
@@ -331,6 +333,7 @@
 					</div>
 				</div>
 
+				<c:if test="${isAdmin}" >
 				<!-- Modal searchDoctorModel -->
 				<div class="modal fade" id="searchDoctorModel" tabindex="-1" role="dialog"
 					aria-labelledby="searchDoctorModel" aria-hidden="true">
@@ -379,7 +382,7 @@
 						</div>
 					</div>
 				</div>
-
+				</c:if>
 				<!-- Modal searchIllnessModel -->
 				<div class="modal fade" id="searchIllnessModel" tabindex="-1" role="dialog"
 					aria-labelledby="searchIllnessModel" aria-hidden="true">
@@ -479,9 +482,12 @@
 				</div>
 
 				<!-- Javascript -->
+				<script type="text/javascript" src="/js/_alert/alert.js"></script>
 				<script type="text/javascript" src="/js/health-record/validate-health-record.js"></script>
 				<script type="text/javascript" src="/js/_search/search-patient.js"></script>
+				<c:if test="${isAdmin}" >
 				<script type="text/javascript" src="/js/_search/search-doctor.js"></script>
+				</c:if>
 				<script type="text/javascript" src="/js/_search/search-illness.js"></script>
 				<script type="text/javascript" src="/js/_search/search-medicine.js"></script>
 				<script type="text/javascript" src="/js/health-record/update-health-record.js"></script>

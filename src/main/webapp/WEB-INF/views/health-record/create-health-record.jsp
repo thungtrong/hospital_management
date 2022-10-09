@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 		<!DOCTYPE html>
 		<html>
@@ -24,22 +25,24 @@
 							<div id="doctor-information-container" class="mb-3">
 								<div class="sub-title-container d-flex justify-content-between mb-3">
 									<h5>Doctor Information</h5>
+									<c:if test="${isAdmin}" >
 									<button class="btn btn-primary" id="btn-doctor">CHANGE</button>
+									</c:if>
 								</div>
 								<form onsubmit="return false" name="doctor-form">
 									<div class="col">
-										<input type="hidden" name="doctorId">
+										<input type="hidden" name="doctorId" value="${ doctor.id }">
 										<div class="item">
 											<label for="doctorName" class="text-label">Doctor name</label>
 											<input type="text" name="doctorName" id="doctorName"
-												class="input text-input" placeholder="Eg: John Doe" disabled>
+												class="input text-input" placeholder="Eg: John Doe" disabled value="${doctor.name}">
 											<label for="doctorName" class="error-msg text-danger"
 												id="name-error"></label>
 										</div>
 										<div class="item">
 											<label for="doctorPhoneNumber" class="text-label">Phone number</label>
 											<input type="text" name="doctorPhoneNumber" id="doctorPhoneNumber"
-												class="input text-input" placeholder="Eg: 0918464495" disabled>
+												class="input text-input" placeholder="Eg: 0918464495" disabled value="${doctor.phoneNumber}">
 											<label for="doctorPhoneNumber" class="error-msg text-danger"
 												id="phoneNumber-error"></label>
 										</div>
@@ -267,7 +270,7 @@
 					</div>
 				</div>
 			</div>
-
+			<c:if test="${isAdmin}" >
 			<!-- Modal searchDoctorModel -->
 			<div class="modal fade" id="searchDoctorModel" tabindex="-1" role="dialog"
 				aria-labelledby="searchDoctorModel" aria-hidden="true">
@@ -319,7 +322,7 @@
 					</div>
 				</div>
 			</div>
-
+			</c:if>
 			<!-- Modal searchIllnessModel -->
 			<div class="modal fade" id="searchIllnessModel" tabindex="-1" role="dialog"
 				aria-labelledby="searchIllnessModel" aria-hidden="true">
@@ -422,7 +425,9 @@
 			<script type="text/javascript" src="/js/_alert/alert.js"></script>
 			<script type="text/javascript" src="/js/health-record/validate-health-record.js"></script>
 			<script type="text/javascript" src="/js/_search/search-patient.js"></script>
+			<c:if  test="${isAdmin}">
 			<script type="text/javascript" src="/js/_search/search-doctor.js"></script>
+			</c:if>
 			<script type="text/javascript" src="/js/_search/search-illness.js"></script>
 			<script type="text/javascript" src="/js/_search/search-medicine.js"></script>
 			<script type="text/javascript" src="/js/health-record/create-health-record.js"></script>

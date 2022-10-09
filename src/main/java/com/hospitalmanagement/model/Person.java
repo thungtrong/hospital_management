@@ -1,5 +1,6 @@
 package com.hospitalmanagement.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -11,7 +12,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 @MappedSuperclass
-public class Person {
+public class Person implements Serializable {
 	@NotEmpty(message = "Please fill your full name")
 	@Column(name="name", nullable = false, length = 100)
 	protected String name;

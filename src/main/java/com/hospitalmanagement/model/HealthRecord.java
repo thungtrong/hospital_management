@@ -41,11 +41,13 @@ public class HealthRecord {
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "health_record_detail", joinColumns = @JoinColumn(name = "health_record_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "illness_id", referencedColumnName = "id"))
 	private List<Illness> illnessList;
-
+	
+	@NotNull(message = "You must select a doctor")
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "doctor_id", referencedColumnName = "id")
 	private Doctor doctor;
 
+	@NotNull(message = "You must select a patient")
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "patient_id", referencedColumnName = "id")
 	private Patient patient;

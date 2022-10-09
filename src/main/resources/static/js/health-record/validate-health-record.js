@@ -1,11 +1,11 @@
 function validateHealthRecord(healthRecord) {
     if (!healthRecord.doctor.id) {
-        addErrorAlert("Please choose a doctor");
+        addErrorAlert("You must select a doctor");
         return false;
     }
 
     if (!healthRecord.patient.id) {
-        addErrorAlert("Please choose a patient");
+        addErrorAlert("You must select a patient");
         return false;
     }
 

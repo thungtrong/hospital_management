@@ -1,5 +1,7 @@
 package com.hospitalmanagement.advicecontroller;
 
+import javax.naming.NoPermissionException;
+
 /**
  * Handle basic java error
  * @author Admin
@@ -34,9 +36,17 @@ public class BaseHandler {
 		return new ResponseEntity<>(e.getFieldErrors(), HttpStatus.BAD_REQUEST);
 	}
 
+	@ExceptionHandler(value = {NoPermissionException.class})
+	public ResponseEntity<Object> noPermission(Exception e)
+	{
+		return new ResponseEntity<Object>(createBasicResponse(e), HttpStatus.FORBIDDEN);
+	}
+
 	private BasicResponse createBasicResponse(Exception e) {
 		String exceptionMessage = e.getMessage();
 		String message = (exceptionMessage == null || exceptionMessage.isEmpty()) ? "Invalid data" : exceptionMessage;
 		return new BasicResponse(false, message);
 	}
+
+
 }

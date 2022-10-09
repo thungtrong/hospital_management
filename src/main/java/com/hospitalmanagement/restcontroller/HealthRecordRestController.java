@@ -2,11 +2,16 @@ package com.hospitalmanagement.restcontroller;
 
 import java.util.List;
 
+import javax.naming.NoPermissionException;
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,6 +22,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.hospitalmanagement.config.UserPrincipal;
+import com.hospitalmanagement.exception.ModelNotVaildException;
+import com.hospitalmanagement.model.Doctor;
 import com.hospitalmanagement.model.HealthRecord;
 import com.hospitalmanagement.service.HealthRecordService;
 
@@ -46,13 +54,31 @@ public class HealthRecordRestController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<HealthRecord> create(@RequestBody HealthRecord healthRecord) {
-
+    public ResponseEntity<HealthRecord> create(@Valid @RequestBody HealthRecord healthRecord, BindingResult bindingResult) throws ModelNotVaildException {
+        if (bindingResult.hasErrors())
+            throw ModelNotVaildException.fromBindingResult(bindingResult);
         return new ResponseEntity<>(healthRecordService.insert(healthRecord), HttpStatus.CREATED);
     }
 
     @PutMapping("/update")
-    public ResponseEntity<HealthRecord> update(@RequestBody HealthRecord healthRecord) {
+    public ResponseEntity<HealthRecord> update(@Valid @RequestBody HealthRecord healthRecord, 
+        Authentication authentication, BindingResult bindingResult) throws NoPermissionException, ModelNotVaildException 
+        {
+        if (bindingResult.hasErrors())
+            throw ModelNotVaildException.fromBindingResult(bindingResult);
+
+        UserPrincipal userPrincipal = (UserPrincipal) authentication.getPrincipal();
+        // Doctor can not change "who created healthRecord"
+        if (userPrincipal.isDoctor())
+        {
+            HealthRecord heaalthRecord2 = healthRecordService.findById(healthRecord.getId());
+            Doctor doctor = heaalthRecord2.getDoctor();
+            if (doctor!=null && !doctor.getId().equals(healthRecord.getDoctor().getId()))
+            {
+                throw new NoPermissionException("You are not allowed to change who created this health record");
+            }
+        }
+
         healthRecord.getHealthRecordDetails().forEach(prescriptionDetail -> {
             prescriptionDetail.setHealthRecord(healthRecord);
         });

@@ -24,7 +24,7 @@ public class IllnessController {
     @GetMapping(value = { "/list", "/", "" })
     public ModelAndView list(
             @RequestParam(defaultValue = "1") Integer page, @RequestParam(defaultValue = "10") Integer size,
-            @RequestParam(defaultValue = "id") String orderBy, @RequestParam(defaultValue = "true") Boolean asc
+            @RequestParam(defaultValue = "name") String orderBy, @RequestParam(defaultValue = "true") Boolean asc
             // @RequestParam(defaultValue = "") String qName, @RequestParam(defaultValue =
             // "") String qPhoneNumber
             , Authentication authentication) {

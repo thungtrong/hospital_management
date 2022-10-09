@@ -1,7 +1,5 @@
 package com.hospitalmanagement.model;
 
-import org.hibernate.annotations.ForeignKey;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

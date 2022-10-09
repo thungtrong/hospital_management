@@ -47,17 +47,22 @@ public class HealthRecordController {
 	}
 
 	@GetMapping({ "/create" })
-	public ModelAndView create() {
-		ModelAndView model = new ModelAndView("health-record/create-health-record");
-		model.addObject("toDay", new Date());
-		return model;
+	public ModelAndView create(Authentication authentication) {
+		ModelAndView modelAndView = new ModelAndView("health-record/create-health-record");
+
+		UserPrincipal userPrincipal = (UserPrincipal) authentication.getPrincipal();
+		modelAndView.addAllObjects(userPrincipal.getRolesMap());
+		modelAndView.addObject("doctor", userPrincipal.getAccount().getDoctor());
+		modelAndView.addObject("toDay", new Date());
+		return modelAndView;
 	}
 
 	@GetMapping({ "/update/{id}" })
-	public ModelAndView update(@PathVariable Long id) {
+	public ModelAndView update(@PathVariable Long id, Authentication authentication) {
 		ModelAndView modelAndView = new ModelAndView("health-record/update-health-record");
 		HealthRecord healthRecord = healthRecordService.findById(id);
 		modelAndView.addObject("healthRecord", healthRecord);
+
 		return modelAndView;
 	}
 
