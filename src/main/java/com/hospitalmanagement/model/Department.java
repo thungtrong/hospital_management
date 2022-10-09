@@ -1,5 +1,7 @@
 package com.hospitalmanagement.model;
 
+import org.hibernate.annotations.ForeignKey;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -20,7 +22,7 @@ public class Department {
 	@NotEmpty(message = "Please fill department name")
 	@Column(nullable = false)
 	private String name;
-	
+
 	private String description;
 
 	public Department() {

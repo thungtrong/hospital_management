@@ -58,9 +58,8 @@ Insert into VN_JAVA2.MEDICINE (Id,INSTRUCTION,NAME,UNIT) values ( 10,null,'Halob
 Insert into VN_JAVA2.MEDICINE (Id,INSTRUCTION,NAME,UNIT) values ( 11,null,'Inflectra','pellet');
 Insert into VN_JAVA2.MEDICINE (Id,INSTRUCTION,NAME,UNIT) values ( 12,null,'Vilazodone','pellet');
 
-
-
-
+--increment current values sequence
+--alter sequence VN_JAVA2.MEDICINE_SEQ increment by 12;
 
 Insert into VN_JAVA2.TEST (ID,DESCRIPTION,NORMAL_RESULT,TEST_NAME) values (100,null,'5,000,000 red cells per cubic millimetre','Red blood cells');
 Insert into VN_JAVA2.TEST (ID,DESCRIPTION,NORMAL_RESULT,TEST_NAME) values (101,null,'7,000 white cells per cubic millimetre','White blood cells');
@@ -71,4 +70,7 @@ Insert into VN_JAVA2.TEST (ID,DESCRIPTION,NORMAL_RESULT,TEST_NAME) values (104,n
 Insert into VN_JAVA2.TEST (ID,DESCRIPTION,NORMAL_RESULT,TEST_NAME) values (105,null,'32-36','Mean corpuscular haemoglobin');
 Insert into VN_JAVA2.TEST (ID,DESCRIPTION,NORMAL_RESULT,TEST_NAME) values (106,null,'11.5-14.5','Mean corpuscular haemoglobin concentration');
 Insert into VN_JAVA2.TEST (ID,DESCRIPTION,NORMAL_RESULT,TEST_NAME) values (107,null,'150-450','Platelets');
+Insert into VN_JAVA2.TEST (ID,DESCRIPTION,NORMAL_RESULT,TEST_NAME) values (108,null,'3.5-5.5','Red cell distribution width');
+Insert into VN_JAVA2.TEST (ID,DESCRIPTION,NORMAL_RESULT,TEST_NAME) values (109,null,'0.9-1.1','Red cell distribution width coefficient');
+Insert into VN_JAVA2.TEST (ID,DESCRIPTION,NORMAL_RESULT,TEST_NAME) values (110,null,'0.9-1.1','Red cell distribution width coefficient');
 commit;
