@@ -6,13 +6,12 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class AuthController {
 
-	@RequestMapping(value = { "/index", "/" })
+	@GetMapping(value = { "/index", "/" })
 	public String index(HttpServletResponse response) {
 		return "index";
 	}
@@ -26,7 +25,6 @@ public class AuthController {
 			return model;
 		}
 
-		System.out.println(authentication);
 		model.setViewName("login");
 		String error = request.getParameter("error");
 		if (error != null)
@@ -35,9 +33,6 @@ public class AuthController {
 		return model;
 	}
 
-	@RequestMapping(value = { "signup" })
-	public ModelAndView signup() {
-		return new ModelAndView("signup");
-	}
 
+	
 }

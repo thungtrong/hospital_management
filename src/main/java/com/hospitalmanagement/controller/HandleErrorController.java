@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -26,7 +26,7 @@ public class HandleErrorController implements ErrorController {
 		MAP_MESSAGE.put("503", "The server is currently unavailable (because it is overloaded or down for maintenance)");
 		MAP_MESSAGE.put("504", "The server, while acting as a gateway or proxy, did not receive a timely response from the upstream server specified by the URI or some other auxiliary server it needed to access in attempting to complete the request");
 	}
-	@RequestMapping("/error")
+	@GetMapping("/error")
 	public ModelAndView handleError(HttpServletRequest request) {
 		Object status = request.getAttribute(RequestDispatcher.ERROR_STATUS_CODE);
 		

@@ -5,6 +5,7 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -20,8 +21,8 @@ import javax.validation.constraints.NotNull;
 @Table(name = "admission_form")
 public class AdmissionForm {
 	@Id
-	@SequenceGenerator(name = "admission_form_pk")
-	@GeneratedValue(generator = "admission_form_pk", strategy = GenerationType.SEQUENCE)
+	@SequenceGenerator(name = "seq_admission_form_pk", allocationSize = 1, initialValue = 1000)
+	@GeneratedValue(generator = "seq_admission_form_pk", strategy = GenerationType.SEQUENCE)
 	private Long id;
 
 	@NotNull(message = "Please fill patient's date in")
@@ -34,7 +35,7 @@ public class AdmissionForm {
 	private Date dateOut;
 
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "patient_id", referencedColumnName = "id")
+	@JoinColumn(name = "patient_id", referencedColumnName = "id", foreignKey = @ForeignKey(name = "admission_patient_fk"))
 	private Patient patient;
 
 	public AdmissionForm() {

@@ -13,12 +13,14 @@ import javax.validation.constraints.NotEmpty;
 @Table(name = "test")
 public class Test {
 	@Id
-	@SequenceGenerator(name = "test_seq_pk", initialValue = 100, allocationSize = 1)
-	@GeneratedValue(generator = "test_seq_pk", strategy = GenerationType.SEQUENCE)
+	@SequenceGenerator(name = "seq_test_pk", initialValue = 1000, allocationSize = 1)
+	@GeneratedValue(generator = "seq_test_pk", strategy = GenerationType.SEQUENCE)
 	private Integer id;
+
 	@NotEmpty(message = "Please fill test name")
 	@Column(name = "test_name", nullable = false)
 	private String testName;
+
 	@NotEmpty(message = "Please fill normal result of the test")
 	@Column(name = "normal_result", nullable = false)
 	private String normalResult;

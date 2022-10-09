@@ -5,6 +5,7 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.ForeignKey;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
@@ -26,7 +27,7 @@ public class Account implements Serializable {
 	private Boolean enable;
 
 	@OneToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "doctor_id", referencedColumnName = "id")
+	@JoinColumn(name = "doctor_id", referencedColumnName = "id", foreignKey = @ForeignKey(name = "account_doctor_fk"))
 	private Doctor doctor;
 
 	public String getUsername() {

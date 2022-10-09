@@ -1,4 +1,5 @@
 package com.hospitalmanagement.advicecontroller;
+
 /**
  * Handle basic java error
  * @author Admin
@@ -17,29 +18,25 @@ import com.hospitalmanagement.response.BasicResponse;
 @ControllerAdvice
 public class BaseHandler {
 	// Exception of service
-	@ExceptionHandler(value = {IllegalArgumentException.class})
-	public ResponseEntity<Object> invalidArgument(Exception e)
-	{
+	@ExceptionHandler(value = { IllegalArgumentException.class })
+	public ResponseEntity<Object> invalidArgument(Exception e) {
 		return new ResponseEntity<>(createBasicResponse(e), HttpStatus.BAD_REQUEST);
 	}
-	
-	@ExceptionHandler(value= {RecordNotFoundException.class})
-	public ResponseEntity<Object> notFound(Exception e)
-	{
+
+	@ExceptionHandler(value = { RecordNotFoundException.class })
+	public ResponseEntity<Object> notFound(Exception e) {
 		return new ResponseEntity<>(createBasicResponse(e), HttpStatus.NO_CONTENT);
 	}
-	
-	// Exception of model
-	@ExceptionHandler(value= {ModelNotVaildException.class})
-	public ResponseEntity<Object> modelNotValid(ModelNotVaildException e)
-	{
+
+	// Exception of Controller
+	@ExceptionHandler(value = { ModelNotVaildException.class })
+	public ResponseEntity<Object> modelNotValid(ModelNotVaildException e) {
 		return new ResponseEntity<>(e.getFieldErrors(), HttpStatus.BAD_REQUEST);
 	}
-	
-	private BasicResponse createBasicResponse(Exception e)
-	{
+
+	private BasicResponse createBasicResponse(Exception e) {
 		String exceptionMessage = e.getMessage();
-		String message = (exceptionMessage==null || exceptionMessage.isEmpty()) ? "Invalid data" : exceptionMessage;
+		String message = (exceptionMessage == null || exceptionMessage.isEmpty()) ? "Invalid data" : exceptionMessage;
 		return new BasicResponse(false, message);
 	}
 }

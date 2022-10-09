@@ -37,4 +37,8 @@ public class ModelNotVaildException extends Exception {
 		return new ModelNotVaildException(fieldErrorsMap);
 	}
 
+	public void putError(String field, String message)
+	{
+		this.fieldErrors.put(field, message);
+	}
 }

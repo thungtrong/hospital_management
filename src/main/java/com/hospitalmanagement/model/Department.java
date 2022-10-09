@@ -12,13 +12,13 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
 @Entity
-@Table(name="department")
+@Table(name = "department")
 public class Department {
 	@Id
-	@SequenceGenerator(name = "department_pk", allocationSize = 1, initialValue = 1)
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "department_pk")
+	@SequenceGenerator(name = "seq_department_pk", allocationSize = 1, initialValue = 1000)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_department_pk")
 	private Integer id;
-	
+
 	@NotEmpty(message = "Please fill department name")
 	@Column(nullable = false)
 	private String name;

@@ -18,7 +18,7 @@ public class AccountService implements UserDetailsService {
 
 	@Autowired
 	private AccountRepository accountRepository;
-	
+
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		Account account = accountRepository.findById(username).orElse(null);
@@ -27,18 +27,30 @@ public class AccountService implements UserDetailsService {
 			throw new UsernameNotFoundException(String.format("%s not exists", username));
 		return new UserPrincipal(account);
 	}
+
 	public Account findByUsername(String username) {
 		Account account = accountRepository.findById(username).orElse(null);
 		return account;
 	}
-	
-	public Account saveAccount(Account account)
-	{
+
+	public Account saveAccount(Account account) {
 		return accountRepository.save(account);
 	}
-	
+
 	public Page<Account> findAll(int page, int size, Sort sort) {
 		return accountRepository.findAll(PageRequest.of(page, size, sort));
 	}
+
+	public Account findByDoctorId(Long doctorId) {
+		return accountRepository.findByDoctorId(doctorId);
+	}
+
+    public Account update(Account account) {
+		if (account.getUsername() != null && account.getUsername().isEmpty())
+		{
+			throw new IllegalArgumentException("Username must not be empty");
+		}
+		return accountRepository.save(account);
+    }
 
 }
