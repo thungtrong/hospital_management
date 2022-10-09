@@ -170,7 +170,7 @@
 													<c:forEach var="illness" items="${illnessList}">
 														<tr>
 															<td id="illness-data">${illness.name}
-																<input type="hidden" value="1">
+																<input type="hidden" value="${illness.id}">
 															</td>
 															<td>${illness.description}</td>
 															<td>
