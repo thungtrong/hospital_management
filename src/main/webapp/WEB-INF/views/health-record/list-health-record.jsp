@@ -66,7 +66,7 @@
 										</a>
 										
                                    		<c:if test="${ isAdmin }">
-											<a onclick="deleteTestFormModal(this)" type="button" class="btn btn-danger">
+											<a onclick="deleteHealthRecordModal(this)" type="button" class="btn btn-danger">
 												<i class="fa fa-trash-o" aria-hidden="true"></i>
 											</a>
                                     	</c:if>
@@ -137,7 +137,7 @@
 				<div class="modal-body" id="modal-body"></div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-					<button type="button" class="btn btn-primary" onclick="deleteTestForm();">Delete</button>
+					<button type="button" class="btn btn-primary" onclick="deleteHealthRecord();">Delete</button>
 				</div>
 			</div>
 		</div>

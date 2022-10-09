@@ -2,12 +2,12 @@
  *
  */
 var modalBody = document.getElementById("modal-body");
-var hidden = document.getElementById("test-form-id");
+var hidden = document.getElementById("health-record-id");
 
 var selectedRow;
-var patientList = document.getElementById("test-form-list");
+var patientList = document.getElementById("health-record-list");
 
-function deleteTestFormModal(target) {
+function deleteHealthRecordModal(target) {
     selectedRow = target.parentElement.parentElement;
     let cols = selectedRow.children;
     modalBody.innerHTML = `Are you sure to delete this patient? <br><br>
@@ -29,9 +29,9 @@ function deleteTestFormModal(target) {
     $("#alertModel").modal("show");
 }
 
-function deleteTestForm() {
+function deleteHealthRecord() {
     let id = hidden.value;
-    fetch(`${BASE_TEST_FORM_API}/delete/${id}`, {
+    fetch(`${BASE_HEALTH_RECORD_API}/delete/${id}`, {
         method: "DELETE",
         headers: {
             "Content-Type": "application/json",
