@@ -56,17 +56,6 @@ Insert into VN_JAVA2.MEDICINE (Id,INSTRUCTION,NAME,UNIT) values ( (VN_JAVA2.seq_
 --alter sequence VN_JAVA2.MEDICINE_SEQ increment by 12;
 
 --insert test
-<<<<<<< HEAD
-Insert into VN_JAVA2.TEST (ID,DESCRIPTION,NORMAL_RESULT,TEST_NAME) values (102,null,'4.5-5.5','Haemoglobin');
-Insert into VN_JAVA2.TEST (ID,DESCRIPTION,NORMAL_RESULT,TEST_NAME) values (103,null,'3.5-5.0','Haematocrit');
-Insert into VN_JAVA2.TEST (ID,DESCRIPTION,NORMAL_RESULT,TEST_NAME) values (104,null,'135-165','Mean corpuscular volume');
-Insert into VN_JAVA2.TEST (ID,DESCRIPTION,NORMAL_RESULT,TEST_NAME) values (105,null,'32-36','Mean corpuscular haemoglobin');
-Insert into VN_JAVA2.TEST (ID,DESCRIPTION,NORMAL_RESULT,TEST_NAME) values (106,null,'11.5-14.5','Mean corpuscular haemoglobin concentration');
-Insert into VN_JAVA2.TEST (ID,DESCRIPTION,NORMAL_RESULT,TEST_NAME) values (107,null,'150-450','Platelets');
-Insert into VN_JAVA2.TEST (ID,DESCRIPTION,NORMAL_RESULT,TEST_NAME) values (108,null,'3.5-5.5','Red cell distribution width');
-Insert into VN_JAVA2.TEST (ID,DESCRIPTION,NORMAL_RESULT,TEST_NAME) values (109,null,'0.9-1.1','Red cell distribution width coefficient');
-Insert into VN_JAVA2.TEST (ID,DESCRIPTION,NORMAL_RESULT,TEST_NAME) values (110,null,'0.9-1.1','Red cell distribution width coefficient');
-=======
 Insert into VN_JAVA2.TEST (ID,DESCRIPTION,NORMAL_RESULT,TEST_NAME) values ((VN_JAVA2.seq_test_pk.nextval),null,'5,000,000 red cells per cubic millimetre','Red blood cells');
 Insert into VN_JAVA2.TEST (ID,DESCRIPTION,NORMAL_RESULT,TEST_NAME) values ((VN_JAVA2.seq_test_pk.nextval),null,'7,000 white cells per cubic millimetre','White blood cells');
 Insert into VN_JAVA2.TEST (ID,DESCRIPTION,NORMAL_RESULT,TEST_NAME) values ((VN_JAVA2.seq_test_pk.nextval),null,'4.5-5.5','Haemoglobin');
@@ -76,5 +65,4 @@ Insert into VN_JAVA2.TEST (ID,DESCRIPTION,NORMAL_RESULT,TEST_NAME) values ((VN_J
 Insert into VN_JAVA2.TEST (ID,DESCRIPTION,NORMAL_RESULT,TEST_NAME) values ((VN_JAVA2.seq_test_pk.nextval),null,'11.5-14.5','Mean corpuscular haemoglobin concentration');
 Insert into VN_JAVA2.TEST (ID,DESCRIPTION,NORMAL_RESULT,TEST_NAME) values ((VN_JAVA2.seq_test_pk.nextval),null,'150-450','Platelets');
 
->>>>>>> 96d65bb6bb8139254b28d5ea5db1563af57d8a14
 commit;
