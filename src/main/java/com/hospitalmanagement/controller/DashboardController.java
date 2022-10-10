@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.hospitalmanagement.config.UserPrincipal;
+import com.hospitalmanagement.model.Doctor;
 import com.hospitalmanagement.repository.AccountRepository;
 import com.hospitalmanagement.repository.AdmissionFormRepository;
 import com.hospitalmanagement.repository.DepartmentRepository;
@@ -58,6 +59,10 @@ public class DashboardController {
 
         Map<String, Boolean> rolesMap = userPrincipal.getRolesMap();
         modelAndView.addAllObjects(rolesMap);
+
+        Doctor doctor = userPrincipal.getAccount().getDoctor();
+        String doctorName = doctor != null ? doctor.getName() : "Admin";
+        modelAndView.addObject("name", doctorName);
         return modelAndView;
     }
 }

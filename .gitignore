@@ -36,3 +36,6 @@ oracle.properties
 
 # InteliJ
 .idea/
+
+# VS
+.vscode/

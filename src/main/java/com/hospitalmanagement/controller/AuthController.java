@@ -1,7 +1,6 @@
 package com.hospitalmanagement.controller;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -10,11 +9,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class AuthController {
-
-	@GetMapping(value = { "/index", "/" })
-	public String index(HttpServletResponse response) {
-		return "index";
-	}
 
 	@GetMapping(value = { "/login" })
 	public ModelAndView loginPage(HttpServletRequest request, Authentication authentication) {
